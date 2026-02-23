@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="{{ meta.language }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ meta.title }} — Interactive Study Guide</title>
+<meta name="description" content="{{ meta.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/shared.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showSection('hero')">{{ meta.title | truncate(20, true, '…') }}</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('hero')"><span>Home</span></button>
+      <button class="nav-tab" onclick="showSection('map')"><span>Book Map</span></button>
+      <button class="nav-tab" onclick="showSection('concepts')"><span>Concepts</span></button>
+      <button class="nav-tab" onclick="showSection('classifier')"><span>Classifier</span></button>
+      <button class="nav-tab" onclick="showSection('flashcards')"><span>Flashcards</span></button>
+      <button class="nav-tab" onclick="showSection('quiz')"><span>Quiz</span></button>
+      <button class="nav-tab" onclick="showSection('progress')"><span>Progress</span></button>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</nav>
+
+<!-- HERO -->
+<section class="section active" id="hero-section">
+  <div class="hero">
+    <div class="hero-subtitle">{{ meta.hero_subtitle }}</div>
+    <h1 class="hero-title">{{ meta.title.replace(meta.hero_emphasis_word, '<em>' + meta.hero_emphasis_word + '</em>') }}</h1>
+    <p class="hero-desc">{{ meta.description }}</p>
+    <div class="scroll-hint" onclick="showSection('map')" style="cursor:pointer">
+      <span>Start Exploring</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK MAP -->
+<section class="section" id="map-section">
+  <div class="section-header">
+    <div class="section-label">Structure</div>
+    <h2 class="section-title">Book Overview</h2>
+    <p class="section-desc">Navigate every part and chapter of {{ meta.title }} by {{ meta.author }}.</p>
+  </div>
+  <div id="bookMapContent"></div>
+</section>
+
+<!-- CONCEPTS -->
+<section class="section" id="concepts-section">
+  <div class="section-header">
+    <div class="section-label">Core Ideas</div>
+    <h2 class="section-title">Key Concepts</h2>
+    <p class="section-desc">Essential mental models and frameworks from {{ meta.title }}. Click any concept to explore in depth.</p>
+  </div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+</section>
+
+<!-- CLASSIFIER -->
+<section class="section" id="classifier-section">
+  <div class="section-header">
+    <div class="section-label">Interactive Exercise</div>
+    <h2 class="section-title">Concept Classifier</h2>
+    <p class="section-desc">Match real-world scenarios to the correct concept. Train your intuition for the book's core ideas.</p>
+  </div>
+  <div class="classifier-container" id="classifierContainer"></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards-section">
+  <div class="section-header">
+    <div class="section-label">Spaced Repetition</div>
+    <h2 class="section-title">Flashcard Review</h2>
+    <p class="section-desc">Review core concepts through spaced repetition. Click to flip, rate your recall.</p>
+  </div>
+  <div class="flashcard-container" id="flashcardContainer"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz-section">
+  <div class="section-header">
+    <div class="section-label">Self-Test</div>
+    <h2 class="section-title">Comprehension Quiz</h2>
+    <p class="section-desc">Test your deep understanding with challenging questions. Each includes detailed explanations.</p>
+  </div>
+  <div class="quiz-container" id="quizContainer"></div>
+</section>
+
+<!-- PROGRESS -->
+<section class="section" id="progress-section">
+  <div class="section-header">
+    <div class="section-label">Learning Analytics</div>
+    <h2 class="section-title">Your Progress</h2>
+    <p class="section-desc">Track mastery across all learning modes. Data saved in your browser.</p>
+  </div>
+  <div id="progressContent"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// =============== DATA ===============
+const books = {{ books_json }};
+const concepts = {{ concepts_json }};
+const scenarios = {{ scenarios_json }};
+const flashcards = {{ flashcards_json }};
+const quizQuestions = {{ quiz_json }};
+const STORAGE_KEY = '{{ meta.slug }}_progress';
+
+// =============== STATE ===============
+let currentSection = 'hero';
+let classifierIndex = 0;
+let classifierScore = 0;
+let classifierTotal = 0;
+let flashcardIndex = 0;
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = [];
+let shuffledScenarios = [];
+let shuffledFlashcards = [];
+let shuffledQuiz = [];
+let chapterFilter = 'all';
+
+function loadProgress() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  return {
+    classifierCorrect: data.classifierCorrect || 0,
+    classifierTotal: data.classifierTotal || 0,
+    flashcardsReviewed: data.flashcardsReviewed || 0,
+    flashcardsEasy: data.flashcardsEasy || 0,
+    flashcardsHard: data.flashcardsHard || 0,
+    quizzesTaken: data.quizzesTaken || 0,
+    quizCorrect: data.quizCorrect || 0,
+    quizTotal: data.quizTotal || 0,
+    conceptsViewed: data.conceptsViewed || [],
+    chaptersViewed: data.chaptersViewed || []
+  };
+}
+
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// =============== RENDERING ===============
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id + '-section').classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach((t, i) => {
+    const sections = ['hero', 'map', 'concepts', 'classifier', 'flashcards', 'quiz', 'progress'];
+    t.classList.toggle('active', sections[i] === id);
+  });
+  currentSection = id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'map') renderBookMap();
+  if (id === 'concepts') renderConcepts();
+  if (id === 'classifier') initClassifier();
+  if (id === 'flashcards') initFlashcards();
+  if (id === 'quiz') initQuiz();
+  if (id === 'progress') renderProgress();
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const p = loadProgress();
+  const total = concepts.length + flashcards.length + quizQuestions.length + scenarios.length;
+  const done = p.conceptsViewed.length + p.flashcardsReviewed + p.quizTotal + p.classifierTotal;
+  const pct = Math.min(100, (done / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+// BOOK MAP
+function renderBookMap() {
+  const container = document.getElementById('bookMapContent');
+  container.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'book-grid';
+  books.forEach((book) => {
+    const mustCount = book.chapters.filter(c => c.priority === 'must-read').length;
+    const optCount = book.chapters.filter(c => c.priority === 'optional').length;
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    card.innerHTML = `
+      <div class="book-card-num">${book.num}</div>
+      <div class="book-card-label">Part ${book.num}</div>
+      <div class="book-card-title">${book.title}</div>
+      <div class="book-card-desc">${book.desc}</div>
+      <div class="book-card-chapters">
+        ${book.chapters.map(c => `<span class="chapter-tag">Ch ${c.num}</span>`).join('')}
+      </div>
+      <div class="book-card-meta">
+        <span class="meta-must">&#10038; Must-read ${mustCount}</span>
+        <span class="meta-optional">&#9672; Optional ${optCount}</span>
+      </div>
+    `;
+    card.onclick = () => { grid.style.display = 'none'; renderChapterDetail(book, container, grid); };
+    grid.appendChild(card);
+  });
+  container.appendChild(grid);
+}
+
+function renderChapterDetail(book, container, grid) {
+  let detail = document.getElementById('chapterDetailView');
+  if (detail) detail.remove();
+  detail = document.createElement('div');
+  detail.id = 'chapterDetailView';
+  const backBtn = document.createElement('button');
+  backBtn.className = 'next-btn';
+  backBtn.style.marginBottom = '32px';
+  backBtn.textContent = '\u2190 Back to Overview';
+  backBtn.onclick = () => { detail.remove(); grid.style.display = 'grid'; };
+  detail.appendChild(backBtn);
+  const header = document.createElement('div');
+  header.style.marginBottom = '32px';
+  header.innerHTML = `
+    <div class="section-label">Part ${book.num}</div>
+    <h2 class="section-title" style="font-size:32px">${book.title}</h2>
+    <p class="section-desc">${book.desc}</p>
+  `;
+  detail.appendChild(header);
+  const chaptersContainer = document.createElement('div');
+  book.chapters.forEach(ch => {
+    if (chapterFilter !== 'all' && ch.priority !== chapterFilter) return;
+    const chDiv = document.createElement('div');
+    chDiv.className = 'chapter-detail';
+    const priorityLabel = ch.priority === 'must-read' ? 'Must-read' : 'Optional';
+    chDiv.innerHTML = `
+      <div class="chapter-detail-header">
+        <span class="chapter-num">Ch ${ch.num}</span>
+        <span class="chapter-priority ${ch.priority}">${priorityLabel}</span>
+        <div style="flex:1">
+          <span class="chapter-detail-title">${ch.title}</span>
+          <div class="chapter-oneliner">${ch.oneliner}</div>
+        </div>
+        <span class="chapter-toggle">+</span>
+      </div>
+      <div class="chapter-detail-body">
+        <div class="chapter-detail-content">
+          <p>${ch.summary}</p>
+          <div class="key-ideas">
+            <h4>Key Ideas</h4>
+            ${ch.ideas.map(i => `<span class="idea-chip">${i}</span>`).join('')}
+          </div>
+          <a href="chapters/ch${String(ch.num).padStart(2, '0')}.html" class="next-btn" style="display:inline-block;margin-top:20px;text-decoration:none;">Read Deep Dive →</a>
+        </div>
+      </div>
+    `;
+    chDiv.querySelector('.chapter-detail-header').onclick = () => {
+      chDiv.classList.toggle('open');
+      const p = loadProgress();
+      if (!p.chaptersViewed.includes(ch.num)) { p.chaptersViewed.push(ch.num); saveProgress(p); }
+    };
+    chaptersContainer.appendChild(chDiv);
+  });
+  detail.appendChild(chaptersContainer);
+  container.appendChild(detail);
+}
+
+// CONCEPTS
+function renderConcepts() {
+  const grid = document.getElementById('conceptsGrid');
+  grid.innerHTML = '';
+  concepts.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'concept-card';
+    card.innerHTML = `
+      <span class="triad-badge ${c.badge}">${c.badge}</span>
+      <h3>${c.name}</h3>
+      <p>${c.short}</p>
+      <div class="concept-example"><em>Example:</em> ${c.example}</div>
+    `;
+    card.onclick = () => openConceptModal(c);
+    grid.appendChild(card);
+  });
+}
+
+function openConceptModal(c) {
+  const overlay = document.getElementById('modalOverlay');
+  const content = document.getElementById('modalContent');
+  content.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <span class="triad-badge ${c.badge}" style="margin-bottom:16px;display:inline-block">${c.badge}</span>
+    <h2>${c.name}</h2>
+    <div class="modal-subtitle">Core Concept</div>
+    <p>${c.detail}</p>
+    <blockquote>${c.quote}</blockquote>
+    <div class="related-concepts">
+      <h4>Related Concepts</h4>
+      ${(c.related || []).map(r => {
+        const rel = concepts.find(x => x.id === r);
+        return rel ? `<span class="related-tag" onclick="openConceptModal(concepts.find(x=>x.id==='${r}'))">${rel.name}</span>` : '';
+      }).join('')}
+    </div>
+  `;
+  overlay.classList.add('open');
+  const p = loadProgress();
+  if (!p.conceptsViewed.includes(c.id)) { p.conceptsViewed.push(c.id); saveProgress(p); }
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
+
+// CLASSIFIER
+function initClassifier() {
+  shuffledScenarios = shuffle(scenarios);
+  classifierIndex = 0; classifierScore = 0; classifierTotal = 0;
+  renderClassifier();
+}
+
+function renderClassifier() {
+  const container = document.getElementById('classifierContainer');
+  if (classifierIndex >= shuffledScenarios.length) {
+    container.innerHTML = `<div class="quiz-results"><h3>Round Complete</h3><div class="quiz-score">${classifierScore}/${classifierTotal}</div><p>You correctly classified ${classifierScore} / ${classifierTotal} scenarios.</p><button class="restart-btn" onclick="initClassifier()">Play Again</button></div>`;
+    return;
+  }
+  const s = shuffledScenarios[classifierIndex];
+  // Build concept buttons from unique badges
+  const badges = [...new Set(concepts.map(c => c.badge))].slice(0, 4);
+  const badgeButtons = concepts.slice(0, 3).map(c => `
+    <button class="classify-btn ${c.badge}" onclick="classifyAnswer('${c.id}')">
+      <div class="btn-label">${c.name}</div>
+      <div class="btn-desc">${c.short.substring(0, 50)}…</div>
+    </button>
+  `).join('');
+  
+  container.innerHTML = `
+    <div class="classifier-prompt">
+      <h3>Identify the Concept</h3>
+      <p>Which concept best explains this scenario?</p>
+    </div>
+    <div class="classifier-scenario">
+      <div class="scenario-num">Scenario ${classifierIndex + 1} / ${shuffledScenarios.length}</div>
+      <div class="scenario-text">${s.text}</div>
+      <div class="scenario-context">${s.context}</div>
+    </div>
+    <div class="classifier-options">
+      ${shuffledScenarios[classifierIndex] ? getClassifierOptions(s) : ''}
+    </div>
+    <div class="feedback-box" id="classifierFeedback"></div>
+    <div class="classifier-controls">
+      <div class="classifier-score">Score: <span>${classifierScore}</span> / ${classifierTotal}</div>
+      <button class="next-btn" id="classifierNext" style="display:none" onclick="nextScenario()">Next Scenario \u2192</button>
+    </div>
+  `;
+}
+
+function getClassifierOptions(scenario) {
+  const correct = concepts.find(c => c.id === scenario.answer);
+  if (!correct) return '';
+  let options = [correct];
+  const others = concepts.filter(c => c.id !== scenario.answer);
+  const shuffled = shuffle(others).slice(0, 2);
+  options = shuffle([...options, ...shuffled]);
+  return options.map(c => `
+    <button class="classify-btn ${c.badge}" onclick="classifyAnswer('${c.id}')">
+      <div class="btn-label">${c.name}</div>
+      <div class="btn-desc">${c.short.substring(0, 60)}…</div>
+    </button>
+  `).join('');
+}
+
+function classifyAnswer(answer) {
+  const s = shuffledScenarios[classifierIndex];
+  const correct = answer === s.answer;
+  classifierTotal++;
+  if (correct) classifierScore++;
+  const p = loadProgress();
+  p.classifierTotal++; if (correct) p.classifierCorrect++;
+  saveProgress(p);
+  document.querySelectorAll('.classify-btn').forEach(btn => { btn.style.pointerEvents = 'none'; });
+  const correctConcept = concepts.find(c => c.id === s.answer);
+  const fb = document.getElementById('classifierFeedback');
+  fb.className = `feedback-box visible ${correct ? 'correct' : 'incorrect'}`;
+  fb.innerHTML = `
+    <div class="feedback-result ${correct ? 'correct' : 'incorrect'}">${correct ? '\u2713 Correct!' : '\u2717 Incorrect — Answer: ' + (correctConcept ? correctConcept.name : s.answer)}</div>
+    <p>${s.explanation}</p>
+  `;
+  document.getElementById('classifierNext').style.display = 'inline-block';
+  document.querySelector('.classifier-score').innerHTML = `Score: <span>${classifierScore}</span> / ${classifierTotal}`;
+}
+
+function nextScenario() { classifierIndex++; renderClassifier(); }
+
+// FLASHCARDS
+function initFlashcards() { shuffledFlashcards = shuffle(flashcards); flashcardIndex = 0; renderFlashcard(); }
+
+function renderFlashcard() {
+  const container = document.getElementById('flashcardContainer');
+  if (flashcardIndex >= shuffledFlashcards.length) { flashcardIndex = 0; shuffledFlashcards = shuffle(flashcards); }
+  const card = shuffledFlashcards[flashcardIndex];
+  container.innerHTML = `
+    <div class="flashcard-controls"><div class="flashcard-counter">Card <span>${flashcardIndex + 1}</span> / ${shuffledFlashcards.length}</div></div>
+    <div class="flashcard-wrapper">
+      <div class="flashcard" id="currentFlashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-category">${card.category}</div>
+          <div class="flashcard-question">${card.q}</div>
+          <div class="flashcard-hint">Click to flip</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-category">Answer</div>
+          <div class="flashcard-answer">${card.a}</div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="card-nav-btn" onclick="prevFlashcard()">\u2190</button>
+      <div class="difficulty-btns">
+        <button class="diff-btn hard" onclick="rateFlashcard('hard')">Hard</button>
+        <button class="diff-btn good" onclick="rateFlashcard('good')">Good</button>
+        <button class="diff-btn easy" onclick="rateFlashcard('easy')">Easy</button>
+      </div>
+      <button class="card-nav-btn" onclick="nextFlashcard()">\u2192</button>
+    </div>
+  `;
+}
+
+function prevFlashcard() { flashcardIndex = Math.max(0, flashcardIndex - 1); renderFlashcard(); }
+function nextFlashcard() { flashcardIndex++; renderFlashcard(); }
+function rateFlashcard(d) {
+  const p = loadProgress(); p.flashcardsReviewed++;
+  if (d === 'easy') p.flashcardsEasy++; if (d === 'hard') p.flashcardsHard++;
+  saveProgress(p); nextFlashcard();
+}
+
+// QUIZ
+function initQuiz() { shuffledQuiz = shuffle(quizQuestions).slice(0, 10); quizIndex = 0; quizScore = 0; quizAnswered = new Array(shuffledQuiz.length).fill(null); renderQuiz(); }
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  if (quizIndex >= shuffledQuiz.length) {
+    const p = loadProgress(); p.quizzesTaken++; p.quizCorrect += quizScore; p.quizTotal += shuffledQuiz.length; saveProgress(p);
+    const pct = Math.round((quizScore / shuffledQuiz.length) * 100);
+    container.innerHTML = `<div class="quiz-results"><h3>Quiz Complete</h3><div class="quiz-score">${pct}%</div><p>You got ${quizScore} / ${shuffledQuiz.length} correct.</p><button class="restart-btn" onclick="initQuiz()">Retake Quiz</button></div>`;
+    return;
+  }
+  const q = shuffledQuiz[quizIndex];
+  const letters = ['A', 'B', 'C', 'D'];
+  container.innerHTML = `
+    <div class="quiz-progress">
+      ${shuffledQuiz.map((_, i) => {
+        let cls = '';
+        if (i === quizIndex) cls = 'current';
+        else if (quizAnswered[i] !== null) cls = quizAnswered[i] ? 'correct' : 'incorrect';
+        return `<div class="quiz-dot ${cls}"></div>`;
+      }).join('')}
+    </div>
+    <div class="quiz-question-card">
+      <div class="quiz-q-num">Question ${quizIndex + 1} of ${shuffledQuiz.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `<div class="quiz-option" onclick="answerQuiz(${i})"><span class="option-letter">${letters[i]}</span><span>${opt}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="quiz-explanation" id="quizExplanation"><p>${q.explanation}</p></div>
+    <div class="classifier-controls" style="margin-top:24px">
+      <div></div>
+      <button class="next-btn" id="quizNext" style="display:none" onclick="nextQuizQuestion()">
+        ${quizIndex < shuffledQuiz.length - 1 ? 'Next Question \u2192' : 'See Results \u2192'}
+      </button>
+    </div>
+  `;
+}
+
+function answerQuiz(idx) {
+  const q = shuffledQuiz[quizIndex];
+  const correct = idx === q.correct;
+  if (correct) quizScore++;
+  quizAnswered[quizIndex] = correct;
+  document.querySelectorAll('.quiz-option').forEach((opt, i) => {
+    opt.classList.add('disabled');
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === idx && !correct) opt.classList.add('incorrect');
+  });
+  document.getElementById('quizExplanation').classList.add('visible');
+  document.getElementById('quizNext').style.display = 'inline-block';
+}
+
+function nextQuizQuestion() { quizIndex++; renderQuiz(); }
+
+// PROGRESS
+function renderProgress() {
+  const container = document.getElementById('progressContent');
+  const p = loadProgress();
+  const classifierPct = p.classifierTotal > 0 ? Math.round((p.classifierCorrect / p.classifierTotal) * 100) : 0;
+  const quizPct = p.quizTotal > 0 ? Math.round((p.quizCorrect / p.quizTotal) * 100) : 0;
+  const conceptsPct = Math.round((p.conceptsViewed.length / concepts.length) * 100);
+  const totalCh = books.reduce((s, b) => s + b.chapters.length, 0);
+  const chaptersPct = Math.round((p.chaptersViewed.length / totalCh) * 100);
+  const memPct = p.flashcardsReviewed > 0 ? Math.round((p.flashcardsEasy / p.flashcardsReviewed) * 100) : 0;
+  container.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value">${p.conceptsViewed.length}/${concepts.length}</div><div class="stat-label">Concepts Explored</div></div>
+      <div class="stat-card"><div class="stat-value">${p.flashcardsReviewed}</div><div class="stat-label">Cards Reviewed</div></div>
+      <div class="stat-card"><div class="stat-value">${classifierPct}%</div><div class="stat-label">Classifier Accuracy</div></div>
+      <div class="stat-card"><div class="stat-value">${quizPct}%</div><div class="stat-label">Quiz Accuracy</div></div>
+    </div>
+    <div class="mastery-section">
+      <h3>Mastery Analysis</h3>
+      <div class="mastery-item"><span class="mastery-label">Concepts</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${conceptsPct}%"></div></div><span class="mastery-pct">${conceptsPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Chapters</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${chaptersPct}%"></div></div><span class="mastery-pct">${chaptersPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Classifier</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${classifierPct}%"></div></div><span class="mastery-pct">${classifierPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Quiz</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${quizPct}%"></div></div><span class="mastery-pct">${quizPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Memory</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${memPct}%"></div></div><span class="mastery-pct">${memPct}%</span></div>
+    </div>
+    <button class="next-btn" style="margin-top:16px" onclick="if(confirm('Reset all progress?')){localStorage.removeItem(STORAGE_KEY);renderProgress();}">Reset Progress</button>
+  `;
+}
+
+// NAV
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const st = window.scrollY;
+  if (st > lastScroll && st > 100) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll = st;
+});
+
+document.addEventListener('keydown', e => {
+  if (currentSection === 'flashcards') {
+    if (e.code === 'Space') { e.preventDefault(); const fc = document.getElementById('currentFlashcard'); if (fc) fc.classList.toggle('flipped'); }
+    if (e.code === 'ArrowRight') nextFlashcard();
+    if (e.code === 'ArrowLeft') prevFlashcard();
+  }
+  if (e.key === 'Escape') closeModal();
+});
+
+updateProgressBar();
+</script>
+</body>
+</html>

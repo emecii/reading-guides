@@ -4,3 +4,10 @@
 *~
 .idea/
 .vscode/
+
+# API keys
+.env
+
+# Pipeline intermediates
+tools/chapters_raw.json
+tools/book.json

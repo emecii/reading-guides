@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 7 · Directional Option Trading — Positional Option Trading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/shared.css">
+  <link rel="stylesheet" href="../css/chapter.css">
+  <style>
+    .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+    .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+  </style>
+</head>
+<body>
+
+  <!-- CHAPTER HERO -->
+  <section class="chapter-hero">
+    <div class="chapter-hero-inner">
+      <div class="book-label">Positional Option Trading</div>
+      <div class="chapter-number">Chapter <span>7</span></div>
+      <h1 class="chapter-title">Directional Option Trading</h1>
+      <p class="chapter-subtitle">Exploring how options can be used for directional bets despite the BSM model's assumptions, focusing on subjective pricing, strike choice, and return distributions.</p>
+      <div class="reading-meta">
+        <span>~340 words</span>
+        <span>2 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE BODY -->
+  <main class="chapter-page">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="separator">&gt;</span>
+      <a href="../index.html">Book Map</a>
+      <span class="separator">&gt;</span>
+      <a href="../index.html">Positional Option Trading</a>
+      <span class="separator">&gt;</span>
+      Chapter 7
+    </nav>
+
+    <!-- EPIGRAPH -->
+    <blockquote class="epigraph">
+      <p class="epigraph-text">It is never easy to predict the direction of the underlying. But when trading options, it is easy to be right in your prediction of the underlying and still lose money.</p>
+      <footer class="epigraph-attribution">None</footer>
+    </blockquote>
+
+    <!-- ARGUMENT FLOW -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Argument Flow</span>
+      <h2 class="section-heading">How the Chapter Builds Its Case</h2>
+    </div>
+
+    <div class="argument-flow">
+      <div class="argument-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-heading">BSM vs. Directional Betting</div>
+          <div class="step-body">The BSM model suggests underlying asset direction doesn't influence option pricing, but many traders still use options for directional bets, often limited to buying strategies.</div>
+        </div>
+      </div>
+      <div class="argument-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-heading">Complexity of Subjective Directional Trading</div>
+          <div class="step-body">Predicting underlying direction is difficult, and even correct predictions can lead to losses due to premium costs. Options allow for nuanced speculation beyond simple price moves.</div>
+        </div>
+      </div>
+      <div class="argument-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-heading">Theory of Subjective Option Pricing</div>
+          <div class="step-body">While BSM uses a risk-neutral framework, traders can incorporate subjective 'drift' (expected returns) into personal pricing models, such as Boness's model, to determine appropriate options.</div>
+        </div>
+      </div>
+      <div class="argument-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <div class="step-heading">Modeling Drift and Option Return Distribution</div>
+          <div class="step-body">Prices can be derived assuming cash is invested at a risk-free rate, with subjective drift estimates. Options exhibit positive skewness regardless of the underlying's return distribution, making return moments complex and often requiring simulations.</div>
+        </div>
+      </div>
+      <div class="argument-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <div class="step-heading">Strike Choice and Risk Tolerance</div>
+          <div class="step-body">Selecting an optimal strike price involves multiple risk measurements and depends heavily on personal risk tolerance. Traders must consider various criteria and metrics (Sharpe ratio, GSR) to maximize utility based on their goals.</div>
+        </div>
+      </div>
+      <div class="argument-step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <div class="step-heading">Conclusion on Optimal Strike Selection</div>
+          <div class="step-body">There is no single 'best' strike; differing metrics yield varied insights. Traders should leverage subjective models based on their unique market forecasts and personal strategies to determine the most suitable options.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION BREAKDOWN -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Section Breakdown</span>
+      <h2 class="section-heading">Deep Dive into Content</h2>
+    </div>
+
+    <div class="section-block">
+      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="section-label">
+          <span class="section-number">A</span>
+          <span class="section-title">Directional Trading and Subjective Pricing</span>
+        </div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-block-body-inner">
+          <p>While the Black-Scholes-Merton (BSM) model theoretically suggests that the direction of an underlying asset does not influence option pricing (due to its risk-neutral framework), options are widely used for directional betting. Many traders engage in directional trading, often primarily through buying options, despite the inherent complexities.</p>
+          <p>Predicting the underlying asset's direction is challenging, and it's possible for a trader to be correct about the direction but still incur losses, typically due to the cost of the option premium or insufficient price movement. Options allow for more nuanced speculation than simple up or down bets. Subjective option pricing models, unlike BSM's dynamic hedging, allow traders to introduce their own 'drift' or expected returns into personal pricing, helping to determine appropriate options when anticipating specific market movements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="section-label">
+          <span class="section-number">B</span>
+          <span class="section-title">Modeling Drift and Option Return Characteristics</span>
+        </div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-block-body-inner">
+          <p>The theory of subjective option pricing asserts that option prices can be derived by assuming cash is invested at a risk-free rate, while incorporating different expected returns for cash and stock. Generalized BSM models can be adapted to include these subjective drift estimates, allowing traders to align option valuations with their individual market forecasts.</p>
+          <p>Analysis of option returns reveals a significant difference between risk-neutral and actual probabilities. Options inherently possess positive skewness, meaning they have the potential for large positive payoffs, irrespective of the underlying asset's return distribution. Understanding the complex moments of option returns often necessitates simulations to properly grasp their behavior under various scenarios.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section-block">
+      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="section-label">
+          <span class="section-number">C</span>
+          <span class="section-title">Strike Choice and Personal Utility</span>
+        </div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-block-body-inner">
+          <p>Selecting the optimal strike price in options trading is a multi-faceted decision, involving the consideration of various risk measurements and being highly dependent on a trader's personal risk tolerance. There is no universal 'best' option; instead, traders must evaluate different criteria for 'best' options, such as average dollar profit, percentage return, or probability of profit, to maximize their utility based on individual goals.</p>
+          <p>Different performance metrics, like the Sharpe ratio and generalized Sharpe ratio (GSR), can provide varied insights, further complicating a straightforward answer for optimal strike selection. Ultimately, traders should leverage their subjective models, informed by unique market forecasts and personal trading strategies, to determine the options that best align with their objectives and risk profiles.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXAMPLES -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Key Examples</span>
+      <h2 class="section-heading">Illustrative Cases</h2>
+    </div>
+
+    <div class="example-grid">
+      <div class="example-card">
+        <div class="example-icon">🎯</div>
+        <div class="example-title">Right Direction, Wrong Trade</div>
+        <div class="example-desc">A trader correctly predicts that a stock will rise significantly. They buy an out-of-the-money call option, but the stock's rise is slower and less volatile than expected, causing the option to expire worthless due to time decay, resulting in a loss.</div>
+        <div class="example-lesson">Predicting direction is not enough; the magnitude and speed of the move, along with time decay, are critical for option profitability.</div>
+      </div>
+      <div class="example-card">
+        <div class="example-icon">⚙️</div>
+        <div class="example-title">Subjective Drift in Pricing</div>
+        <div class="example-desc">A trader believes a specific tech stock has an inherent growth rate (drift) higher than the market consensus. They use a modified BSM model that incorporates this personal drift estimate to identify call options they perceive as undervalued by the market's standard risk-neutral pricing.</div>
+        <div class="example-lesson">Traders can incorporate personal market views into option pricing to find perceived mispricings.</div>
+      </div>
+      <div class="example-card">
+        <div class="example-icon">🎲</div>
+        <div class="example-title">Positive Skewness of Options</div>
+        <div class="example-desc">While a stock's returns might be normally distributed, buying an OTM call option on that stock offers a small chance of a very large payoff, creating a positively skewed return profile for the option. Most options expire worthless, but the few winners can be substantial.</div>
+        <div class="example-lesson">Options offer asymmetric payoffs, often with positive skewness, which can be attractive for risk-takers.</div>
+      </div>
+      <div class="example-card">
+        <div class="example-icon">🤔</div>
+        <div class="example-title">Optimal Strike Dilemma</div>
+        <div class="example-desc">A trader wants to buy calls on a bullish stock. One strike offers a higher probability of profit but lower maximum return, while another offers a lower probability but higher maximum return. The 'optimal' choice depends entirely on the trader's personal risk tolerance and utility function.</div>
+        <div class="example-lesson">There's no universal 'best' strike; choice is personal and depends on individual trading goals and risk appetite.</div>
+      </div>
+    </div>
+
+    <!-- QUOTES -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Notable Quotes</span>
+      <h2 class="section-heading">Key Passages</h2>
+    </div>
+
+    <div class="quotes-list">
+      <div class="taleb-quote">
+        <p class="quote-text">It is never easy to predict the direction of the underlying. But when trading options, it is easy to be right in your prediction of the underlying and still lose money.</p>
+        <p class="quote-context">Highlighting the nuanced challenge of directional options trading, where correct prediction doesn't guarantee profit.</p>
+      </div>
+      <div class="taleb-quote">
+        <p class="quote-text">If we agreed with market prices, we wouldn't be speculating.</p>
+        <p class="quote-context">Emphasizing that speculation implies a disagreement with prevailing market valuations or expectations.</p>
+      </div>
+      <div class="taleb-quote">
+        <p class="quote-text">A composite statistic for comparing risk and reward will be useful, but we should also not expect too much of it.</p>
+        <p class="quote-context">Advising caution when relying solely on single metrics for evaluating complex risk-reward profiles.</p>
+      </div>
+      <div class="taleb-quote">
+        <p class="quote-text">Trading is somewhere in between these situations. The goal of making money is absolute but risk is personal.</p>
+        <p class="quote-context">Defining the core tension in trading: a universal goal (profit) versus individual risk tolerance.</p>
+      </div>
+      <div class="taleb-quote">
+        <p class="quote-text">There is no simple answer to the question, 'What strike should I buy?'.</p>
+        <p class="quote-context">Underlining the complexity and subjectivity involved in selecting the optimal strike price for options.</p>
+      </div>
+    </div>
+
+    <!-- CONCEPT LINKS -->
+
+    <!-- REFLECTIONS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Think & Discuss</span>
+      <h2 class="section-heading">Reflection Prompts</h2>
+    </div>
+
+    <div class="reflection-grid">
+      <div class="reflection-prompt">
+        <div class="reflection-number">01</div>
+        <p class="reflection-text">How can options be effectively used for directional betting, given the BSM model's assumption that underlying asset direction doesn't influence option pricing?</p>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-number">02</div>
+        <p class="reflection-text">What is subjective option pricing, and how does incorporating 'drift' allow traders to align option valuations with their personal market forecasts?</p>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-number">03</div>
+        <p class="reflection-text">Discuss the concept of positive skewness in option returns. How does this characteristic influence a trader's strategy and risk appetite?</p>
+      </div>
+      <div class="reflection-prompt">
+        <div class="reflection-number">04</div>
+        <p class="reflection-text">Considering that there's no single 'optimal' strike price, what criteria and metrics should a trader prioritize when selecting strikes based on their personal risk tolerance and trading goals?</p>
+      </div>
+    </div>
+
+    <!-- CHAPTER NAVIGATION -->
+    <footer class="chapter-nav-footer">
+      <a href="ch06.html" class="chapter-nav-prev">
+        <span class="nav-direction">Previous</span>
+        <span class="nav-chapter-title">Chapter 6 · Volatility Positions</span>
+      </a>
+
+      <div class="chapter-nav-center">
+        <a href="../index.html">Back to Guide</a>
+      </div>
+
+      <a href="ch08.html" class="chapter-nav-next">
+        <span class="nav-direction">Next</span>
+        <span class="nav-chapter-title">Chapter 8 · Directional Option Strategy Selection</span>
+      </a>
+    </footer>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.section-block-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        this.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

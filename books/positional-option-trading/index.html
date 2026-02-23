@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Positional Option Trading — Interactive Study Guide</title>
+<meta name="description" content=""Positional Option Trading" by Euan Sinclair is an essential resource for experienced options traders, offering sophisticated techniques to uncover valid trading edges like volatility premiums and term-structure premia. Drawing on over two decades of professional trading, the book focuses on advanced topics including quantitative directional trading, robust risk management, and effective trade sizing, equipping traders to enhance performance in fluctuating markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/shared.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showSection('hero')">Positional Option Trading</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showSection('hero')"><span>Home</span></button>
+      <button class="nav-tab" onclick="showSection('map')"><span>Book Map</span></button>
+      <button class="nav-tab" onclick="showSection('concepts')"><span>Concepts</span></button>
+      <button class="nav-tab" onclick="showSection('classifier')"><span>Classifier</span></button>
+      <button class="nav-tab" onclick="showSection('flashcards')"><span>Flashcards</span></button>
+      <button class="nav-tab" onclick="showSection('quiz')"><span>Quiz</span></button>
+      <button class="nav-tab" onclick="showSection('progress')"><span>Progress</span></button>
+    </div>
+  </div>
+  <div class="progress-bar" id="progressBar"></div>
+</nav>
+
+<!-- HERO -->
+<section class="section active" id="hero-section">
+  <div class="hero">
+    <div class="hero-subtitle">MASTER ADVANCED OPTIONS TECHNIQUES</div>
+    <h1 class="hero-title">Positional Option <em>Trading</em></h1>
+    <p class="hero-desc">"Positional Option Trading" by Euan Sinclair is an essential resource for experienced options traders, offering sophisticated techniques to uncover valid trading edges like volatility premiums and term-structure premia. Drawing on over two decades of professional trading, the book focuses on advanced topics including quantitative directional trading, robust risk management, and effective trade sizing, equipping traders to enhance performance in fluctuating markets.</p>
+    <div class="scroll-hint" onclick="showSection('map')" style="cursor:pointer">
+      <span>Start Exploring</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK MAP -->
+<section class="section" id="map-section">
+  <div class="section-header">
+    <div class="section-label">Structure</div>
+    <h2 class="section-title">Book Overview</h2>
+    <p class="section-desc">Navigate every part and chapter of Positional Option Trading by Euan Sinclair.</p>
+  </div>
+  <div id="bookMapContent"></div>
+</section>
+
+<!-- CONCEPTS -->
+<section class="section" id="concepts-section">
+  <div class="section-header">
+    <div class="section-label">Core Ideas</div>
+    <h2 class="section-title">Key Concepts</h2>
+    <p class="section-desc">Essential mental models and frameworks from Positional Option Trading. Click any concept to explore in depth.</p>
+  </div>
+  <div class="concepts-grid" id="conceptsGrid"></div>
+</section>
+
+<!-- CLASSIFIER -->
+<section class="section" id="classifier-section">
+  <div class="section-header">
+    <div class="section-label">Interactive Exercise</div>
+    <h2 class="section-title">Concept Classifier</h2>
+    <p class="section-desc">Match real-world scenarios to the correct concept. Train your intuition for the book's core ideas.</p>
+  </div>
+  <div class="classifier-container" id="classifierContainer"></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards-section">
+  <div class="section-header">
+    <div class="section-label">Spaced Repetition</div>
+    <h2 class="section-title">Flashcard Review</h2>
+    <p class="section-desc">Review core concepts through spaced repetition. Click to flip, rate your recall.</p>
+  </div>
+  <div class="flashcard-container" id="flashcardContainer"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz-section">
+  <div class="section-header">
+    <div class="section-label">Self-Test</div>
+    <h2 class="section-title">Comprehension Quiz</h2>
+    <p class="section-desc">Test your deep understanding with challenging questions. Each includes detailed explanations.</p>
+  </div>
+  <div class="quiz-container" id="quizContainer"></div>
+</section>
+
+<!-- PROGRESS -->
+<section class="section" id="progress-section">
+  <div class="section-header">
+    <div class="section-label">Learning Analytics</div>
+    <h2 class="section-title">Your Progress</h2>
+    <p class="section-desc">Track mastery across all learning modes. Data saved in your browser.</p>
+  </div>
+  <div id="progressContent"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// =============== DATA ===============
+const books = [{"num": "I", "title": "Mastering Advanced Options Techniques", "desc": "This section introduces the core principles and advanced strategies for options trading, moving beyond basic knowledge to explore market inefficiencies, volatility dynamics, and robust risk management crucial for sustained profitability.", "chapters": [{"num": 1, "title": "Options", "oneliner": "This chapter introduces option pricing models like BSM, emphasizing their limitations and the critical role of implied vs. realized volatility in hedging and profitability.", "summary": "Option pricing models, despite their simplifying assumptions, are crucial tools, with the Black-Scholes-Merton (BSM) model being a cornerstone. Effective option trading hinges on understanding key variables (underlying price, strike, time, volatility), recognizing that expected underlying return is irrelevant to instant value, and exploiting discrepancies between implied and realized volatility for profit in hedged positions, while managing transaction costs.", "ideas": ["Option Pricing Models", "Black-Scholes-Merton (BSM) Model", "Implied vs. Realized Volatility", "Hedging Strategies", "Transaction Costs in Options"], "priority": "must-read"}, {"num": 2, "title": "The Efficient Market Hypothesis and Its Limitations", "oneliner": "This chapter examines the Efficient Market Hypothesis (EMH), highlighting its challenges and the role of behavioral finance in identifying market inefficiencies for profitable trading.", "summary": "Successful trading requires a genuine edge, not just discipline. The EMH, which posits that profitable trading is impossible after risk and costs, serves as a useful framework despite market imperfections. Various levels of EMH exist (strong, semi-strong, weak), but behavioral finance suggests irrational investor behavior creates temporary inefficiencies. Traders should focus on quantifiable phenomena and exploit transient mispricings while being wary of data mining and strategy decay.", "ideas": ["Efficient Market Hypothesis (EMH)", "Trading Edge", "Market Inefficiencies", "Behavioral Finance", "Alpha Decay"], "priority": "must-read"}, {"num": 3, "title": "Forecasting Volatility", "oneliner": "This chapter stresses the importance of volatility forecasting in trading, outlining principles, types of forecasts, and challenges, including the use of implied volatility and ensemble predictions.", "summary": "All trading inherently involves forecasting, especially volatility. Effective financial forecasting requires selecting solvable problems, using historical comparisons, relying on data over intuition, balancing conservatism with reactivity, and accepting uncertainty. Both model-driven and event-driven forecasts exist, each with limitations. While time series methods have diminished, implied volatility can predict future realized volatility, and combining multiple models (ensemble predictions) can enhance accuracy.", "ideas": ["Volatility Forecasting", "Model-Driven Forecasting", "Event-Driven Forecasting", "Implied Volatility", "Ensemble Predictions"], "priority": "must-read"}, {"num": 4, "title": "The Variance Premium", "oneliner": "The variance premium, where implied volatility consistently exceeds realized volatility, is a crucial concept for options traders, indicating a persistent profitability edge for selling volatility.", "summary": "The variance premium is the consistent phenomenon where implied volatility is higher than realized volatility, observed across equities, commodities, bonds, and currencies. This premium, often driven by insurance demand, jump risk, market restrictions, and market-maker strategies, creates a profitable edge for strategies that sell implied volatility. Understanding this bias is fundamental, as shorting options or VIX futures in contango markets has historically been a profitable strategy, despite concerns like the \"Peso Problem.\"", "ideas": ["Variance Premium", "Implied Volatility", "Realized Volatility", "Selling Volatility", "Insurance Demand"], "priority": "must-read"}, {"num": 5, "title": "Finding Trades with Positive Expected Value", "oneliner": "This chapter discusses identifying trading \"edges\" over rigid rules, exploring crowding effects, various strategies with empirical support, and market dynamics like the overnight effect and FOMC announcements.", "summary": "Traders should focus on identifying evolving \"edges\" rather than static rules. Crowding can either stabilize (convergence strategies) or destabilize (divergence strategies) markets, with excessive leverage amplifying risks. Strategies with varying confidence levels include profiting from implied volatility term structure (contango/backwardation), linking options to fundamental factors, and exploiting earnings and pre-earnings announcements. Other dynamics like the overnight effect and FOMC-related price movements also offer edges. Continuous exploration and adaptation are key, often revolving around selling options due to the variance premium.", "ideas": ["Trading Edges", "Crowding in Trading", "Leverage Risk", "Implied Volatility Term Structure", "Earnings Announcements Strategies"], "priority": "must-read"}, {"num": 6, "title": "Volatility Positions", "oneliner": "This chapter explores various option positions for volatility speculation, focusing on the risk-reward profiles of selling strategies like straddles, strangles, butterflies, and condors, and emphasizing risk management.", "summary": "Options offer diverse ways to speculate on volatility, with varying outcomes for sellers. \"Repairing\" positions is less effective than aligning current positions with new forecasts. Straddles and strangles are core volatility-selling strategies, differing in strike prices, with profitability dependent on implied vs. realized volatility. Simulations show straddles having less downside risk than strangles despite strangles sometimes appearing more profitable. Delta-hedging reduces risk but increases costs. Butterflies and condors are conservative, limiting downside. Utilizing skew, selecting OTM strikes, and short-dated options (due to higher variance premium) are key considerations, with risk management paramount.", "ideas": ["Volatility Selling Strategies", "Straddles", "Strangles", "Delta Hedging", "Option Skew", "Short-Dated Options"], "priority": "must-read"}, {"num": 7, "title": "Directional Option Trading", "oneliner": "This chapter explores using options for directional betting, despite the BSM model's initial disregard for underlying direction, and discusses subjective pricing, modeling drift, and optimal strike selection.", "summary": "While the BSM model suggests underlying direction doesn't influence option pricing, options are widely used for directional bets. Subjective option pricing allows traders to incorporate personal drift estimates, departing from risk-neutral models like BSM. Predicting underlying direction is complex, and being right doesn't guarantee profit. Option returns often exhibit positive skewness. Optimal strike selection is not straightforward, requiring consideration of multiple risk measurements, personal risk tolerance, and metrics like Sharpe ratio, aligning with subjective market forecasts and utility maximization.", "ideas": ["Directional Option Trading", "Subjective Option Pricing", "Modeling Drift", "Option Returns Skewness", "Optimal Strike Selection"], "priority": "optional"}, {"num": 8, "title": "Directional Option Strategy Selection", "oneliner": "This chapter details fundamental directional option strategies (Long Call, Long Call Spread, Short Put, Short Put Spread, Risk Reversal), evaluating them using performance metrics and emphasizing the role of variance and skew premiums.", "summary": "Selecting a directional option strategy involves choosing strike, expiration, and strategy type. Fundamental strategies include long calls, long call spreads, short puts, short put spreads, and risk reversals, evaluated using metrics like Sharpe or Kelly ratio. Long call spreads offer cost-efficient alternatives to long calls. Short puts and covered calls (long stock + short call) aim for high probability of profit or equity-like returns with lower risk, respectively, capturing equity market risk and volatility premium. Risk reversals exploit implied volatility skew. No single \"best\" strategy exists; choice depends on probability of profit, max profit/loss, and risk tolerance, with variance and skew premiums being central.", "ideas": ["Directional Strategies", "Long Call Spread", "Covered Call", "Short Put Spread", "Risk Reversal", "Variance and Skew Premiums"], "priority": "optional"}, {"num": 9, "title": "Trade Sizing", "oneliner": "This chapter emphasizes risk management and trade sizing, introducing the Kelly criterion for maximizing long-term growth and discussing its extensions for non-normal returns and parameter uncertainty.", "summary": "Effective risk management, the only element fully under a trader's control, is crucial for preventing a good strategy from failing. The Kelly criterion is a foundational method for maximizing long-term growth, though traders may prioritize other goals like minimizing volatility. Extensions of Kelly address non-normal trade returns (discrete or continuous outcomes) and parameter uncertainty. Adjustments for skewness are vital. While stops limit individual losses, they can reduce long-term returns. Fractional Kelly betting, which reduces volatility and drawdown, is often a more practical approach than full Kelly.", "ideas": ["Risk Management", "Trade Sizing", "Kelly Criterion", "Non-Normal Returns", "Parameter Uncertainty", "Fractional Kelly"], "priority": "must-read"}, {"num": 10, "title": "Meta Risks", "oneliner": "This chapter discusses external \"meta risks\" (currency, theft/fraud, index restructuring, counterparty risk) that are harder to predict and mitigate than market risks, emphasizing due diligence and diversification.", "summary": "Beyond controllable market risks, traders face harder-to-predict \"meta risks\" stemming from moral, legal, and governmental factors. Currency risk, particularly inflation/hyperinflation, is inherent and requires diversification. Theft and fraud necessitate thorough due diligence on fund managers and third-party oversight, as illustrated by Baring's Bank, Sumitomo, and Madoff. Index restructuring can impact positions without notice, and arbitrage counterparty risk highlights the need for monitoring reliability. Mitigating meta risks involves checks, diversification, and clear separation of trading, compliance, and risk management functions.", "ideas": ["Meta Risks", "Currency Risk", "Theft and Fraud", "Index Restructuring", "Arbitrage Counterparty Risk", "Due Diligence"], "priority": "must-read"}, {"num": 11, "title": "CONCLUSION", "oneliner": "This chapter concludes that trading success combines skill, knowledge, and experience with an acceptance of inherent randomness, emphasizing the need for robust strategies, continuous adaptation, and focusing on underlying phenomena.", "summary": "Option trading, like chess with dice, involves skill, knowledge, and experience alongside significant randomness. Traders must accept uncertainty and seek trades with tangible, thoroughly tested edges. A sound strategy needs valid statistics and a clear rationale, focusing on quantifiable phenomena (like volatility as a measure of uncertainty) rather than just models. Continuous adaptation to market changes and seeking new ideas are essential, prioritizing the role of a \"trader\" over just an \"option trader.\" While luck plays a role, talent and knowledge are foundational for long-term success.", "ideas": ["Skill vs. Luck in Trading", "Accepting Uncertainty", "Robust Trading Strategies", "Focus on Phenomena", "Adaptation and Evolution"], "priority": "must-read"}, {"num": 12, "title": "APPENDIX 1: Traders' Adjustments to the BSM Assumptions", "oneliner": "This appendix details how traders adjust the Black-Scholes-Merton (BSM) model's simplifying assumptions (constant interest rates, no dividends, no taxes, tradable underlying, constant volatility) for real-world trading.", "summary": "The BSM model relies on simplifying assumptions that don't fully reflect reality. Interest rates are not constant, but their volatility has minimal impact on pricing, and traders often manage rho with reversals. Dividends are accounted for by subtracting their present value. Taxes vary by investor, complicating universal pricing. The inability to trade or short the underlying asset (e.g., illiquidity) breaks no-arbitrage conditions, leading to mispricing or requiring \"real options\" approaches. Nonconstant volatility creates implied volatility smiles/skews. Despite these flaws, BSM remains a standard, with simple adjustments often sufficient.", "ideas": ["BSM Assumptions", "Interest Rate Adjustments", "Dividend Adjustments", "Tax Implications", "Illiquid Underlyings", "Nonconstant Volatility"], "priority": "optional"}, {"num": 13, "title": "APPENDIX 2: Statistical Rules of Thumb", "oneliner": "This appendix introduces simple heuristics like the Rule of Five and Rule of Three, which provide practical estimates for trading and forecasting, despite their approximate nature and dependence on context.", "summary": "Statistical \"rules of thumb\" offer useful estimates and baselines. The Rule of Five allows 93% certainty that a population median lies within five random measurements, useful for quick estimations with limited data. The Rule of Three estimates a 95% upper bound on the occurrence rate of an event not yet observed, helping assess risks of rare events. Converting analyst range estimates to option pricing inputs often involves triangular or beta distributions. However, these heuristics are approximate and rely on assumptions like independence and constant probability, requiring careful consideration of context.", "ideas": ["Statistical Heuristics", "Rule of Five", "Rule of Three", "Range Estimates Conversion", "Cautions in Application"], "priority": "optional"}, {"num": 14, "title": "APPENDIX 3: Execution", "oneliner": "This appendix highlights trade execution as a critical skill impacting profitability, detailing transaction costs (commissions, spreads, market impact, opportunity cost) and strategies like VWAP for minimizing them.", "summary": "Trade execution is a vital skill, capable of masking other trading weaknesses and significantly impacting profitability. Traders face a dilemma: balancing aggressive execution to complete trades with conservative approaches to minimize costs. Transaction costs encompass commissions, fees, bid-ask spreads (which fluctuate), price changes between decision and execution, market impact (temporary vs. permanent), and opportunity cost from unexecuted trades. Strategies like Volume Weighted Average Price (VWAP) aim to minimize market impact. Understanding these dynamics and adapting execution based on expected market movements and order size is crucial for optimizing outcomes.", "ideas": ["Trade Execution", "Transaction Costs", "Bid-Ask Spreads", "Market Impact", "VWAP Strategies", "Timing Costs"], "priority": "must-read"}]}];
+const concepts = [{"id": "efficient-market-hypothesis", "name": "Efficient Market Hypothesis (EMH)", "badge": "core", "short": "The EMH posits that asset prices fully reflect all available information, making it impossible to consistently achieve abnormal returns. While useful, real markets often show inefficiencies.", "example": "If the EMH held perfectly, analyzing a company's financial statements (public info) would not grant any advantage, as its stock price would already reflect that information.", "detail": "The Efficient Market Hypothesis (EMH) asserts that financial markets are 'efficient' in processing information, meaning all relevant data is immediately incorporated into asset prices. This implies that investors cannot consistently 'beat the market' using available information, as any mispricings are quickly arbitraged away. The EMH has strong, semi-strong, and weak forms, each differing in the type of information reflected. Despite its theoretical appeal, real markets often exhibit anomalies and inefficiencies, suggesting that the EMH is more a useful framework than an absolute truth, especially in the context of options trading where premiums and behavioral biases can create opportunities.", "quote": "The EMH asserts that making money in trading is challenging.", "related": ["behavioral-finance", "trading-edge"]}, {"id": "variance-premium", "name": "Variance Premium", "badge": "core", "short": "The variance premium is the consistent tendency for implied volatility (market expectation) to be higher than subsequently realized volatility (actual movement). It offers an edge for selling options.", "example": "If the VIX (implied volatility for S&P 500) is consistently above the actual historical volatility of the S&P 500, that difference represents the variance premium.", "detail": "The variance premium, also known as the volatility premium, is a well-documented market phenomenon where the implied volatility derived from option prices consistently exceeds the actual realized volatility of the underlying asset. This premium exists across various asset classes, including equities, commodities, bonds, and currencies. It arises from factors such as investors' demand for insurance against market downturns, jump risk, market restrictions, and market-maker hedging strategies. Recognizing and exploiting the variance premium is a fundamental strategy for options traders, as it suggests a persistent profitability for strategies involving the selling of implied volatility, particularly in short-dated options.", "quote": "The variance premium (also known as the volatility premium) is the tendency for implied volatility to be higher than subsequently realized volatility.", "related": ["implied-volatility", "realized-volatility", "volatility-skew"]}, {"id": "implied-volatility", "name": "Implied Volatility", "badge": "math", "short": "Implied volatility is the market's forecast of a security's likely movement, derived from the price of an option. It's a key input in option pricing models.", "example": "If an option is trading at a high price, it suggests the market expects significant price swings, leading to a high implied volatility value.", "detail": "Implied volatility (IV) is a forward-looking measure representing the market's consensus estimate of the future volatility of an underlying asset over the life of an option. Unlike historical volatility, which is backward-looking, IV is derived by inputting the current market price of an option into an option pricing model (like BSM) and solving for volatility. It is a critical component for options traders, as discrepancies between implied and realized volatility, notably the variance premium, can signal profitable trading opportunities. IV is also crucial for assessing risk and determining appropriate hedging strategies, as it reflects the market's perceived uncertainty.", "quote": "Implied volatility tends to be an upward-biased estimator of the future realized volatility.", "related": ["variance-premium", "realized-volatility", "black-scholes-merton-model"]}, {"id": "realized-volatility", "name": "Realized Volatility", "badge": "math", "short": "Realized volatility measures the actual historical price fluctuations of an asset over a specific period, calculated from past price data.", "example": "Calculating the standard deviation of a stock's daily returns over the last 30 days gives you its realized volatility for that period.", "detail": "Realized volatility, also known as historical volatility, quantifies the actual price fluctuations of an underlying asset over a defined past period. It is typically calculated as the standard deviation of an asset's past returns. For options traders, comparing realized volatility with implied volatility (the market's future expectation) is fundamental. A significant and consistent difference, where implied volatility exceeds realized volatility, gives rise to the variance premium, which is a key source of profitability for volatility sellers. Understanding realized volatility helps in evaluating the accuracy of past forecasts and in forming new ones.", "quote": "The variance premium (also known as the volatility premium) is the tendency for implied volatility to be higher than subsequently realized volatility.", "related": ["variance-premium", "implied-volatility"]}, {"id": "trading-edge", "name": "Trading Edge", "badge": "strategy", "short": "A trading edge is a quantifiable advantage or phenomenon that allows a trader to consistently profit in the markets over time, after accounting for costs and risks.", "example": "Identifying that stocks with low P/E ratios tend to outperform the market, even after transaction costs, could be considered a trading edge.", "detail": "A trading edge is the fundamental prerequisite for sustained profitability in financial markets. It represents a systematic advantage, often derived from a market inefficiency, a mispriced risk premium, or a behavioral anomaly, that allows a trader to achieve positive expected value from their trades. Discipline alone is insufficient; a trader must possess a genuine, testable edge. These edges are dynamic and can diminish over time due to market evolution or crowding, necessitating continuous research and adaptation. Focusing on clear observations and quantifiable phenomena, rather than subjective theories, is key to identifying and exploiting valid trading edges.", "quote": "Successful trading hinges on having a real edge; discipline alone is not sufficient.", "related": ["efficient-market-hypothesis", "behavioral-finance", "variance-premium"]}, {"id": "behavioral-finance", "name": "Behavioral Finance", "badge": "meta", "short": "Behavioral finance studies how psychological biases and irrational human behaviors influence financial decision-making and market outcomes, often leading to inefficiencies.", "example": "Investors exhibiting 'loss aversion' might hold onto losing stocks longer than rational, creating opportunities for those who can act objectively.", "detail": "Behavioral finance integrates insights from psychology and economics to explain why investors often deviate from rational decision-making, leading to observable market anomalies and inefficiencies. Concepts like overconfidence, herd mentality, anchoring, and loss aversion describe how human emotions and cognitive biases can distort asset prices. For options traders, understanding behavioral finance is crucial because these persistent psychological biases create opportunities. By recognizing when market participants are acting irrationally, rational traders can exploit mispricings that arise from these predictable human tendencies, providing a potential source of trading edge.", "quote": "Behavioral finance suggests that traders' irrational behaviors can lead to market inefficiencies.", "related": ["efficient-market-hypothesis", "crowding-in-trading"]}, {"id": "kelly-criterion", "name": "Kelly Criterion", "badge": "math", "short": "The Kelly criterion is a mathematical formula for trade sizing that aims to maximize the long-term growth rate of capital by determining the optimal fraction of capital to bet on each trade.", "example": "If a strategy has a 60% win rate and a 1:1 risk-reward, the Kelly criterion might suggest betting 20% of your capital on each trade for maximum long-term growth.", "detail": "The Kelly criterion is a powerful trade-sizing algorithm designed to maximize the geometric growth rate of an investment portfolio over the long run. It calculates the optimal fraction of one's capital to allocate to a trade, based on the probability of winning and the win/loss ratio. While theoretically unbeatable for maximizing long-term wealth, full Kelly betting can lead to high volatility and significant drawdowns, making fractional Kelly (betting a smaller percentage) a more practical approach for many traders. Its extensions account for non-normal returns and parameter uncertainty, providing a robust framework for managing risk and optimizing capital allocation.", "quote": "The Kelly criterion... will theoretically outperform any other sizing strategy. No other sizing scheme will produce greater long-term growth.", "related": ["trade-sizing", "risk-management"]}, {"id": "meta-risks", "name": "Meta Risks", "badge": "risk", "short": "Meta risks are external, systemic risks beyond typical market fluctuations, such as currency instability, fraud, legal changes, or index restructuring, which are hard to predict and mitigate.", "example": "Hyperinflation in a country where you hold assets is a meta risk that can decimate returns, regardless of your trading strategy.", "detail": "Meta risks refer to a category of external and systemic risks that operate at a higher level than conventional market risks, making them particularly challenging for traders to control or even foresee. These include currency risk (e.g., inflation, hyperinflation), theft and fraud (e.g., Ponzi schemes, rogue traders), legal and governmental interventions, index restructuring, and counterparty reliability. Unlike market risks, which can often be hedged or managed, meta risks often stem from political, ethical, or environmental instability. Mitigating them requires extensive due diligence, diversification across institutions and geographies, and a clear separation of trading, compliance, and risk management functions within an organization.", "quote": "Options don't exist in a vacuum. They are traded as part of an economic system that contains moral, legal, and governmental risks.", "related": ["risk-management", "due-diligence"]}, {"id": "transaction-costs", "name": "Transaction Costs", "badge": "strategy", "short": "Transaction costs are the expenses incurred when buying or selling a security, including commissions, bid-ask spreads, market impact, and opportunity cost.", "example": "Paying a commission to your broker and losing a small amount due to the bid-ask spread when you execute a trade are both transaction costs.", "detail": "Transaction costs are an often-underestimated factor that significantly impacts the profitability of trading strategies. They encompass not just explicit fees like commissions and exchange fees, but also implicit costs such as the bid-ask spread (the difference between buying and selling prices), market impact (the price change caused by one's own order), and opportunity cost (lost profits from unexecuted trades due to liquidity issues). Effective trade execution and strategy design must explicitly account for these costs. Minimizing transaction costs is a critical skill for active traders, as they directly erode potential returns, especially in high-frequency or large-volume trading.", "quote": "The decision-making process in trading hinges on balancing risk and reward, with transaction costs being central to this balance.", "related": ["trade-execution", "bid-ask-spread"]}, {"id": "delta-hedging", "name": "Delta Hedging", "badge": "strategy", "short": "Delta hedging is an options strategy that aims to reduce or neutralize the risk associated with price movements of the underlying asset by taking offsetting positions.", "example": "If you are long a call option with a delta of 0.50, you might short 50 shares of the underlying stock to make your overall position delta-neutral.", "detail": "Delta hedging is a risk management technique used by options traders to mitigate the directional risk (delta risk) of their positions. It involves taking an offsetting position in the underlying asset such as buying or selling shares of the stock, to neutralize the sensitivity of the option's value to small changes in the underlying price. While effective in reducing directional exposure, delta hedging introduces its own complexities, including increased transaction costs due to frequent adjustments (rebalancing) and potential exposure to other Greeks like gamma (the rate of change of delta). For profitability, hedged positions rely on capturing the variance premium—profiting from discrepancies between implied and realized volatility.", "quote": "The most important criterion for an option trader to consider when deciding if a model is good enough is to let us delta hedge in a way that captures the volatility premium.", "related": ["black-scholes-merton-model", "implied-volatility"]}, {"id": "volatility-skew", "name": "Volatility Skew", "badge": "math", "short": "Volatility skew describes the phenomenon where implied volatility varies across different strike prices for options with the same expiration date, creating a 'smile' or 'smirk' shape.", "example": "Out-of-the-money put options on an equity index typically have higher implied volatility than at-the-money calls, creating a 'smirk' that reflects demand for downside protection.", "detail": "Volatility skew, also known as the volatility smile or smirk, is a departure from the Black-Scholes-Merton model's assumption of constant volatility. It refers to the empirical observation that options with the same expiration date but different strike prices have different implied volatilities. For equity indices, it often manifests as a 'smirk' where out-of-the-money (OTM) puts have higher implied volatility than OTM calls, reflecting investors' demand for downside protection (insurance). Understanding and utilizing volatility skew allows traders to identify mispricings, choose optimal strike prices for strategies like risk reversals, and potentially profit from the implied skewness premium by selling overpriced OTM puts.", "quote": "Implied volatility skew allows premium gains through selling OTM puts...", "related": ["implied-volatility", "variance-premium"]}, {"id": "crowding-in-trading", "name": "Crowding in Trading", "badge": "meta", "short": "Crowding occurs when a large number of traders adopt similar strategies or positions, which can either stabilize or destabilize markets depending on the strategy type.", "example": "If too many hedge funds simultaneously adopt a 'short volatility' strategy, it can create a crowded trade that becomes highly vulnerable if volatility suddenly spikes.", "detail": "Crowding in trading refers to the phenomenon where a significant number of market participants converge on similar trading strategies or positions. Its impact can vary: in 'convergence strategies' (e.g., value investing), crowding might have a stabilizing effect as prices move towards a perceived fair value. However, in 'divergence strategies' (e.g., trend-following), crowding can lead to destabilizing feedback loops, potentially creating bubbles or crashes. Excessive leverage in crowded trades significantly amplifies risk, as seen in historical events like the VIX ETN blow-up in 2018. Recognizing and avoiding overly crowded trades, or strategically profiting from their eventual unraveling, is a critical aspect of advanced options trading.", "quote": "The concept of crowding is explored, particularly its impact on trading performance.", "related": ["trading-edge", "behavioral-finance"]}, {"id": "risk-reversal", "name": "Risk Reversal", "badge": "strategy", "short": "A risk reversal is an options strategy involving buying an out-of-the-money call and selling an out-of-the-money put, often used to express a directional bias while potentially generating credit.", "example": "A trader bullish on a stock might buy a call option with a strike above the current price and sell a put option with a strike below the current price to finance the call.", "detail": "The risk reversal is a directional options strategy that typically involves selling an out-of-the-money (OTM) put option and simultaneously buying an OTM call option, usually with the same expiration date. This strategy is often implemented when a trader has a bullish outlook on an underlying asset, aiming to profit from an upward price movement while potentially generating a credit (if the put premium exceeds the call premium). It effectively shifts the risk profile, exposing the trader to significant upside potential but also to considerable downside risk if the underlying falls sharply below the put strike. Risk reversals are particularly advantageous when implied volatility skews favorably, allowing traders to capitalize on mispriced options.", "quote": "Selling a 20-delta put while buying a 20-delta call generates a credit and offers significant upside potential, especially advantageous when implied volatility skews favorably.", "related": ["directional-option-trading", "volatility-skew"]}, {"id": "black-scholes-merton-model", "name": "Black-Scholes-Merton (BSM) Model", "badge": "math", "short": "The BSM model is a cornerstone option pricing model, providing a theoretical framework for determining the fair value of European-style options based on several key inputs.", "example": "Using the stock price, strike price, time to expiration, risk-free rate, and volatility, the BSM model can calculate the theoretical value of a call or put option.", "detail": "The Black-Scholes-Merton (BSM) model is a seminal mathematical model used for pricing European-style options. It assumes a risk-free interest rate, no dividends, no transaction costs, constant volatility, and normally distributed returns of the underlying asset. Despite these simplifying assumptions, which are often violated in real markets, the BSM model remains a foundational tool. Traders use it not necessarily as a perfect predictive valuation tool, but as an arbitrage-free method to convert option prices into a more stable parameter: implied volatility. Understanding its limitations and how to make practical adjustments (e.g., for dividends, non-constant volatility) is crucial for professional options traders.", "quote": "The BSM model is considered a cornerstone in option pricing, but it's often used differently than originally intended by its creators.", "related": ["implied-volatility", "delta-hedging"]}, {"id": "trade-sizing", "name": "Trade Sizing", "badge": "strategy", "short": "Trade sizing refers to the process of determining the appropriate amount of capital to allocate to a particular trade, crucial for managing risk and maximizing long-term portfolio growth.", "example": "Deciding to risk no more than 1% of your total trading capital on any single trade is an example of a trade sizing rule.", "detail": "Trade sizing is a critical component of risk management, entirely under the trader's control. It involves determining the optimal proportion of capital to commit to a given trading opportunity. While the Kelly criterion offers a theoretical framework for maximizing long-term growth, practical application often involves 'fractional Kelly' to reduce volatility and drawdowns, or adjustments for non-normal returns and parameter uncertainty. Proper trade sizing ensures that even a good trading strategy isn't undermined by excessive risk-taking, allowing for sustained participation in the market and protection against adverse outcomes. It is a balance between maximizing potential returns and preserving capital.", "quote": "Risk management is the only part of the trading process that is completely under the control of the trader, there is no excuse for not doing it as well as possible.", "related": ["kelly-criterion", "risk-management"]}];
+const scenarios = [{"text": "A new AI algorithm is released that can instantly process all public financial news and social media sentiment. If the market perfectly reflects this new information immediately, what hypothesis is strongly supported?", "context": "Market efficiency, information processing", "answer": "efficient-market-hypothesis", "explanation": "The Efficient Market Hypothesis (EMH) asserts that asset prices fully reflect all available information. If all public information, including complex AI analysis, is immediately priced in, it supports the EMH's semi-strong form, making it impossible for traders to profit from such information."}, {"text": "You observe that options on a major stock index consistently trade at higher implied volatility than the index's actual historical price fluctuations over the same period. What phenomenon are you witnessing?", "context": "Option pricing, volatility discrepancy", "answer": "variance-premium", "explanation": "This consistent discrepancy, where implied volatility (market expectation) exceeds realized volatility (actual movement), is known as the variance premium. It's a key concept for options traders, often offering an advantage to those who sell volatility."}, {"text": "A stock option's price suddenly jumps without any news about the underlying company. When you back-calculate, you find that the market is suddenly expecting much larger price swings in the future. What term best describes this increased expectation?", "context": "Option pricing, market expectation", "answer": "implied-volatility", "explanation": "Implied volatility is the market's forward-looking estimate of an asset's future price fluctuations, derived from the option's current price. A sudden jump in option price without fundamental news indicates an increase in the market's implied volatility, signaling higher expected future price swings."}, {"text": "Over the past three months, a commodity's price has moved within a very tight range. You calculate the historical standard deviation of its daily returns. What specific type of volatility have you calculated?", "context": "Historical price movement, statistical measure", "answer": "realized-volatility", "explanation": "Realized volatility measures the actual historical price fluctuations of an asset over a specific past period. It is typically calculated from historical price data, such as the standard deviation of daily returns, to quantify how much the asset's price has moved."}, {"text": "You've developed a trading system that, after accounting for all commissions and slippage, consistently generates a small profit on 60% of its trades. What have you successfully identified and exploited?", "context": "Consistent profitability, systematic advantage", "answer": "trading-edge", "explanation": "A trading edge is a quantifiable and systematic advantage that allows a trader to consistently profit in the markets over time, even after factoring in all costs and risks. Consistently generating profit indicates you've found a valid edge."}, {"text": "During a market downturn, many investors panic and sell their holdings, even those with strong fundamentals, driven by fear rather than logical analysis. What field of study would analyze this collective irrational behavior?", "context": "Investor psychology, market anomalies", "answer": "behavioral-finance", "explanation": "Behavioral finance examines how psychological biases and irrational human behaviors influence financial decision-making and market outcomes. Panic selling driven by fear, rather than fundamental analysis, is a classic example of a behavioral bias leading to market inefficiencies."}, {"text": "You have a high-probability trading strategy, and you want to determine the optimal percentage of your total capital to risk on each trade to achieve the fastest possible long-term account growth. Which mathematical formula would you use?", "context": "Optimal bet size, capital growth", "answer": "kelly-criterion", "explanation": "The Kelly criterion is a mathematical formula for trade sizing that aims to maximize the long-term growth rate of capital. It calculates the optimal fraction of one's capital to bet on each trade based on the probability of winning and the win/loss ratio."}, {"text": "A financial institution you're trading with suddenly faces severe regulatory penalties and potential insolvency due to a massive fraud scandal by its executives. What kind of risk is this, largely outside of typical market movements?", "context": "External systemic risk, institutional failure", "answer": "meta-risks", "explanation": "Meta risks are external, systemic risks beyond typical market fluctuations, such as fraud, legal changes, or counterparty reliability. A financial institution's insolvency due to fraud is a prime example of a meta risk that can lead to catastrophic losses."}, {"text": "You place a large order to buy a stock, and you notice that the price immediately moves up, making your average purchase price slightly higher than the prevailing quote before your order. What component of trading costs are you experiencing?", "context": "Cost of execution, price movement from order", "answer": "transaction-costs", "explanation": "This phenomenon is known as market impact, a component of transaction costs. It refers to the price change resulting from a trader's own order, where large orders can influence market prices and result in execution at less favorable prices."}, {"text": "You are long a call option and want to protect your position from small downward movements in the underlying stock. You decide to short a proportional number of shares of the stock to keep your overall position's sensitivity to price changes near zero. What strategy are you employing?", "context": "Risk neutralization, option sensitivity", "answer": "delta-hedging", "explanation": "Delta hedging is an options strategy that aims to reduce or neutralize the risk associated with price movements of the underlying asset by taking offsetting positions in the underlying. Shorting shares against a long call reduces the overall delta of the position."}, {"text": "When examining options for a particular stock, you notice that out-of-the-money put options have significantly higher implied volatilities than out-of-the-money call options, even with the same expiration date. What market characteristic are you observing?", "context": "Implied volatility variation, strike prices", "answer": "volatility-skew", "explanation": "Volatility skew describes the phenomenon where implied volatility varies across different strike prices for options with the same expiration date. The observation of higher implied volatility for OTM puts compared to OTM calls is a common 'smirk' in equity markets, reflecting demand for downside protection."}, {"text": "Many trend-following algorithms independently identify the same strong upward trend in a stock and all initiate large buy orders, pushing the price even higher. While initially profitable, this creates a precarious situation if the trend reverses. What market dynamic is at play?", "context": "Similar strategies, market amplification", "answer": "crowding-in-trading", "explanation": "Crowding in trading occurs when a large number of traders adopt similar strategies or positions. In divergence strategies like trend-following, this can lead to destabilizing feedback loops, potentially creating bubbles and making the market vulnerable to sharp reversals."}, {"text": "You anticipate a significant upward movement in a stock and want to profit from it while also potentially generating some premium income. You decide to sell an out-of-the-money put option and buy an out-of-the-money call option. What options strategy have you implemented?", "context": "Directional bias, options combination", "answer": "risk-reversal", "explanation": "A risk reversal is an options strategy involving buying an out-of-the-money call and selling an out-of-the-money put. It's often used to express a directional bullish bias, potentially generating credit, and taking advantage of favorable volatility skew."}, {"text": "A trader is using a mathematical formula to calculate the theoretical fair value of a European-style call option based on the underlying stock price, strike price, time to expiration, risk-free rate, and implied volatility. Which foundational model is being applied?", "context": "Option valuation, theoretical framework", "answer": "black-scholes-merton-model", "explanation": "The Black-Scholes-Merton (BSM) model is a cornerstone option pricing model that provides a theoretical framework for determining the fair value of European-style options using these key inputs. It's widely used despite its simplifying assumptions."}, {"text": "You've identified a strategy with a positive expected return, but you're concerned about potential large drawdowns and want to ensure you don't overcommit capital. You decide to limit your exposure to 1% of your total portfolio value per trade. What aspect of risk management are you addressing?", "context": "Capital allocation, risk limits", "answer": "trade-sizing", "explanation": "Trade sizing refers to the process of determining the appropriate amount of capital to allocate to a particular trade. Limiting exposure to a percentage of the total portfolio is a fundamental trade sizing decision, crucial for managing risk and protecting capital."}, {"text": "You are trading options on a stock where the central bank suddenly announces an unexpected interest rate hike. Although your options strategy is delta-hedged, you realize that the theoretical pricing of your options might be slightly off due to the new rate. Which BSM assumption is being challenged here?", "context": "BSM assumptions, interest rates", "answer": "black-scholes-merton-model", "explanation": "The BSM model assumes a single, constant risk-free interest rate. An unexpected interest rate hike challenges this assumption, potentially leading to minor mispricings in options, although the impact of interest rate volatility on option pricing is generally considered minimal compared to asset volatility."}];
+const flashcards = [{"category": "Options", "q": "What is the significance of option pricing models like the Black-Scholes-Merton (BSM) model in trading?", "a": "Option pricing models, particularly the BSM model, are essential as they transform the fast-moving prices of options into more manageable parameters, like <strong>implied volatility</strong>, enabling informed trading decisions."}, {"category": "Options", "q": "What role does implied volatility play in option trading according to the text?", "a": "Implied volatility is a critical parameter derived from option prices. It allows traders to compare market expectations of future volatility against their forecasts and informs them of potential profitability from trading options. <strong>Mispricing between implied and realized volatility</strong> can lead to profitable trading opportunities."}, {"category": "Efficient Market Hypothesis", "q": "What is the core message regarding the Efficient Market Hypothesis (EMH) as discussed in Chapter 2?", "a": "The EMH asserts that it is difficult to make money in trading because markets are generally efficient, meaning prices reflect all available information. However, <strong>inefficiencies can still be exploited</strong>."}, {"category": "Efficient Market Hypothesis", "q": "What role does behavioral finance play in understanding market inefficiencies?", "a": "Behavioral finance provides insights into <strong>psychological biases</strong> that cause investors to make irrational decisions, leading to market inefficiencies. These biases create opportunities for rational traders."}, {"category": "Forecasting Volatility", "q": "What mindset should traders adopt when forecasting volatility?", "a": "Traders should understand that all trading involves making forecasts, even if they believe they are only reacting. Embracing a mindset that acknowledges the <strong>necessity of forecasting volatility</strong> is crucial for successful trading."}, {"category": "Forecasting Volatility", "q": "How can historical situations enhance forecasting accuracy?", "a": "By actively looking for <strong>comparable historical events</strong>, traders can uncover patterns and correlations that may offer insights into future volatility movements in similar situations."}, {"category": "Variance Premium", "q": "What is the variance premium and why is it important for option traders to understand?", "a": "The variance premium is the tendency for <strong>implied volatility to be consistently higher than realized volatility</strong>. It's critical because it affects option pricing and understanding it allows traders to recognize risks of overpaying for options and profit from selling volatility."}, {"category": "Variance Premium", "q": "Why might being short VIX futures be a profitable strategy?", "a": "Being short VIX futures has historically proven profitable due to the <strong>term structure effect (contango)</strong>, where VIX futures prices typically remain elevated above the cash VIX index, allowing profit from inherent decay."}, {"category": "Positive Expected Value", "q": "What is the main difference between edges and trading rules in the context of option trading?", "a": "<strong>Edges are observed phenomena</strong> that can lead to profits, while <strong>rules are fixed strategies</strong> for monetizing those edges. Edges persist, but rules may become obsolete as markets evolve."}, {"category": "Positive Expected Value", "q": "What role does leverage play in the stability of a trade?", "a": "Leverage can transform a stable trade into an unstable one. <strong>Excess leverage increases the risk of forced exits</strong>, particularly during adverse market movements."}, {"category": "Volatility Positions", "q": "What is the central idea discussed in Chapter 6 regarding volatility positions in options trading?", "a": "Chapter 6 explores different strategies for expressing opinions on volatility, particularly how to <strong>sell volatility through positions like straddles and strangles</strong>, emphasizing risk control and understanding return distributions."}, {"category": "Volatility Positions", "q": "What mistake do traders often make when entering short volatility positions, according to Sinclair?", "a": "Traders often mistakenly believe that selling strangles or straddles is a foolproof income strategy, disregarding that without a proper <strong>edge in volatility forecasting</strong>, they will likely incur losses over time."}, {"category": "Directional Option Trading", "q": "Why is directional trading in options considered complex?", "a": "Directional trading in options is complex because even if one predicts the correct direction of the underlying asset, they can still lose money due to factors such as the <strong>premium paid for the option and the variance in price movement</strong>."}, {"category": "Directional Option Trading", "q": "What does the skewness of options returns imply for traders?", "a": "The skewness of options returns implies that options have the potential for <strong>significantly positive skew</strong>, meaning that the likelihood of large positive payoffs exists, even when the underlying asset has normally distributed returns."}, {"category": "Trade Sizing", "q": "What is the importance of risk management in trading according to the Kelly criterion?", "a": "Risk management is essential to transform a potentially profitable idea into a winning strategy. Effective risk control can <strong>optimize a trader's potential</strong>, preventing bad decisions and significant losses, with Kelly offering a mathematical basis for maximizing long-term growth."}, {"category": "Trade Sizing", "q": "How does non-normality impact trade sizing and risk management?", "a": "Non-normality affects trade outcomes, especially with rare events. Traders may misestimate probabilities, leading to inappropriate bet sizes. <strong>Misestimations in extreme events can cause negative growth rates</strong>, making it crucial to adapt sizing strategies."}, {"category": "Meta Risks", "q": "What type of risks are often underestimated by traders, and why are they considered more dangerous than market risks?", "a": "<strong>Meta risks</strong>, originating from outside the market (moral, legal, governmental, currency), are harder to predict and manage than market risks. They can lead to catastrophic losses due to factors beyond a trader's control."}, {"category": "Meta Risks", "q": "How can traders mitigate currency risk, and what is an example of extreme currency risk?", "a": "Currency risk can be mitigated through <strong>diversification across different currencies and assets</strong>. Extreme examples include hyperinflation, as seen in Zimbabwe, where inflation rates made it nearly impossible to maintain real returns."}];
+const quizQuestions = [{"q": "Which of the following statements about option pricing models, like the Black-Scholes-Merton (BSM) model, is most accurate?", "options": ["The BSM model is often used exactly as intended by its creators, without adjustments.", "Key variables in an option pricing model include underlying price, strike price, time to expiration, and volatility.", "Hedging can guarantee increased profitability without affecting transaction costs.", "The expected return of the underlying asset is the most critical factor in an option's instant value according to BSM."], "correct": 1, "explanation": "The BSM model, while a cornerstone, is often used with adjustments, not exactly as intended. Hedging always involves transaction costs, which can diminish profitability. The BSM model explicitly states that the expected return of the underlying is irrelevant to an option's instant value due to put-call parity. The text confirms that key variables include underlying price, strike price, time to expiration, and volatility."}, {"q": "According to Chapter 2, what is a key insight regarding the Efficient Market Hypothesis (EMH) and market inefficiencies?", "options": ["The EMH asserts that making money in trading is easy due to predictable patterns.", "Behavioral finance suggests that irrational behaviors among traders can lead to market inefficiencies.", "Fama's conditions for market efficiency often hold true in practice, especially in options markets.", "Market inefficiencies typically have an unlimited lifespan, offering persistent trading opportunities."], "correct": 1, "explanation": "The EMH asserts that making money is challenging, not easy. While Fama's conditions are theoretical, they often do not hold true in practice, especially in options markets. Market inefficiencies typically have a limited lifespan. Behavioral finance explicitly suggests that psychological biases lead to irrational behaviors and thus, market inefficiencies."}, {"q": "Which statement best reflects the importance and challenges of forecasting volatility in trading?", "options": ["Successful trading does not require making forecasts about market movements; only reactions are needed.", "Utilizing historical comparisons is not important for forecasting volatility changes.", "Combining forecasts from various models typically enhances the accuracy of predictions.", "Forecasting models perfectly capture reality and are immune to oversimplification."], "correct": 2, "explanation": "Successful trading inherently involves forecasting. Utilizing historical comparisons is crucial for identifying catalysts for volatility changes. Forecasting models often oversimplify reality and are not immune to flaws. The text explicitly states that combining forecasts from multiple models enhances prediction accuracy."}, {"q": "Which statement accurately describes the variance premium?", "options": ["The variance premium refers to the situation where realized volatility is consistently higher than implied volatility.", "Traders can profit by employing strategies that sell implied volatility due to the existence of the variance premium.", "The variance premium exists only in equity markets and does not apply to commodities, bonds, or currencies.", "The variance premium is a temporary market anomaly that is unlikely to persist long-term."], "correct": 1, "explanation": "The variance premium is where implied volatility is consistently higher than realized volatility, not the other way around. It is explicitly stated that this premium exists across various markets (equities, commodities, bonds, currencies). The conclusion of Chapter 4 emphasizes its lasting presence, suggesting it's unlikely to disappear soon. Therefore, traders can profit by selling implied volatility."}, {"q": "Regarding 'crowding in trading' and 'trading edges,' which statement is most accurate?", "options": ["Crowding in trading is solely beneficial for all trading strategies, according to Baltas (2019).", "Euan Sinclair emphasizes the importance of relying strictly on trading rules rather than understanding edges.", "All trading strategies mentioned by Sinclair have the same level of empirical support and reliability.", "Markets constantly evolve, making understanding 'edges' more crucial than rigid trading rules."], "correct": 3, "explanation": "Baltas (2019) distinguishes between convergence (beneficial) and divergence (destabilizing) crowding, so it's not solely beneficial for all strategies. Sinclair explicitly states that markets constantly evolve and rules rapidly become obsolete, emphasizing principles and edges. Strategies are rated on a scale of one to three based on empirical support, so they don't have the same reliability. The most accurate statement is that understanding edges is crucial due to evolving markets."}, {"q": "Which statement accurately describes volatility selling strategies discussed in Chapter 6?", "options": ["Straddles and strangles are considered fundamental strategies for buying volatility in options trading.", "Selling a straddle involves taking short positions on a put option and a call option at different strike prices.", "Short-dated options typically carry lower variance premiums, making them less beneficial for option sellers.", "Straddles and strangles are fundamental strategies for selling volatility."], "correct": 3, "explanation": "Straddles and strangles are fundamental strategies for selling volatility, not buying. Selling a straddle involves the same strike price for both put and call, while strangles use different strike prices. The text states that short-dated options often have higher variance premiums, making them beneficial for sellers. Thus, the correct option is that straddles and strangles are fundamental strategies for selling volatility."}, {"q": "According to the BSM model and directional option trading, what is a key consideration?", "options": ["The direction of an underlying asset significantly influences option pricing according to BSM.", "Options can be effectively used for directional betting, but being right about direction doesn't guarantee profit.", "A straightforward metric exists for determining the optimal strike to buy in options trading.", "Subjective option pricing models are not useful for traders seeking to introduce drift estimates."], "correct": 1, "explanation": "The BSM model suggests the direction of an underlying asset does not influence option pricing. While options can be used for directional betting, predicting direction accurately doesn't guarantee profit due to other factors like premium paid. No straightforward answer exists for the optimal strike, as it depends on multiple factors and personal risk tolerance. Subjective option pricing allows traders to introduce drift estimates into their models. Thus, the most accurate statement is that options can be used for directional betting, but being right about direction doesn't guarantee profit."}, {"q": "When selecting a directional option strategy, what is a crucial aspect to consider?", "options": ["Traders only need to determine the strike price and expiration date, as strategy type is secondary.", "A Long Call option provides a limited downside compared to holding stock.", "The Short Put strategy focuses on high probability of profit with unlimited upside.", "Understanding the variance and skew premiums is central to strategy selection."], "correct": 3, "explanation": "Traders must determine strike, expiration, AND strategy type. A Long Call option has limited downside (premium paid) compared to holding stock (full capital at risk). The Short Put strategy has high probability of profit but limited upside (premium received) and potentially unlimited downside. The text explicitly states that understanding the variance and skew premiums is central to directional option strategy selection."}, {"q": "What is the primary role of risk management and the Kelly criterion in trading?", "options": ["Risk management can transform a poor trading strategy into a profitable one.", "The Kelly criterion is only suitable for traders focusing on minimizing volatility.", "Traders using the Kelly criterion can experience high volatility and significant drawdowns if they adhere strictly to it.", "Risk management is entirely outside the trader's control."], "correct": 2, "explanation": "Risk management cannot transform a poor strategy into a profitable one, but it can prevent a good strategy from becoming a loser. The Kelly criterion aims to maximize long-term growth, not just minimize volatility, although full Kelly can lead to high volatility. Risk management is the only part of the trading process entirely under the trader's control. Thus, the correct statement is that strict adherence to Kelly can lead to high volatility and drawdowns."}, {"q": "Regarding 'Meta Risks' in options trading, which statement is true?", "options": ["Currency risk can be fully eliminated from trading options through diversification.", "Cryptocurrencies are not widely accepted as stable currencies and are considered speculative instruments.", "Index restructuring always provides prior notice to traders about upcoming changes.", "Meta risks are less dangerous than typical market risks because they are easier to predict and mitigate."], "correct": 1, "explanation": "Currency risk cannot be fully eliminated, but it can be diversified. Cryptocurrencies are indeed viewed as speculative and not stable currencies. Index restructuring can impact traders without prior notice. Meta risks are considered harder to predict and mitigate, and thus more dangerous than typical market risks. Therefore, the statement about cryptocurrencies is true."}];
+const STORAGE_KEY = 'positional-option-trading_progress';
+
+// =============== STATE ===============
+let currentSection = 'hero';
+let classifierIndex = 0;
+let classifierScore = 0;
+let classifierTotal = 0;
+let flashcardIndex = 0;
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = [];
+let shuffledScenarios = [];
+let shuffledFlashcards = [];
+let shuffledQuiz = [];
+let chapterFilter = 'all';
+
+function loadProgress() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  return {
+    classifierCorrect: data.classifierCorrect || 0,
+    classifierTotal: data.classifierTotal || 0,
+    flashcardsReviewed: data.flashcardsReviewed || 0,
+    flashcardsEasy: data.flashcardsEasy || 0,
+    flashcardsHard: data.flashcardsHard || 0,
+    quizzesTaken: data.quizzesTaken || 0,
+    quizCorrect: data.quizCorrect || 0,
+    quizTotal: data.quizTotal || 0,
+    conceptsViewed: data.conceptsViewed || [],
+    chaptersViewed: data.chaptersViewed || []
+  };
+}
+
+function saveProgress(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// =============== RENDERING ===============
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id + '-section').classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach((t, i) => {
+    const sections = ['hero', 'map', 'concepts', 'classifier', 'flashcards', 'quiz', 'progress'];
+    t.classList.toggle('active', sections[i] === id);
+  });
+  currentSection = id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (id === 'map') renderBookMap();
+  if (id === 'concepts') renderConcepts();
+  if (id === 'classifier') initClassifier();
+  if (id === 'flashcards') initFlashcards();
+  if (id === 'quiz') initQuiz();
+  if (id === 'progress') renderProgress();
+  updateProgressBar();
+}
+
+function updateProgressBar() {
+  const p = loadProgress();
+  const total = concepts.length + flashcards.length + quizQuestions.length + scenarios.length;
+  const done = p.conceptsViewed.length + p.flashcardsReviewed + p.quizTotal + p.classifierTotal;
+  const pct = Math.min(100, (done / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+// BOOK MAP
+function renderBookMap() {
+  const container = document.getElementById('bookMapContent');
+  container.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'book-grid';
+  books.forEach((book) => {
+    const mustCount = book.chapters.filter(c => c.priority === 'must-read').length;
+    const optCount = book.chapters.filter(c => c.priority === 'optional').length;
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    card.innerHTML = `
+      <div class="book-card-num">${book.num}</div>
+      <div class="book-card-label">Part ${book.num}</div>
+      <div class="book-card-title">${book.title}</div>
+      <div class="book-card-desc">${book.desc}</div>
+      <div class="book-card-chapters">
+        ${book.chapters.map(c => `<span class="chapter-tag">Ch ${c.num}</span>`).join('')}
+      </div>
+      <div class="book-card-meta">
+        <span class="meta-must">&#10038; Must-read ${mustCount}</span>
+        <span class="meta-optional">&#9672; Optional ${optCount}</span>
+      </div>
+    `;
+    card.onclick = () => { grid.style.display = 'none'; renderChapterDetail(book, container, grid); };
+    grid.appendChild(card);
+  });
+  container.appendChild(grid);
+}
+
+function renderChapterDetail(book, container, grid) {
+  let detail = document.getElementById('chapterDetailView');
+  if (detail) detail.remove();
+  detail = document.createElement('div');
+  detail.id = 'chapterDetailView';
+  const backBtn = document.createElement('button');
+  backBtn.className = 'next-btn';
+  backBtn.style.marginBottom = '32px';
+  backBtn.textContent = '\u2190 Back to Overview';
+  backBtn.onclick = () => { detail.remove(); grid.style.display = 'grid'; };
+  detail.appendChild(backBtn);
+  const header = document.createElement('div');
+  header.style.marginBottom = '32px';
+  header.innerHTML = `
+    <div class="section-label">Part ${book.num}</div>
+    <h2 class="section-title" style="font-size:32px">${book.title}</h2>
+    <p class="section-desc">${book.desc}</p>
+  `;
+  detail.appendChild(header);
+  const chaptersContainer = document.createElement('div');
+  book.chapters.forEach(ch => {
+    if (chapterFilter !== 'all' && ch.priority !== chapterFilter) return;
+    const chDiv = document.createElement('div');
+    chDiv.className = 'chapter-detail';
+    const priorityLabel = ch.priority === 'must-read' ? 'Must-read' : 'Optional';
+    chDiv.innerHTML = `
+      <div class="chapter-detail-header">
+        <span class="chapter-num">Ch ${ch.num}</span>
+        <span class="chapter-priority ${ch.priority}">${priorityLabel}</span>
+        <div style="flex:1">
+          <span class="chapter-detail-title">${ch.title}</span>
+          <div class="chapter-oneliner">${ch.oneliner}</div>
+        </div>
+        <span class="chapter-toggle">+</span>
+      </div>
+      <div class="chapter-detail-body">
+        <div class="chapter-detail-content">
+          <p>${ch.summary}</p>
+          <div class="key-ideas">
+            <h4>Key Ideas</h4>
+            ${ch.ideas.map(i => `<span class="idea-chip">${i}</span>`).join('')}
+          </div>
+          <a href="chapters/ch${String(ch.num).padStart(2, '0')}.html" class="next-btn" style="display:inline-block;margin-top:20px;text-decoration:none;">Read Deep Dive →</a>
+        </div>
+      </div>
+    `;
+    chDiv.querySelector('.chapter-detail-header').onclick = () => {
+      chDiv.classList.toggle('open');
+      const p = loadProgress();
+      if (!p.chaptersViewed.includes(ch.num)) { p.chaptersViewed.push(ch.num); saveProgress(p); }
+    };
+    chaptersContainer.appendChild(chDiv);
+  });
+  detail.appendChild(chaptersContainer);
+  container.appendChild(detail);
+}
+
+// CONCEPTS
+function renderConcepts() {
+  const grid = document.getElementById('conceptsGrid');
+  grid.innerHTML = '';
+  concepts.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'concept-card';
+    card.innerHTML = `
+      <span class="triad-badge ${c.badge}">${c.badge}</span>
+      <h3>${c.name}</h3>
+      <p>${c.short}</p>
+      <div class="concept-example"><em>Example:</em> ${c.example}</div>
+    `;
+    card.onclick = () => openConceptModal(c);
+    grid.appendChild(card);
+  });
+}
+
+function openConceptModal(c) {
+  const overlay = document.getElementById('modalOverlay');
+  const content = document.getElementById('modalContent');
+  content.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <span class="triad-badge ${c.badge}" style="margin-bottom:16px;display:inline-block">${c.badge}</span>
+    <h2>${c.name}</h2>
+    <div class="modal-subtitle">Core Concept</div>
+    <p>${c.detail}</p>
+    <blockquote>${c.quote}</blockquote>
+    <div class="related-concepts">
+      <h4>Related Concepts</h4>
+      ${(c.related || []).map(r => {
+        const rel = concepts.find(x => x.id === r);
+        return rel ? `<span class="related-tag" onclick="openConceptModal(concepts.find(x=>x.id==='${r}'))">${rel.name}</span>` : '';
+      }).join('')}
+    </div>
+  `;
+  overlay.classList.add('open');
+  const p = loadProgress();
+  if (!p.conceptsViewed.includes(c.id)) { p.conceptsViewed.push(c.id); saveProgress(p); }
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeModal(); });
+
+// CLASSIFIER
+function initClassifier() {
+  shuffledScenarios = shuffle(scenarios);
+  classifierIndex = 0; classifierScore = 0; classifierTotal = 0;
+  renderClassifier();
+}
+
+function renderClassifier() {
+  const container = document.getElementById('classifierContainer');
+  if (classifierIndex >= shuffledScenarios.length) {
+    container.innerHTML = `<div class="quiz-results"><h3>Round Complete</h3><div class="quiz-score">${classifierScore}/${classifierTotal}</div><p>You correctly classified ${classifierScore} / ${classifierTotal} scenarios.</p><button class="restart-btn" onclick="initClassifier()">Play Again</button></div>`;
+    return;
+  }
+  const s = shuffledScenarios[classifierIndex];
+  // Build concept buttons from unique badges
+  const badges = [...new Set(concepts.map(c => c.badge))].slice(0, 4);
+  const badgeButtons = concepts.slice(0, 3).map(c => `
+    <button class="classify-btn ${c.badge}" onclick="classifyAnswer('${c.id}')">
+      <div class="btn-label">${c.name}</div>
+      <div class="btn-desc">${c.short.substring(0, 50)}…</div>
+    </button>
+  `).join('');
+  
+  container.innerHTML = `
+    <div class="classifier-prompt">
+      <h3>Identify the Concept</h3>
+      <p>Which concept best explains this scenario?</p>
+    </div>
+    <div class="classifier-scenario">
+      <div class="scenario-num">Scenario ${classifierIndex + 1} / ${shuffledScenarios.length}</div>
+      <div class="scenario-text">${s.text}</div>
+      <div class="scenario-context">${s.context}</div>
+    </div>
+    <div class="classifier-options">
+      ${shuffledScenarios[classifierIndex] ? getClassifierOptions(s) : ''}
+    </div>
+    <div class="feedback-box" id="classifierFeedback"></div>
+    <div class="classifier-controls">
+      <div class="classifier-score">Score: <span>${classifierScore}</span> / ${classifierTotal}</div>
+      <button class="next-btn" id="classifierNext" style="display:none" onclick="nextScenario()">Next Scenario \u2192</button>
+    </div>
+  `;
+}
+
+function getClassifierOptions(scenario) {
+  const correct = concepts.find(c => c.id === scenario.answer);
+  if (!correct) return '';
+  let options = [correct];
+  const others = concepts.filter(c => c.id !== scenario.answer);
+  const shuffled = shuffle(others).slice(0, 2);
+  options = shuffle([...options, ...shuffled]);
+  return options.map(c => `
+    <button class="classify-btn ${c.badge}" onclick="classifyAnswer('${c.id}')">
+      <div class="btn-label">${c.name}</div>
+      <div class="btn-desc">${c.short.substring(0, 60)}…</div>
+    </button>
+  `).join('');
+}
+
+function classifyAnswer(answer) {
+  const s = shuffledScenarios[classifierIndex];
+  const correct = answer === s.answer;
+  classifierTotal++;
+  if (correct) classifierScore++;
+  const p = loadProgress();
+  p.classifierTotal++; if (correct) p.classifierCorrect++;
+  saveProgress(p);
+  document.querySelectorAll('.classify-btn').forEach(btn => { btn.style.pointerEvents = 'none'; });
+  const correctConcept = concepts.find(c => c.id === s.answer);
+  const fb = document.getElementById('classifierFeedback');
+  fb.className = `feedback-box visible ${correct ? 'correct' : 'incorrect'}`;
+  fb.innerHTML = `
+    <div class="feedback-result ${correct ? 'correct' : 'incorrect'}">${correct ? '\u2713 Correct!' : '\u2717 Incorrect — Answer: ' + (correctConcept ? correctConcept.name : s.answer)}</div>
+    <p>${s.explanation}</p>
+  `;
+  document.getElementById('classifierNext').style.display = 'inline-block';
+  document.querySelector('.classifier-score').innerHTML = `Score: <span>${classifierScore}</span> / ${classifierTotal}`;
+}
+
+function nextScenario() { classifierIndex++; renderClassifier(); }
+
+// FLASHCARDS
+function initFlashcards() { shuffledFlashcards = shuffle(flashcards); flashcardIndex = 0; renderFlashcard(); }
+
+function renderFlashcard() {
+  const container = document.getElementById('flashcardContainer');
+  if (flashcardIndex >= shuffledFlashcards.length) { flashcardIndex = 0; shuffledFlashcards = shuffle(flashcards); }
+  const card = shuffledFlashcards[flashcardIndex];
+  container.innerHTML = `
+    <div class="flashcard-controls"><div class="flashcard-counter">Card <span>${flashcardIndex + 1}</span> / ${shuffledFlashcards.length}</div></div>
+    <div class="flashcard-wrapper">
+      <div class="flashcard" id="currentFlashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-category">${card.category}</div>
+          <div class="flashcard-question">${card.q}</div>
+          <div class="flashcard-hint">Click to flip</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-category">Answer</div>
+          <div class="flashcard-answer">${card.a}</div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-nav">
+      <button class="card-nav-btn" onclick="prevFlashcard()">\u2190</button>
+      <div class="difficulty-btns">
+        <button class="diff-btn hard" onclick="rateFlashcard('hard')">Hard</button>
+        <button class="diff-btn good" onclick="rateFlashcard('good')">Good</button>
+        <button class="diff-btn easy" onclick="rateFlashcard('easy')">Easy</button>
+      </div>
+      <button class="card-nav-btn" onclick="nextFlashcard()">\u2192</button>
+    </div>
+  `;
+}
+
+function prevFlashcard() { flashcardIndex = Math.max(0, flashcardIndex - 1); renderFlashcard(); }
+function nextFlashcard() { flashcardIndex++; renderFlashcard(); }
+function rateFlashcard(d) {
+  const p = loadProgress(); p.flashcardsReviewed++;
+  if (d === 'easy') p.flashcardsEasy++; if (d === 'hard') p.flashcardsHard++;
+  saveProgress(p); nextFlashcard();
+}
+
+// QUIZ
+function initQuiz() { shuffledQuiz = shuffle(quizQuestions).slice(0, 10); quizIndex = 0; quizScore = 0; quizAnswered = new Array(shuffledQuiz.length).fill(null); renderQuiz(); }
+
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  if (quizIndex >= shuffledQuiz.length) {
+    const p = loadProgress(); p.quizzesTaken++; p.quizCorrect += quizScore; p.quizTotal += shuffledQuiz.length; saveProgress(p);
+    const pct = Math.round((quizScore / shuffledQuiz.length) * 100);
+    container.innerHTML = `<div class="quiz-results"><h3>Quiz Complete</h3><div class="quiz-score">${pct}%</div><p>You got ${quizScore} / ${shuffledQuiz.length} correct.</p><button class="restart-btn" onclick="initQuiz()">Retake Quiz</button></div>`;
+    return;
+  }
+  const q = shuffledQuiz[quizIndex];
+  const letters = ['A', 'B', 'C', 'D'];
+  container.innerHTML = `
+    <div class="quiz-progress">
+      ${shuffledQuiz.map((_, i) => {
+        let cls = '';
+        if (i === quizIndex) cls = 'current';
+        else if (quizAnswered[i] !== null) cls = quizAnswered[i] ? 'correct' : 'incorrect';
+        return `<div class="quiz-dot ${cls}"></div>`;
+      }).join('')}
+    </div>
+    <div class="quiz-question-card">
+      <div class="quiz-q-num">Question ${quizIndex + 1} of ${shuffledQuiz.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `<div class="quiz-option" onclick="answerQuiz(${i})"><span class="option-letter">${letters[i]}</span><span>${opt}</span></div>`).join('')}
+      </div>
+    </div>
+    <div class="quiz-explanation" id="quizExplanation"><p>${q.explanation}</p></div>
+    <div class="classifier-controls" style="margin-top:24px">
+      <div></div>
+      <button class="next-btn" id="quizNext" style="display:none" onclick="nextQuizQuestion()">
+        ${quizIndex < shuffledQuiz.length - 1 ? 'Next Question \u2192' : 'See Results \u2192'}
+      </button>
+    </div>
+  `;
+}
+
+function answerQuiz(idx) {
+  const q = shuffledQuiz[quizIndex];
+  const correct = idx === q.correct;
+  if (correct) quizScore++;
+  quizAnswered[quizIndex] = correct;
+  document.querySelectorAll('.quiz-option').forEach((opt, i) => {
+    opt.classList.add('disabled');
+    if (i === q.correct) opt.classList.add('correct');
+    if (i === idx && !correct) opt.classList.add('incorrect');
+  });
+  document.getElementById('quizExplanation').classList.add('visible');
+  document.getElementById('quizNext').style.display = 'inline-block';
+}
+
+function nextQuizQuestion() { quizIndex++; renderQuiz(); }
+
+// PROGRESS
+function renderProgress() {
+  const container = document.getElementById('progressContent');
+  const p = loadProgress();
+  const classifierPct = p.classifierTotal > 0 ? Math.round((p.classifierCorrect / p.classifierTotal) * 100) : 0;
+  const quizPct = p.quizTotal > 0 ? Math.round((p.quizCorrect / p.quizTotal) * 100) : 0;
+  const conceptsPct = Math.round((p.conceptsViewed.length / concepts.length) * 100);
+  const totalCh = books.reduce((s, b) => s + b.chapters.length, 0);
+  const chaptersPct = Math.round((p.chaptersViewed.length / totalCh) * 100);
+  const memPct = p.flashcardsReviewed > 0 ? Math.round((p.flashcardsEasy / p.flashcardsReviewed) * 100) : 0;
+  container.innerHTML = `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value">${p.conceptsViewed.length}/${concepts.length}</div><div class="stat-label">Concepts Explored</div></div>
+      <div class="stat-card"><div class="stat-value">${p.flashcardsReviewed}</div><div class="stat-label">Cards Reviewed</div></div>
+      <div class="stat-card"><div class="stat-value">${classifierPct}%</div><div class="stat-label">Classifier Accuracy</div></div>
+      <div class="stat-card"><div class="stat-value">${quizPct}%</div><div class="stat-label">Quiz Accuracy</div></div>
+    </div>
+    <div class="mastery-section">
+      <h3>Mastery Analysis</h3>
+      <div class="mastery-item"><span class="mastery-label">Concepts</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${conceptsPct}%"></div></div><span class="mastery-pct">${conceptsPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Chapters</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${chaptersPct}%"></div></div><span class="mastery-pct">${chaptersPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Classifier</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${classifierPct}%"></div></div><span class="mastery-pct">${classifierPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Quiz</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${quizPct}%"></div></div><span class="mastery-pct">${quizPct}%</span></div>
+      <div class="mastery-item"><span class="mastery-label">Memory</span><div class="mastery-bar-bg"><div class="mastery-bar" style="width:${memPct}%"></div></div><span class="mastery-pct">${memPct}%</span></div>
+    </div>
+    <button class="next-btn" style="margin-top:16px" onclick="if(confirm('Reset all progress?')){localStorage.removeItem(STORAGE_KEY);renderProgress();}">Reset Progress</button>
+  `;
+}
+
+// NAV
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const st = window.scrollY;
+  if (st > lastScroll && st > 100) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll = st;
+});
+
+document.addEventListener('keydown', e => {
+  if (currentSection === 'flashcards') {
+    if (e.code === 'Space') { e.preventDefault(); const fc = document.getElementById('currentFlashcard'); if (fc) fc.classList.toggle('flipped'); }
+    if (e.code === 'ArrowRight') nextFlashcard();
+    if (e.code === 'ArrowLeft') prevFlashcard();
+  }
+  if (e.key === 'Escape') closeModal();
+});
+
+updateProgressBar();
+</script>
+</body>
+</html>

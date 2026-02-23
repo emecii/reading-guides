@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="{{ meta.language }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter {{ chapter.num }} · {{ chapter.title }} — {{ meta.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/shared.css">
+  <link rel="stylesheet" href="../css/chapter.css">
+  <style>
+    .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+    .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+  </style>
+</head>
+<body>
+
+  <!-- CHAPTER HERO -->
+  <section class="chapter-hero">
+    <div class="chapter-hero-inner">
+      <div class="book-label">{{ chapter.book_label }}</div>
+      <div class="chapter-number">Chapter <span>{{ chapter.num }}</span></div>
+      <h1 class="chapter-title">{{ chapter.title }}</h1>
+      <p class="chapter-subtitle">{{ chapter.subtitle }}</p>
+      <div class="reading-meta">
+        <span>{{ chapter.word_count }}</span>
+        <span>{{ chapter.reading_time }} read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE BODY -->
+  <main class="chapter-page">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="separator">&gt;</span>
+      <a href="../index.html">Book Map</a>
+      <span class="separator">&gt;</span>
+      <a href="../index.html">{{ chapter.book_label.split(' · ')[0] if ' · ' in chapter.book_label else chapter.book_label }}</a>
+      <span class="separator">&gt;</span>
+      Chapter {{ chapter.num }}
+    </nav>
+
+    {% if chapter.epigraph %}
+    <!-- EPIGRAPH -->
+    <blockquote class="epigraph">
+      <p class="epigraph-text">{{ chapter.epigraph.text }}</p>
+      <footer class="epigraph-attribution">{{ chapter.epigraph.attribution }}</footer>
+    </blockquote>
+    {% endif %}
+
+    <!-- ARGUMENT FLOW -->
+    {% if chapter.argument_flow %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Argument Flow</span>
+      <h2 class="section-heading">How the Chapter Builds Its Case</h2>
+    </div>
+
+    <div class="argument-flow">
+      {% for step in chapter.argument_flow %}
+      <div class="argument-step">
+        <div class="step-number">{{ loop.index }}</div>
+        <div class="step-content">
+          <div class="step-heading">{{ step.heading }}</div>
+          <div class="step-body">{{ step.body }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- SECTION BREAKDOWN -->
+    {% if chapter.sections %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Section Breakdown</span>
+      <h2 class="section-heading">Deep Dive into Content</h2>
+    </div>
+
+    {% for section in chapter.sections %}
+    <div class="section-block">
+      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="section-label">
+          <span class="section-number">{{ section.label }}</span>
+          <span class="section-title">{{ section.title }}</span>
+        </div>
+        <div class="toggle-icon"></div>
+      </div>
+      <div class="section-block-body">
+        <div class="section-block-body-inner">
+          {% for p in section.paragraphs %}
+          <p>{{ p }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- EXAMPLES -->
+    {% if chapter.examples %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Key Examples</span>
+      <h2 class="section-heading">Illustrative Cases</h2>
+    </div>
+
+    <div class="example-grid">
+      {% for ex in chapter.examples %}
+      <div class="example-card">
+        <div class="example-icon">{{ ex.icon }}</div>
+        <div class="example-title">{{ ex.title }}</div>
+        <div class="example-desc">{{ ex.desc }}</div>
+        <div class="example-lesson">{{ ex.lesson }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- QUOTES -->
+    {% if chapter.quotes %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Notable Quotes</span>
+      <h2 class="section-heading">Key Passages</h2>
+    </div>
+
+    <div class="quotes-list">
+      {% for q in chapter.quotes %}
+      <div class="taleb-quote">
+        <p class="quote-text">{{ q.text }}</p>
+        <p class="quote-context">{{ q.context }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CONCEPT LINKS -->
+    {% if chapter.concept_links %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      {% for cid in chapter.concept_links %}
+      <a class="concept-callout" href="../index.html#concepts">{{ cid }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- REFLECTIONS -->
+    {% if chapter.reflections %}
+    <div class="chapter-section-title">
+      <span class="section-overline">Think & Discuss</span>
+      <h2 class="section-heading">Reflection Prompts</h2>
+    </div>
+
+    <div class="reflection-grid">
+      {% for r in chapter.reflections %}
+      <div class="reflection-prompt">
+        <div class="reflection-number">{{ '%02d' | format(loop.index) }}</div>
+        <p class="reflection-text">{{ r }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- CHAPTER NAVIGATION -->
+    <footer class="chapter-nav-footer">
+      {% if chapter.prev_chapter %}
+      <a href="ch{{ '%02d' | format(chapter.prev_chapter.num) }}.html" class="chapter-nav-prev">
+        <span class="nav-direction">Previous</span>
+        <span class="nav-chapter-title">Chapter {{ chapter.prev_chapter.num }} · {{ chapter.prev_chapter.title }}</span>
+      </a>
+      {% else %}
+      <div class="chapter-nav-prev" style="visibility: hidden;">
+        <span class="nav-direction">Previous</span>
+        <span class="nav-chapter-title"></span>
+      </div>
+      {% endif %}
+
+      <div class="chapter-nav-center">
+        <a href="../index.html">Back to Guide</a>
+      </div>
+
+      {% if chapter.next_chapter %}
+      <a href="ch{{ '%02d' | format(chapter.next_chapter.num) }}.html" class="chapter-nav-next">
+        <span class="nav-direction">Next</span>
+        <span class="nav-chapter-title">Chapter {{ chapter.next_chapter.num }} · {{ chapter.next_chapter.title }}</span>
+      </a>
+      {% else %}
+      <div class="chapter-nav-next" style="visibility: hidden;">
+        <span class="nav-direction">Next</span>
+        <span class="nav-chapter-title"></span>
+      </div>
+      {% endif %}
+    </footer>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.section-block-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        this.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
