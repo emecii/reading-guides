@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Risk and Portfolio Management</div>
       <div class="chapter-number">Chapter <span>10</span></div>
       <h1 class="chapter-title">Meta Risks</h1>
-      <p class="chapter-subtitle">Addressing external, hard-to-predict risks beyond market movements, including currency, theft, fraud, and systemic issues, and strategies for mitigation.</p>
+      <p class="chapter-subtitle">Identifying external threats from currency, fraud, and institutional failure.</p>
       <div class="reading-meta">
-        <span>~380 words</span>
-        <span>2 min read</span>
+        <span>~3,100 words</span>
+        <span>15 min read</span>
       </div>
     </div>
   </section>
@@ -39,7 +46,7 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Risk and Portfolio Management</a>
       <span class="separator">&gt;</span>
       Chapter 10
     </nav>
@@ -47,7 +54,7 @@
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
       <p class="epigraph-text">If a trader blows up because of a market move, it is due to either ignorance or overconfidence.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Beyond Market Risks</div>
-          <div class="step-body">While market risks are controllable, 'meta risks'—moral, legal, governmental, and external factors—are far harder to predict and mitigate. These pose significant threats to traders.</div>
+          <div class="step-heading">Beyond the Market</div>
+          <div class="step-body">Options do not exist in a vacuum. Traders face 'meta risks'—external factors like legal changes, government intervention, and moral hazards.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Currency Risk and Inflation</div>
-          <div class="step-body">Currency risk is inherent as all trades use fiat currency. Inflation, especially hyperinflation, severely threatens real returns. Cryptocurrencies, while not subject to government inflation, are highly volatile and not stable currencies.</div>
+          <div class="step-heading">Currency and Inflation</div>
+          <div class="step-body">All trades are settled in fiat currency. Hyperinflation or sudden devaluations can wipe out 'real' returns even if the trading strategy is successful.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Theft and Fraud Vigilance</div>
-          <div class="step-body">The financial industry is prone to theft and fraud. Full protection is impossible, but due diligence on fund managers, third-party oversight, and verifying strategy plausibility are crucial safeguards.</div>
+          <div class="step-heading">Theft and Fraud</div>
+          <div class="step-body">The history of finance is littered with rogue traders and Ponzi schemes. Due diligence on counterparties and custodial oversight is non-negotiable.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Lessons from Rogue Traders</div>
-          <div class="step-body">Case studies like Baring's Bank (Nick Leeson) and Bernie Madoff highlight the catastrophic consequences of poor risk management, lack of oversight, and unrealistic returns. Separation of duties and independent custody are vital.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Systemic and Counterparty Risks</div>
-          <div class="step-body">Index restructuring can unexpectedly impact traders. Arbitrageurs face counterparty risk if institutions cannot pay. Monitoring counterparty reliability is essential.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Mitigating Meta Risks</div>
-          <div class="step-body">Amateur traders struggle with market risks; professionals must address external risks. Mitigation involves thorough checks, diversification, and clear separation of trading, compliance, and risk management functions.</div>
+          <div class="step-heading">Counterparty Reliability</div>
+          <div class="step-body">In a crisis, the institution on the other side of your trade might not be able to pay. Diversifying across brokers and clearinghouses is essential.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 199–208</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Understanding Meta Risks Beyond Market Volatility</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>This chapter introduces 'meta risks,' which are distinct from typical market risks that traders often focus on. These external risks—encompassing moral, legal, governmental, and currency-related factors—are significantly more challenging to predict and mitigate. While traders can exert some control over market-specific risks, meta risks are often influenced by systemic factors beyond individual control, posing a unique and severe threat to trading capital.</p>
-          <p>Currency risk is an unavoidable meta risk, as all financial transactions are conducted in fiat currency. Inflation, particularly hyperinflation, represents a profound threat, capable of eroding real returns at an alarming rate. While cryptocurrencies offer an alternative to government-controlled fiat, their extreme volatility prevents them from being stable, widely accepted currencies, positioning them more as speculative instruments.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Guarding Against Theft, Fraud, and Systemic Shocks</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The financial industry is perpetually vulnerable to theft and fraud, and absolute protection is unattainable. Critical safeguards include conducting thorough due diligence on fund managers, ensuring independent third-party oversight of funds, and verifying the plausibility of claimed returns. Historical case studies, such as Nick Leeson's unauthorized trades at Baring's Bank and Bernie Madoff's Ponzi scheme, underscore the devastating consequences of inadequate risk management, lack of oversight, and the failure to question unrealistic returns.</p>
-          <p>Beyond individual fraud, systemic meta risks like index restructuring can significantly alter trading positions without prior notice, leading to unexpected losses. Arbitrageurs and spread traders also face counterparty risk—the danger that a profit-generating institution may be unable to fulfill its obligations. Continuous monitoring of counterparty reliability is therefore essential for mitigating this specific risk.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Comprehensive Mitigation Strategies</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Amateur options traders often falter due to poor management of conventional market risks. In contrast, professional traders must extend their focus to encompass and manage external meta risks stemming from political instability, environmental events, contractual changes, and institutional reliability. These broader risks demand a more holistic approach to risk management.</p>
-          <p>Effective strategies for mitigating meta risks include rigorous background checks, diversification across institutions and asset classes, and a clear functional separation of trading activities from compliance and risk management roles. Such measures are vital for enhancing resilience against the unpredictable and often catastrophic impacts of these external threats.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">💸</div>
-        <div class="example-title">Hyperinflation's Impact</div>
-        <div class="example-desc">A trader operating in a country experiencing hyperinflation, like Zimbabwe, finds that even highly profitable trades in local currency cannot keep pace with the daily erosion of purchasing power, rendering their efforts futile in real terms.</div>
-        <div class="example-lesson">Extreme currency risk (hyperinflation) can negate all trading profits, highlighting the importance of real returns and currency diversification.</div>
+        <div class="example-icon">🏦</div>
+        <div class="example-title">Baring's Bank</div>
+        <div class="example-desc">Nick Leeson's unauthorized trades causing the collapse of a centuries-old bank.</div>
+        <div class="example-lesson">Lack of oversight can turn a single trader into a systemic risk.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🚨</div>
-        <div class="example-title">The Madoff Scheme</div>
-        <div class="example-desc">Investors blindly trusted Bernie Madoff due to his reputation and consistently high, unrealistic returns. A lack of independent oversight and questioning the plausibility of his strategy led to massive losses when the Ponzi scheme collapsed.</div>
-        <div class="example-lesson">Thorough due diligence, independent custody, and skepticism towards 'too good to be true' returns are crucial to avoid fraud.</div>
+        <div class="example-icon">📉</div>
+        <div class="example-title">Bernie Madoff</div>
+        <div class="example-desc">A massive Ponzi scheme that promised unrealistic, steady returns.</div>
+        <div class="example-lesson">If returns are too consistent to be true, they probably are.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">📝</div>
-        <div class="example-title">Index Restructuring Surprise</div>
-        <div class="example-desc">A trader holds options on an index. Without prior notice, the index provider changes the weighting methodology or removes a component stock. This unexpected change alters the index's behavior and the value of the options, leading to unforeseen losses.</div>
-        <div class="example-lesson">Structural changes to underlying instruments (like indices) are meta risks that require vigilance and adaptation.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">🤝</div>
-        <div class="example-title">Counterparty Default</div>
-        <div class="example-desc">An arbitrage trader executes a profitable spread trade where the profit is held by a smaller, lesser-known brokerage. If that brokerage faces financial distress and defaults, the trader loses their expected profit, despite the trade itself being sound.</div>
-        <div class="example-lesson">Always assess the financial health and reliability of counterparties, as their failure can turn theoretical profits into real losses.</div>
+        <div class="example-icon">🇿🇼</div>
+        <div class="example-title">Hyperinflation</div>
+        <div class="example-desc">Zimbabwean inflation making nominal trading profits worthless.</div>
+        <div class="example-lesson">Nominal gains do not equal purchasing power gains.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">If a trader blows up because of a market move, it is due to either ignorance or overconfidence.</p>
-        <p class="quote-context">Attributing trading failures from market moves to internal failings rather than external market forces.</p>
-      </div>
-      <div class="taleb-quote">
         <p class="quote-text">Options don't exist in a vacuum. They are traded as part of an economic system that contains moral, legal, and governmental risks.</p>
-        <p class="quote-context">Highlighting that trading involves a broader context of meta risks beyond just market dynamics.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Many simply rely on the fact that if they are charming, no one will do the necessary due diligence.</p>
-        <p class="quote-context">A warning about the human element in fraud, where charisma can bypass critical scrutiny.</p>
+        <p class="quote-context">Defining the scope of meta risks.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">Any legitimate organization will be pleased an investor asks these things.</p>
-        <p class="quote-context">Encouraging investors to ask probing questions about fund management and oversight as a sign of legitimate practice.</p>
+        <p class="quote-context">On the importance of due diligence.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">It's dangerous to rely on a superficial character assessment.</p>
-        <p class="quote-context">Cautioning against judging trustworthiness based on superficial traits in financial dealings.</p>
+        <p class="quote-context">Warning against trusting fund managers based on charm alone.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">meta-risk</a>
+      <a class="concept-callout" href="../index.html#concepts">counterparty-risk</a>
+      <a class="concept-callout" href="../index.html#concepts">due-diligence</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How do 'meta risks' differ from traditional market risks, and why are they considered more challenging to predict and mitigate for options traders?</p>
+        <p class="reflection-text">Is your broker financially stable enough to survive a market-wide crash?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">Discuss the various forms of currency risk, including hyperinflation and cryptocurrency volatility. How can traders best manage or diversify against these risks?</p>
+        <p class="reflection-text">How much of your trading profit is being eaten away by 'hidden' inflation?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">What critical lessons can be learned from historical cases of financial fraud and rogue trading, such as Bernie Madoff or Nick Leeson, regarding oversight and due diligence?</p>
+        <p class="reflection-text">Do you have a third-party administrator verifying your fund's returns?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Beyond individual fraud, what systemic meta risks (e.g., index restructuring, counterparty risk) should professional traders be aware of, and what strategies can mitigate their impact?</p>
+        <p class="reflection-text">What would happen to your portfolio if your primary trading currency devalued by 50%?</p>
       </div>
     </div>
 

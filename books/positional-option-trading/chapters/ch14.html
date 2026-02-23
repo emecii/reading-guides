@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Appendices</div>
       <div class="chapter-number">Chapter <span>14</span></div>
       <h1 class="chapter-title">APPENDIX 3: Execution</h1>
-      <p class="chapter-subtitle">Highlighting trade execution as a critical skill, detailing transaction costs, the execution dilemma, and strategies like VWAP for optimizing trading outcomes.</p>
+      <p class="chapter-subtitle">Navigating the bid-ask spread and market impact to preserve alpha.</p>
       <div class="reading-meta">
-        <span>~400 words</span>
-        <span>2 min read</span>
+        <span>~3,600 words</span>
+        <span>18 min read</span>
       </div>
     </div>
   </section>
@@ -39,7 +46,7 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Appendices</a>
       <span class="separator">&gt;</span>
       Chapter 14
     </nav>
@@ -47,7 +54,7 @@
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
       <p class="epigraph-text">Execution was such a valuable skill that being good at it could mask a lot of other trading weaknesses.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Execution as a Critical Skill</div>
-          <div class="step-body">Trade execution significantly impacts profitability; strong execution can compensate for other trading weaknesses, making it a valuable skill for all traders, even those utilizing basic heuristics.</div>
+          <div class="step-heading">The Cost of Doing Business</div>
+          <div class="step-body">Transaction costs (commissions, spreads, and market impact) can turn a profitable strategy into a losing one. Execution is where alpha is often lost.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Components of Transaction Costs</div>
-          <div class="step-body">Total transaction costs include commissions/fees, bid-ask spreads, price changes from decision to execution, market impact (temporary/permanent), and opportunity cost from unexecuted trades due to liquidity.</div>
+          <div class="step-heading">The Execution Dilemma</div>
+          <div class="step-body">Traders must balance being 'aggressive' (getting the fill) vs. 'passive' (minimizing the spread). The choice depends on the expected speed of the market move.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">The Execution Dilemma</div>
-          <div class="step-body">Traders face a dilemma: being aggressive enough to complete trades versus conservative enough to minimize costs. Understanding all execution costs is vital for strategic decision-making.</div>
+          <div class="step-heading">Market Impact</div>
+          <div class="step-body">Large orders move the price. Understanding 'temporary' vs. 'permanent' impact is crucial for institutional-sized traders.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Bid-Ask Spread Dynamics and Market Impact</div>
-          <div class="step-body">Spreads fluctuate with order size. Effective execution requires awareness that displayed spreads may differ from actuals, especially for options. Market impact, both temporary and permanent, must be differentiated and modeled for substantial trades.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">VWAP Strategies and Timing Costs</div>
-          <div class="step-body">VWAP (Volume Weighted Average Price) strategies aim to minimize market impact by proportionally participating in volume. Timing costs (market changes between decision and execution) are crucial; execution must adapt to expected market movements.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Optimizing Execution for Returns</div>
-          <div class="step-body">Effective execution requires prioritizing trade completion while judiciously managing costs. Understanding the interplay of spreads, market impact, and timing is paramount for adapting strategies and optimizing trading outcomes.</div>
+          <div class="step-heading">Algorithmic Benchmarks</div>
+          <div class="step-body">Using VWAP (Volume Weighted Average Price) helps minimize impact by participating in the market's natural flow rather than fighting against it.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 226–232</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">The Importance of Execution and Transaction Costs</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Trade execution is a paramount component of successful trading, directly influencing profitability. Proficiency in execution can even offset deficiencies in other trading areas, underscoring its significant value. While large institutional traders leverage sophisticated algorithmic strategies, smaller traders can still benefit immensely from understanding and applying basic execution heuristics.</p>
-          <p>The decision-making process in trading inherently balances risk and reward, with transaction costs occupying a central role in this equilibrium. Total transaction costs are multi-layered, comprising explicit fees like commissions, implicit costs such as bid-ask spreads (which compensate market-makers for liquidity), price changes occurring between decision and execution, market impact (price changes induced by the order itself), and opportunity costs from trades that go unexecuted due to liquidity constraints.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">The Execution Dilemma and Market Dynamics</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Traders constantly navigate the 'execution dilemma': the challenge of being sufficiently aggressive to ensure trade completion while simultaneously being conservative enough to minimize costs. A thorough understanding of all execution costs, including commissions, fees, and the dynamic nature of market spreads, is fundamental for developing effective trading strategies.</p>
-          <p>Bid-ask spreads are not static; they fluctuate based on order size, with larger orders typically encountering wider spreads. Effective execution demands awareness that the actual spread can diverge from displayed prices, particularly in options markets where market-makers may adjust spreads based on order size. Market impact is another critical consideration, distinguishing between temporary impacts (short-term price deviations that revert) and permanent impacts (long-lasting price adjustments). For substantial trades, careful modeling of order book dynamics is crucial to mitigate adverse market impact.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Execution Strategies and Timing Costs</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Volume Weighted Average Price (VWAP) strategies are widely employed to minimize market impact by executing trades proportionally to market volume, serving as a benchmark for fair execution prices, despite challenges in achieving perfect VWAP. Furthermore, timing costs—the market movements occurring between a trader's decision and the actual execution—can significantly influence outcomes. Traders must adapt their execution approach based on expected market movements to capitalize on profitable opportunities and avoid adverse price changes.</p>
-          <p>In practical execution, such as selling straddles, traders strategically position orders by understanding market tendencies and adjusting their aggressiveness. The conclusion emphasizes that for active traders, prioritizing the completion of trades while judiciously managing transaction costs is paramount. Mastering the interplay of bid-ask spreads, market impact, and timing is vital for adapting execution strategies and ultimately optimizing trading outcomes.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">⏱️</div>
-        <div class="example-title">Missed Opportunity Cost</div>
-        <div class="example-desc">A trader identifies a highly profitable options trade but is too passive with their order, placing it far from the market. The market moves quickly, and their order never fills, causing them to miss out on the potential profit.</div>
-        <div class="example-lesson">Being too passive in execution can lead to significant opportunity costs, especially in fast-moving markets.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">💰</div>
-        <div class="example-title">Hidden Spread Costs</div>
-        <div class="example-desc">A retail trader sees a bid-ask spread of $0.10 for an option. They place an order for 50 contracts. Due to the size, the market maker widens the effective spread, and they end up buying at a price higher than the displayed offer, incurring a larger implicit cost.</div>
-        <div class="example-lesson">Displayed bid-ask spreads can be misleading; larger orders often face wider effective spreads, especially in less liquid options.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">🌊</div>
-        <div class="example-title">Temporary Market Impact</div>
-        <div class="example-desc">An institutional trader places a large buy order for a thinly traded stock. The price temporarily spikes due to their order, but quickly reverts once their order is filled and market liquidity absorbs the volume.</div>
-        <div class="example-lesson">Large orders can cause temporary price distortions that revert, but still affect the average execution price.</div>
-      </div>
-      <div class="example-card">
         <div class="example-icon">⚖️</div>
-        <div class="example-title">Selling Straddles Execution</div>
-        <div class="example-desc">When selling straddles, a trader might initially place their order slightly above the bid (more aggressive). If the market is strong, they might adjust to be even more aggressive, but if it's weak, they might become more patient, balancing desired profit with execution certainty.</div>
-        <div class="example-lesson">Execution involves dynamic adjustment of order placement based on market conditions and expected price movements.</div>
+        <div class="example-title">The Bid-Ask Spread</div>
+        <div class="example-desc">Buying at $1.10 and selling at $1.00 immediately.</div>
+        <div class="example-lesson">The $0.10 spread is a direct tax on every trade you make.</div>
+      </div>
+      <div class="example-card">
+        <div class="example-icon">📈</div>
+        <div class="example-title">VWAP Strategy</div>
+        <div class="example-desc">Breaking a 10,000 share order into small slices throughout the day.</div>
+        <div class="example-lesson">Matching market volume to hide your 'footprint'.</div>
+      </div>
+      <div class="example-card">
+        <div class="example-icon">⚡</div>
+        <div class="example-title">The Aggressive Fill</div>
+        <div class="example-desc">Hitting the 'bid' immediately because a major news event just broke.</div>
+        <div class="example-lesson">Sometimes paying the spread is cheaper than waiting for a better price that never comes.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">Execution was such a valuable skill that being good at it could mask a lot of other trading weaknesses.</p>
-        <p class="quote-context">Emphasizing the high importance and leverage of good execution skills in overall trading success.</p>
-      </div>
-      <div class="taleb-quote">
         <p class="quote-text">All financial decision-making is about balancing risk and reward.</p>
-        <p class="quote-context">A fundamental principle underpinning all trading, including execution strategies.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">The trader's execution dilemma is to maximize return given these costs.</p>
-        <p class="quote-context">Defining the core challenge of execution: achieving the best possible outcome while accounting for various costs.</p>
+        <p class="quote-context">Applying general trading theory to execution.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">The spread is a fact of life.</p>
-        <p class="quote-context">Acknowledging the bid-ask spread as an unavoidable cost of trading that must be managed.</p>
+        <p class="quote-context">Acknowledging the unavoidable costs of liquidity.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">If you are trading large enough size for such a model to be useful...you should probably use one of the execution algorithms provided by most professional-level brokerage firms.</p>
-        <p class="quote-context">Advising large traders to leverage advanced tools (algorithms) for optimal execution.</p>
+        <p class="quote-text">If you are trading large enough size... you should probably use one of the execution algorithms provided by professional brokerage firms.</p>
+        <p class="quote-context">Advice on scaling up trade size.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">market-impact</a>
+      <a class="concept-callout" href="../index.html#concepts">vwap</a>
+      <a class="concept-callout" href="../index.html#concepts">transaction-costs</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">Why is trade execution considered a critical skill that can compensate for other trading weaknesses, and how does it impact overall profitability?</p>
+        <p class="reflection-text">How much of your annual return is lost to the bid-ask spread?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">Identify and explain the various components of total transaction costs in trading. How should traders factor these into their strategy planning?</p>
+        <p class="reflection-text">Are you too passive in your execution, causing you to miss out on the best trades?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">Describe the 'execution dilemma' faced by traders. How can they balance the need for aggressive order placement with the goal of minimizing costs?</p>
+        <p class="reflection-text">Do you track your 'slippage'—the difference between your intended price and your fill price?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">What are bid-ask spread dynamics and market impact, and how do they influence execution strategies, particularly for options traders and large orders?</p>
+        <p class="reflection-text">How does your execution strategy change when you are trading illiquid options?</p>
       </div>
     </div>
 

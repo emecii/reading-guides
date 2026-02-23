@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Market Mechanics</div>
       <div class="chapter-number">Chapter <span>2</span></div>
       <h1 class="chapter-title">The Efficient Market Hypothesis and Its Limitations</h1>
-      <p class="chapter-subtitle">Examining the EMH, its varying levels, and how behavioral finance and market inefficiencies offer trading opportunities.</p>
+      <p class="chapter-subtitle">Finding the edge in a world where information is rapidly absorbed.</p>
       <div class="reading-meta">
-        <span>~460 words</span>
-        <span>2 min read</span>
+        <span>~3,500 words</span>
+        <span>18 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Market Mechanics</a>
       <span class="separator">&gt;</span>
       Chapter 2
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">A trader without a real edge who persists in trading, executing a bad plan in a disciplined manner, will lose money faster and more consistently than someone who is lazy and inconsistent.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">Making money is hard, but it isn't impossible.</p>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">The Necessity of a Real Edge</div>
-          <div class="step-body">Successful trading requires a genuine edge beyond mere discipline; unskilled persistence with a bad plan leads to faster losses. An optimistic mindset without a solid strategy is detrimental.</div>
+          <div class="step-heading">The Edge Requirement</div>
+          <div class="step-body">Discipline and hard work are insufficient without a quantifiable edge. Sinclair posits that a disciplined trader with a bad plan will simply lose money faster.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Understanding the EMH</div>
-          <div class="step-body">The Efficient Market Hypothesis (EMH) posits that making money in trading is hard because prices reflect all available information. It has strong, semi-strong, and weak forms, each defining the scope of information reflected in prices.</div>
+          <div class="step-heading">EMH Frameworks</div>
+          <div class="step-body">The market is generally efficient, meaning prices reflect available information. However, inefficiencies exist due to structural market constraints and human irrationality.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Market Inefficiencies and Opportunities</div>
-          <div class="step-body">While EMH is a decent framework, markets are not perfectly efficient, creating opportunities for skilled traders. Grossman and Stiglitz suggest perfect efficiency would eliminate the incentive for information gathering, leading to imbalances.</div>
+          <div class="step-heading">Behavioral Finance Opportunities</div>
+          <div class="step-body">Psychological biases like overconfidence and loss aversion create predictable patterns of mispricing. These biases are hard-wired into human nature, ensuring some inefficiencies persist.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Behavioral Finance and Biases</div>
-          <div class="step-body">Behavioral finance highlights how irrational human behaviors and psychological biases create persistent market inefficiencies. These biases offer opportunities for rational traders to exploit mispricings.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Identifying and Exploiting Edges</div>
-          <div class="step-body">Trading opportunities arise from persistent mispriced risk premiums or temporary inefficiencies. However, these inefficiencies have limited lifespans and require objective, testable approaches to avoid pitfalls like data mining and overfitting.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">EMH's Practical Conclusion</div>
-          <div class="step-body">Despite its limitations, the EMH is more often right than wrong; profits are difficult. Traders should prioritize clear observations and quantifiable phenomena to recognize and exploit transient market inefficiencies.</div>
+          <div class="step-heading">Alpha Decay and Structural Change</div>
+          <div class="step-body">Trading edges are not permanent; they decay as they become crowded or as market structures evolve. Traders must identify the lifespan of their strategies.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 34–51</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Introduction to Trading Challenges and the EMH</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Successful trading is contingent upon possessing a genuine 'edge,' as discipline alone, when applied to a flawed strategy, can accelerate losses. An overly optimistic outlook without a robust trading strategy often leads to unattainable success, underscoring the critical need for a well-defined approach.</p>
-          <p>The Efficient Market Hypothesis (EMH) serves as a foundational concept, asserting the inherent difficulty of profiting in financial markets. Originating from the theories of Paul Samuelson and Eugene Fama, EMH defines market efficiency as a state where profitable trading based on certain information, after accounting for risk and costs, is impossible. The hypothesis is categorized into strong, semi-strong, and weak forms, delineating the extent to which information (private, public, or past price data) is reflected in market prices.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Market Efficiency Observations and Challenges</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Despite the EMH providing a useful framework, real-world markets are not perfectly efficient. Notable investors, including Charlie Munger, acknowledge the existence of inefficiencies that create trading opportunities. A perfectly efficient market would theoretically lead to purely random returns, making prediction impossible.</p>
-          <p>Challenges to the EMH, such as the Grossman and Stiglitz paradox, suggest that the effort required to gather information would vanish in perfectly efficient markets, creating a disequilibrium. Behavioral finance further supports the idea of market inefficiencies, attributing them to traders' irrational behaviors and psychological biases, which can be exploited by rational market participants.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Identifying Opportunities and Methodological Importance</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Trading opportunities stem from either mispriced risk premiums, which can be persistent, or temporary market inefficiencies. Structural market changes can lead to the obsolescence of trading strategies, emphasizing the transient nature of many inefficiencies. The enduring presence of psychological biases, however, suggests a continuous potential for identifying edges.</p>
-          <p>The distinction between technical and fundamental analyses is crucial, with technical analysis often being less reliable if overly subjective. Data mining and overfitting in quantitative strategies pose significant risks, highlighting the importance of objective, testable methodologies. Ultimately, while making profits is hard, traders should focus on quantifiable phenomena and exploit inefficiencies, recognizing their temporary nature.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">🧐</div>
-        <div class="example-title">The Persistent Loser</div>
-        <div class="example-desc">A trader meticulously follows a rigid strategy that consistently loses money, believing discipline alone will eventually lead to success. Instead, the disciplined execution of a flawed plan results in faster capital depletion.</div>
-        <div class="example-lesson">Discipline is valuable, but only when applied to a strategy with a proven edge; otherwise, it amplifies losses.</div>
+        <div class="example-icon">🧠</div>
+        <div class="example-title">Behavioral Bias</div>
+        <div class="example-desc">Investors overpaying for 'lottery ticket' style OTM calls during market hype.</div>
+        <div class="example-lesson">Irrational demand creates overpriced volatility that can be sold for profit.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">💡</div>
-        <div class="example-title">Exploiting Behavioral Biases</div>
-        <div class="example-desc">During a market downturn, many investors panic sell due to loss aversion. A rational trader recognizes this irrational behavior, identifies undervalued assets, and buys them, profiting when the market eventually corrects and sentiment improves.</div>
-        <div class="example-lesson">Psychological biases create market inefficiencies that rational traders can exploit for profit.</div>
+        <div class="example-icon">📉</div>
+        <div class="example-title">Fade the Experts</div>
+        <div class="example-desc">A strategy that yielded a 0.78 Sharpe ratio by betting against consensus expert predictions.</div>
+        <div class="example-lesson">Market consensus is often a lagging indicator or psychologically biased.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">⏳</div>
-        <div class="example-title">The Fading Strategy</div>
-        <div class="example-desc">A trading strategy based on a specific market inefficiency (e.g., a predictable pattern around corporate announcements) is initially very profitable. However, as more traders discover and exploit it, the opportunity diminishes, and the strategy eventually loses its edge.</div>
-        <div class="example-lesson">Market inefficiencies have a limited lifespan; traders must constantly seek new edges and adapt their strategies.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">📊</div>
-        <div class="example-title">Data Mining Trap</div>
-        <div class="example-desc">A quantitative trader spends months optimizing a strategy to perfectly fit past market data, achieving impressive backtest results. When deployed live, the strategy performs poorly because it was overfitted to historical noise rather than capturing a true underlying phenomenon.</div>
-        <div class="example-lesson">Relying on objective, testable approaches and avoiding overfitting is crucial for robust trading strategies.</div>
+        <div class="example-icon">🏗️</div>
+        <div class="example-title">Structural Inefficiency</div>
+        <div class="example-desc">Market makers being forced to hold long positions to manage inventory risk.</div>
+        <div class="example-lesson">Operational constraints of professionals create price discrepancies for retail traders.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">A trader without a real edge who persists in trading, executing a bad plan in a disciplined manner, will lose money faster and more consistently than someone who is lazy and inconsistent.</p>
-        <p class="quote-context">Emphasizing the importance of a 'real edge' over mere discipline in trading.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Making money is hard, but it isn't impossible.</p>
-        <p class="quote-context">Acknowledging the difficulty of profit in financial markets while still affirming the possibility of success.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">If you can keep your head when all about you are losing theirs, … you will be a man, my son.</p>
-        <p class="quote-context">A quote suggesting the value of rationality and calm amidst market irrationality, often attributed to Rudyard Kipling.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Nothing lasts forever.</p>
-        <p class="quote-context">A general principle highlighting the transient nature of market inefficiencies and trading strategies.</p>
+        <p class="quote-text">A trader without a real edge who persists in trading... will lose money faster and more consistently than someone who is lazy.</p>
+        <p class="quote-context">On the danger of discipline without a valid statistical advantage.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">The observable phenomenon must come before any particular method.</p>
-        <p class="quote-context">Stressing the importance of identifying and understanding market phenomena before developing specific trading methodologies.</p>
+        <p class="quote-context">Prioritizing market reality over complex mathematical modeling.</p>
+      </div>
+      <div class="taleb-quote">
+        <p class="quote-text">Nothing lasts forever.</p>
+        <p class="quote-context">Warning about the inevitable decay of trading alphas.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">emh</a>
+      <a class="concept-callout" href="../index.html#concepts">behavioral-finance</a>
+      <a class="concept-callout" href="../index.html#concepts">alpha-decay</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How does the concept of a 'real edge' differentiate successful traders from those who merely apply discipline to flawed strategies?</p>
+        <p class="reflection-text">How can you prove your current trading strategy has a real edge rather than just being a result of luck?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">What are the practical implications of the different levels of market efficiency (strong, semi-strong, weak) for an options trader?</p>
+        <p class="reflection-text">Which level of market efficiency (weak, semi-strong, or strong) do you believe applies to the options market today?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">In what ways do behavioral finance insights challenge the traditional Efficient Market Hypothesis, and how can these insights be leveraged for trading opportunities?</p>
+        <p class="reflection-text">Are you currently executing a bad plan with great discipline?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Given the transient nature of market inefficiencies, what strategies can traders employ to continuously identify and adapt to new edges?</p>
+        <p class="reflection-text">How do you identify when an edge has begun to decay due to crowding?</p>
       </div>
     </div>
 

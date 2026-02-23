@@ -72,6 +72,16 @@ def generate_site(book_data: dict, output_dir: str, templates_dir: str):
         shutil.copy2(antifragile_css, os.path.join(css_dir, "chapter.css"))
         print(f"   📋 Copied chapter.css from antifragile")
     
+    # Copy extracted images
+    tools_images = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
+    if os.path.exists(tools_images):
+        images_dir = os.path.join(book_dir, "images")
+        if os.path.exists(images_dir):
+            shutil.rmtree(images_dir)
+        shutil.copytree(tools_images, images_dir)
+        img_count = len([f for f in os.listdir(images_dir) if not f.startswith('.')])
+        print(f"   🖼️  Copied {img_count} images to books/{slug}/images/")
+    
     print(f"\n✅ Site generated at: books/{slug}/")
     print(f"   Index: books/{slug}/index.html")
     print(f"   Chapters: {len(book_data['chapters_detail'])} files")

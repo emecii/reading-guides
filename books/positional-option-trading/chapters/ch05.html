@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Strategy Development</div>
       <div class="chapter-number">Chapter <span>5</span></div>
       <h1 class="chapter-title">Finding Trades with Positive Expected Value</h1>
-      <p class="chapter-subtitle">Focusing on identifying and exploiting trading 'edges' in evolving markets, distinguishing them from rigid rules, and exploring various strategies with empirical support.</p>
+      <p class="chapter-subtitle">Identifying high-confidence edges in term structure and market anomalies.</p>
       <div class="reading-meta">
-        <span>~450 words</span>
-        <span>2 min read</span>
+        <span>~3,900 words</span>
+        <span>20 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Strategy Development</a>
       <span class="separator">&gt;</span>
       Chapter 5
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">There is no attempt here to give a list of trading rules. Sorry, but markets constantly evolve, and rules rapidly become obsolete. What do not become obsolete are general principles. These are what I attempt to provide.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">The day you say you have to do something, you're screwed.</p>
+      <footer class="epigraph-attribution">Billy Beane</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Edges vs. Trading Rules</div>
-          <div class="step-body">The chapter emphasizes understanding trading 'edges'—phenomena offering potential profit—over rigid rules, which quickly become obsolete in evolving markets. General principles are more enduring.</div>
+          <div class="step-heading">Edges vs. Rules</div>
+          <div class="step-body">Sinclair distinguishes between 'rules' (which become obsolete) and 'edges' (general principles based on market phenomena). Successful traders focus on the latter.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Impact of Crowding and Leverage</div>
-          <div class="step-body">Crowding can stabilize convergence strategies but destabilize divergence strategies, leading to volatility and bubbles. Excessive leverage can ruin even profitable strategies, as seen with VIX ETNs in 2018.</div>
+          <div class="step-heading">The Danger of Crowding</div>
+          <div class="step-body">When too many traders follow the same strategy, it becomes unstable. Divergence strategies (trend following) are particularly prone to bubbles and crashes when crowded.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Confidence Level Three Strategies</div>
-          <div class="step-body">Highly reliable strategies include profiting from the implied volatility term structure (contango/backwardation) and applying well-documented stock factors to volatility trading based on valuation metrics.</div>
+          <div class="step-heading">Term Structure Profits</div>
+          <div class="step-body">The shape of the volatility curve (contango vs. backwardation) is a high-confidence signal for selling or buying options.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Confidence Level Two and One Strategies</div>
-          <div class="step-body">Medium confidence strategies involve trading around earnings and pre-earnings announcements to capitalize on volatility changes (PEAD). Lower confidence strategies exploit earnings-induced reversals and pre-earnings announcement drift among industry peers.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Market Dynamics and Risk Premia</div>
-          <div class="step-body">Key market dynamics include the overnight effect, where negative index option returns are driven by overnight decay, and predictable movements around FOMC announcements, similar to earnings events.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Continuous Exploration and Option Selling</div>
-          <div class="step-body">While edges may diminish, continuous exploration of new ideas is vital. The chapter reinforces selling options amid uncertainty due to the inherent variance premium in many strategies as a core principle.</div>
+          <div class="step-heading">Event Anomalies</div>
+          <div class="step-body">Post-earnings announcement drift (PEAD) and the 'overnight effect' represent persistent anomalies where the market misprices information flow.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 78–105</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Identifying Edges in Evolving Markets</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Euan Sinclair advocates for understanding 'edges' in trading—observable phenomena that present potential profit opportunities—rather than strictly adhering to fixed trading rules. Market conditions are dynamic, causing rules to quickly become obsolete, whereas the underlying principles of identifying and exploiting market inefficiencies remain relevant.</p>
-          <p>The concept of 'crowding' significantly impacts trading performance. In convergence strategies (e.g., value investing), crowding can have a stabilizing effect. However, in divergence strategies (e.g., trend following), crowding can lead to destabilizing feedback loops, contributing to volatility and asset bubbles. The critical role of leverage is also highlighted; excessive leverage can destabilize even sound strategies, as exemplified by the collapse of VIX ETNs in February 2018.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Empirically Supported Trading Strategies</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The chapter categorizes various trading strategies based on their empirical support and reliability. 'Confidence Level Three' strategies, offering the strongest empirical backing, include profiting from the implied volatility term structure (selling VIX futures in contango, buying in backwardation) and applying fundamental stock factors (like P/E and P/B ratios) to volatility trading.</p>
-          <p>'Confidence Level Two' strategies, with moderate support, focus on trading around earnings and pre-earnings announcements. This involves capitalizing on rising implied volatility before earnings and exploiting the subsequent collapse of volatility post-announcement (Post-Earnings Announcement Drift). 'Confidence Level One' strategies, while having less empirical support, include exploiting earnings-induced reversals and pre-earnings announcement drift based on industry peers' earlier reports.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Market Dynamics and Continuous Adaptation</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Further market dynamics discussed include the 'overnight effect,' where index option returns are predominantly negative due to overnight decay, suggesting opportunities for short-duration option selling. Trading around FOMC announcements often follows predictable patterns similar to earnings events, offering additional short-term trading edges.</p>
-          <p>Sinclair concludes that while specific trading edges may diminish over time, the underlying insights remain valuable. The constant evolution of markets necessitates continuous exploration of new trading ideas. A core principle reiterated is the advantage of selling options amidst market uncertainty, primarily due to the persistent variance premium inherent in many trading strategies.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">💡</div>
-        <div class="example-title">Identifying a Volatility Edge</div>
-        <div class="example-desc">A trader notices that the implied volatility of options on a specific sector consistently overestimates its realized volatility by a significant margin. This consistent overpricing is an 'edge' they can exploit by selling options in that sector.</div>
-        <div class="example-lesson">An 'edge' is a persistent market anomaly or mispricing that offers a statistical advantage.</div>
+        <div class="example-icon">💃</div>
+        <div class="example-title">The Dance Move</div>
+        <div class="example-desc">Stepping away from a crowded dance floor to find a unique style.</div>
+        <div class="example-lesson">Identifying edges requires looking where the crowd is not focused.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">📉</div>
-        <div class="example-title">VIX ETN Collapse (Crowding & Leverage)</div>
-        <div class="example-desc">Many retail traders were heavily leveraged in VIX ETNs (Exchange Traded Notes) that profited from shorting volatility. When volatility unexpectedly spiked in February 2018, the crowding and excessive leverage led to a catastrophic collapse of these products, forcing massive liquidations.</div>
-        <div class="example-lesson">Crowding combined with high leverage can amplify market movements and lead to severe losses, even in seemingly stable strategies.</div>
+        <div class="example-icon">📅</div>
+        <div class="example-title">The Weekend Effect</div>
+        <div class="example-desc">Options decaying more over weekends than models predict.</div>
+        <div class="example-lesson">Selling Friday and buying Monday can capture mispriced time decay.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🗓️</div>
-        <div class="example-title">Earnings Volatility Play</div>
-        <div class="example-desc">A trader anticipates that a company's earnings announcement will cause a significant but temporary spike in implied volatility. They buy a short-dated straddle before the announcement to capture the run-up in implied volatility, then sell it immediately after the announcement as volatility collapses.</div>
-        <div class="example-lesson">Specific events like earnings announcements create predictable patterns in implied volatility that can be traded.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">🌙</div>
-        <div class="example-title">Overnight Decay Strategy</div>
-        <div class="example-desc">A trader observes that index options consistently show negative returns due to decay over the weekend. They implement a strategy to sell options on Friday afternoon that expire on Monday, aiming to profit from this predictable overnight decay.</div>
-        <div class="example-lesson">Understanding specific market dynamics, like the overnight effect, can reveal consistent, albeit small, edges.</div>
+        <div class="example-icon">🏛️</div>
+        <div class="example-title">FOMC Announcements</div>
+        <div class="example-desc">Predictable volatility drops immediately after Fed statements.</div>
+        <div class="example-lesson">Trading the 'volatility crush' around central bank events.</div>
       </div>
     </div>
 
@@ -194,24 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">There is no attempt here to give a list of trading rules. Sorry, but markets constantly evolve, and rules rapidly become obsolete. What do not become obsolete are general principles. These are what I attempt to provide.</p>
-        <p class="quote-context">Setting the philosophical tone of the chapter, emphasizing principles over rigid rules in dynamic markets.</p>
+        <p class="quote-text">Markets constantly evolve, and rules rapidly become obsolete. What do not become obsolete are general principles.</p>
+        <p class="quote-context">On the philosophy of sustainable trading.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">It is never good to be so leveraged that you are forced to exit a trade.</p>
-        <p class="quote-context">A crucial warning about the dangers of excessive leverage and forced liquidations.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">An important caveat to these results is that the presence of leverage can be overwhelming regardless of the specific trade dynamics.</p>
-        <p class="quote-context">Further reinforcing the idea that leverage can override the inherent profitability of a strategy.</p>
+        <p class="quote-context">Warning about the interaction between leverage and trade stability.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">The best way to trade this is probably to build a factor portfolio instead of doing single factor sorts.</p>
-        <p class="quote-context">Suggesting diversification and portfolio construction for more robust strategies when applying fundamental factors to volatility.</p>
+        <p class="quote-context">Advising on how to implement quantitative option edges.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">expected-value</a>
+      <a class="concept-callout" href="../index.html#concepts">term-structure</a>
+      <a class="concept-callout" href="../index.html#concepts">crowding</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -222,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How do trading 'edges' differ from fixed 'trading rules,' and why is this distinction critical for long-term success in dynamic markets?</p>
+        <p class="reflection-text">Which of your current 'rules' are likely to become obsolete in the next year?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">Discuss the dual impact of 'crowding' in trading, distinguishing its effects on convergence versus divergence strategies.</p>
+        <p class="reflection-text">Is your favorite trade currently 'crowded' by other institutional players?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">What are the implications of excessive leverage on even theoretically profitable strategies, and what historical examples illustrate this risk?</p>
+        <p class="reflection-text">How do you handle the psychological pressure of trading against the crowd?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Evaluate the various empirically supported trading strategies (Confidence Level Three, Two, One). How might a trader combine these insights into a diversified portfolio?</p>
+        <p class="reflection-text">What is the statistical confidence level of your primary trading edge?</p>
       </div>
     </div>
 

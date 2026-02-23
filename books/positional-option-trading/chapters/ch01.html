@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Foundations of Options</div>
       <div class="chapter-number">Chapter <span>1</span></div>
       <h1 class="chapter-title">Options</h1>
-      <p class="chapter-subtitle">An overview of option pricing models, key variables, and the role of hedging in generating profits from volatility discrepancies.</p>
+      <p class="chapter-subtitle">Understanding the utility of models and the mechanics of volatility-based profit.</p>
       <div class="reading-meta">
-        <span>~280 words</span>
-        <span>1 min read</span>
+        <span>~3,200 words</span>
+        <span>16 min read</span>
       </div>
     </div>
   </section>
@@ -39,7 +46,7 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Foundations of Options</a>
       <span class="separator">&gt;</span>
       Chapter 1
     </nav>
@@ -47,7 +54,7 @@
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
       <p class="epigraph-text">Since all models are wrong the scientist must be alert to what is importantly wrong.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,91 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Limitations of Option Pricing Models</div>
-          <div class="step-body">All scientific models, including option pricing models, contain simplifying assumptions that make them practical, even if they don't fully capture reality. The assumption of normally distributed returns, despite its flaws, was adopted for tractability in finance.</div>
+          <div class="step-heading">The Metaphorical Nature of Models</div>
+          <div class="step-body">Sinclair argues that models like Black-Scholes-Merton (BSM) are not meant to capture reality perfectly but serve as useful metaphors for practical trading. They allow traders to convert volatile prices into a more stable parameter: implied volatility.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Black-Scholes-Merton (BSM) Model's Role</div>
-          <div class="step-body">The BSM model is a cornerstone in option pricing, but traders often use it to convert rapidly changing option prices into a more slowly changing parameter: implied volatility. It outlines relationships between options and their dependent measures like delta, gamma, and theta.</div>
+          <div class="step-heading">The Irrelevance of Underlying Returns</div>
+          <div class="step-body">A core tenet of BSM is that the expected return of the underlying asset is irrelevant to an option's instant value. This is maintained through put-call parity and risk-neutral pricing frameworks.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Irrelevance of Underlying's Expected Return</div>
-          <div class="step-body">A key theoretical insight is that the expected return of the underlying asset does not factor into an option's instant value due to put-call parity. This emphasizes focusing on volatility and other variables rather than just directional predictions.</div>
+          <div class="step-heading">Hedging as Volatility Capture</div>
+          <div class="step-body">Effective delta hedging is not about predicting price direction but about capturing the difference between implied and realized volatility. This process isolates the volatility premium from market noise.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Hedging for Volatility Premiums</div>
-          <div class="step-body">Effective hedging requires a model to capture volatility premiums and assess risk, focusing on the relationship between implied volatility (market-derived) and realized volatility (actual market performance). Hedging aims to manage exposure to volatility, not necessarily to predict direction.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Profit from Implied vs. Realized Volatility</div>
-          <div class="step-body">Profit from hedged positions arises from discrepancies between implied and realized volatility, rather than the expected return of the underlying. Successful trading involves identifying mispriced implied volatilities and managing the variance of returns against transaction costs.</div>
+          <div class="step-heading">The Volatility Surface Reality</div>
+          <div class="step-body">The 'volatility smile' proves that BSM assumptions are technically incorrect across different strikes and maturities. Traders must use the model as a communication tool rather than a literal truth.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 1–33</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Option Pricing Models and Their Practical Use</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Option pricing models, while inherently limited and often based on simplifying assumptions (like normally distributed returns), are crucial tools in finance. These models, such as the Black-Scholes-Merton (BSM) model, are not always used as originally intended but serve to convert complex option prices into more manageable parameters like implied volatility.</p>
-          <p>The BSM model helps traders understand the intricate relationships between options and their derivatives (delta, gamma, theta), providing a framework for analyzing market expectations and managing risk. Its utility lies more in its practical application for hedging and understanding market sentiment than in perfect predictive accuracy.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Core Variables and Hedging Strategies</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Key variables in option pricing include the underlying price, strike price, time to expiration, and volatility. Notably, the expected return of the underlying asset does not directly influence an option's instant value due to the principle of put-call parity. This shifts the focus from directional betting to managing volatility exposure.</p>
-          <p>Effective hedging is paramount for options traders, requiring a deep understanding of the interplay between implied volatility (market's expectation) and realized volatility (actual market movement). Hedging strategies, while potentially increasing predicted returns, must also account for transaction costs, which can significantly impact overall profitability.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Sources of Profit in Option Trading</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The BSM model emphasizes replication strategies that are indifferent to the underlying's expected return. Consequently, profits from hedged option positions primarily stem from the identification and exploitation of discrepancies between implied and realized volatility. When implied volatility is higher than what is subsequently realized, option sellers can profit from the premium decay.</p>
-          <p>Successful option trading therefore hinges on a trader's ability to identify mispriced implied volatilities and to effectively manage the variance of returns. Balancing these opportunities against the unavoidable transaction costs is critical for enhancing performance and mastering the art of options trading in dynamic market conditions.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -154,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">🧠</div>
-        <div class="example-title">Model Simplification</div>
-        <div class="example-desc">Using the assumption of normally distributed returns in finance, despite its known flaws, because it makes calculations and models more tractable for practical use.</div>
-        <div class="example-lesson">Models don't need to be perfectly accurate to be useful; practicality and tractability can be more important.</div>
-      </div>
-      <div class="example-card">
         <div class="example-icon">⚖️</div>
-        <div class="example-title">Put-Call Parity in Action</div>
-        <div class="example-desc">Observing how a change in the expected future return of a stock doesn't instantly change the fair value of its options, as put-call parity ensures the relationship between calls, puts, and the underlying holds regardless of directional bias.</div>
-        <div class="example-lesson">Focus on the fundamental relationships and volatility, not solely on predicting the underlying's future direction.</div>
+        <div class="example-title">Delta Hedging</div>
+        <div class="example-desc">Buying a call and selling the underlying stock to remain price-neutral.</div>
+        <div class="example-lesson">Profit is derived from the realized movement being different from the implied volatility, not the stock price itself.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🛡️</div>
-        <div class="example-title">Delta Hedging for Volatility Capture</div>
-        <div class="example-desc">A trader sells an option with high implied volatility and continuously adjusts their underlying stock position (delta hedging) to remain market-neutral. If realized volatility ends up lower than the initial implied volatility, the trader profits from the difference, even if the stock price moves.</div>
-        <div class="example-lesson">Hedging is a tool to isolate and profit from volatility discrepancies, not just to mitigate directional risk.</div>
+        <div class="example-icon">📊</div>
+        <div class="example-title">Normal Distribution Assumption</div>
+        <div class="example-desc">Using the bell curve to price options despite the existence of 'fat tails' in finance.</div>
+        <div class="example-lesson">Simplifying assumptions are necessary for tractability even if they are known to be flawed.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">💰</div>
-        <div class="example-title">Exploiting Mispriced Volatility</div>
-        <div class="example-desc">A trader identifies that a stock's implied volatility for near-term options is significantly higher than historical (realized) volatility, suggesting the market is overpricing future uncertainty. The trader sells these options, expecting the implied volatility to converge with the lower realized volatility.</div>
-        <div class="example-lesson">Profitable option trading often comes from identifying and acting on mispricings between implied and realized volatility.</div>
+        <div class="example-icon">🔄</div>
+        <div class="example-title">Put-Call Parity</div>
+        <div class="example-desc">The relationship between the price of European puts and calls with the same strike.</div>
+        <div class="example-lesson">Expected returns are cancelled out in the replication process.</div>
       </div>
     </div>
 
@@ -187,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">Since all models are wrong the scientist must be alert to what is importantly wrong.</p>
-        <p class="quote-context">Discussing the inherent limitations and practical utility of scientific models in finance.</p>
-      </div>
-      <div class="taleb-quote">
         <p class="quote-text">Every scientific model contains simplifying assumptions. There actually isn't anything intrinsically wrong with this.</p>
-        <p class="quote-context">Explaining why models, despite their imperfections, are essential for practical applications.</p>
+        <p class="quote-context">Defending the use of BSM despite its known inaccuracies.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">Traders largely didn't think of the model as a predictive valuation tool but just as an arbitrage-free way to convert the quickly changing option prices into a slowly changing parameter: implied volatility.</p>
-        <p class="quote-context">Describing how the BSM model is practically used by traders to derive implied volatility.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">The most important criterion for an option trader to consider when deciding if a model is good enough is to let us delta hedge in a way that captures the volatility premium.</p>
-        <p class="quote-context">Highlighting the primary function of a good option pricing model for traders: facilitating profitable hedging.</p>
+        <p class="quote-text">Traders largely didn't think of the model as a predictive valuation tool but just as an arbitrage-free way to convert quickly changing option prices into a slowly changing parameter.</p>
+        <p class="quote-context">Explaining how professionals use implied volatility.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">The expected return of the underlying is irrelevant to this strategy.</p>
-        <p class="quote-context">Referring to the BSM model's focus on replication strategies and the irrelevance of the underlying's expected return for instant option value.</p>
+        <p class="quote-context">Regarding the mechanics of delta-hedged volatility trading.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">bsm-model</a>
+      <a class="concept-callout" href="../index.html#concepts">implied-volatility</a>
+      <a class="concept-callout" href="../index.html#concepts">delta-hedging</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -219,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How do simplifying assumptions in financial models, like the normal distribution of returns, impact their practical utility and potential pitfalls?</p>
+        <p class="reflection-text">If all models are wrong, what specific 'errors' in BSM are most dangerous to a positional trader?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">In what ways does the Black-Scholes-Merton model serve as a cornerstone for option traders, even when not used precisely as its creators intended?</p>
+        <p class="reflection-text">How does the exclusion of underlying returns change the way you view option value vs. stock value?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">Why is the expected return of the underlying asset considered irrelevant to an option's instant value, and what implications does this have for trading strategies?</p>
+        <p class="reflection-text">Can a trader be successful using a model they know is fundamentally incorrect?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">How can traders effectively leverage the discrepancy between implied and realized volatility to generate profits, while also managing transaction costs?</p>
+        <p class="reflection-text">What is the impact of transaction costs on the theoretical 'volatility premium' capture?</p>
       </div>
     </div>
 

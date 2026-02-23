@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Directional Strategies</div>
       <div class="chapter-number">Chapter <span>8</span></div>
       <h1 class="chapter-title">Directional Option Strategy Selection</h1>
-      <p class="chapter-subtitle">Evaluating various directional option strategies, their risk profiles, and the importance of aligning strategy choice with individual risk tolerance and market conditions.</p>
+      <p class="chapter-subtitle">Evaluating spreads, risk reversals, and covered calls for directional bias.</p>
       <div class="reading-meta">
-        <span>~380 words</span>
-        <span>2 min read</span>
+        <span>~3,700 words</span>
+        <span>18 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Directional Strategies</a>
       <span class="separator">&gt;</span>
       Chapter 8
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">Different criteria will recommend different structures, and none will express the investor's real utility.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">It is more important to understand what happens if we are wrong.</p>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Fundamental Directional Strategies</div>
-          <div class="step-body">Traders must select the right strategy (Long Call, Call Spread, Short Put, Put Spread, Risk Reversal) in addition to strike and expiration. Performance metrics are useful but can offer conflicting recommendations.</div>
+          <div class="step-heading">Strategy Building Blocks</div>
+          <div class="step-body">Directional trading involves five core strategies: Long Call, Call Spread, Short Put, Put Spread, and Risk Reversal. Each has a unique risk-reward profile.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Long Stock and Call Options</div>
-          <div class="step-body">Buying stock is a baseline. A Long Call offers limited downside similar to stock with a stop-loss. A Long Call Spread is a cost-efficient alternative, providing psychological comfort by capping costs.</div>
+          <div class="step-heading">The Call Spread Advantage</div>
+          <div class="step-body">Call spreads are often superior to long calls because they reduce the cost of entry and mitigate the negative impact of the variance premium.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Short Put and Covered Calls</div>
-          <div class="step-body">A Short Put aims for high probability of profit with limited upside. Covered Calls combine long stock with a short call, limiting upside but generating income and yielding equity-like returns with lower risk, driven by market risk and volatility premium.</div>
+          <div class="step-heading">Covered Calls as Multi-Factor Trades</div>
+          <div class="step-body">Covered calls capture both equity market risk and the volatility premium. They offer equity-like returns with lower overall volatility.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Short Put Spread and Risk Reversal</div>
-          <div class="step-body">A Short Put Spread offers reduced risk with a high probability of profit. A Risk Reversal (selling OTM put, buying OTM call) generates credit and significant upside, especially beneficial with favorable implied volatility skew.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Ratio Spreads and Their Limitations</div>
-          <div class="step-body">Ratio spreads can be profitable but are highly dependent on accurate volatility forecasts and profiles. They can mitigate risk but carry substantial downside if mismanaged, and the long-short version is generally best avoided.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Conclusion: No Single Best Strategy</div>
-          <div class="step-body">No universal 'best' directional strategy exists. Understanding variance and skew premiums, along with personal preferences for profit probability, max profit/loss, and risk tolerance, is central to aligning strike and expiration with market conditions.</div>
+          <div class="step-heading">Risk Reversals and Skew</div>
+          <div class="step-body">Selling a put to buy a call (risk reversal) is most effective when the volatility skew is steep, allowing the trader to get 'paid' to take a directional bet.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 148–169</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Basic Directional Strategies and Evaluation Metrics</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>When selecting an option strategy for directional speculation, traders must consider not only the strike and expiration but also the specific strategy type. Fundamental strategies include the Long Call, Long Call Spread, Short Put, Short Put Spread, and Risk Reversal. While performance metrics like the Sharpe ratio or Kelly ratio can be used for evaluation, relying solely on them can be problematic as different metrics often suggest different strategies, failing to capture the investor's true utility.</p>
-          <p>A baseline for comparison is buying 100 shares of a stock. A Long Call option offers a similar risk profile to owning stock with a stop-loss, but with limited downside exposure. The Long Call Spread, which involves buying an ATM call and selling a further OTM call, provides a more cost-efficient alternative and can offer psychological comfort by defining maximum potential loss.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Income Generation and Risk Mitigation Strategies</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The Short Put strategy, selling an ATM put, focuses on achieving a high probability of profit with limited upside potential. Covered Calls, a combination of a long stock position and a short call, limit upside but generate income from premiums. This strategy tends to yield equity-like returns with lower risk, driven by both equity market risk and the volatility premium.</p>
-          <p>The Short Put Spread, involving selling an ATM put and buying a further OTM put, offers reduced risk with a high probability of profit. A Risk Reversal, characterized by selling an OTM put and buying an OTM call, generates a credit and provides significant upside potential, particularly advantageous when implied volatility skews favorably. Ratio spreads, while potentially profitable, are highly dependent on volatility profiles and accurate forecasts, and the version that is long one option and short another is generally best avoided due to considerable downside if mismanaged.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Tailoring Strategy to Trader Preferences</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Ultimately, no single best strategy exists for directional option trading. The choice is highly individualized and depends on a trader's preferences for probability of profit, potential maximum profit or loss, and overall risk tolerance. Understanding the variance and skew premiums is central to making informed decisions, as these factors significantly impact the expected returns and risk characteristics of different positions.</p>
-          <p>The most important consideration is often whether the variance premium is low or high. The selection of strike and expiration should align with the trader's specific risk profile and prevailing market conditions. This personalized approach ensures that the chosen strategy best suits the trader's objectives rather than adhering to a one-size-fits-all solution.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">📞</div>
-        <div class="example-title">Long Call vs. Long Call Spread</div>
-        <div class="example-desc">A bullish trader expects a stock to rally. They could buy a simple Long Call (high cost, high potential profit/loss). Alternatively, they buy a Long Call Spread (buy ATM call, sell OTM call) to reduce initial cost and define maximum loss, even if it caps max profit.</div>
-        <div class="example-lesson">Call spreads offer a cost-effective, psychologically comfortable alternative to naked calls by defining risk.</div>
-      </div>
-      <div class="example-card">
         <div class="example-icon">🛡️</div>
-        <div class="example-title">Covered Call Income</div>
-        <div class="example-desc">An investor holds 100 shares of a stable stock. To generate additional income and slightly reduce portfolio volatility, they sell out-of-the-money call options against their shares (covered call). They collect the premium, accepting a capped upside if the stock rallies sharply.</div>
-        <div class="example-lesson">Covered calls are a strategy to generate income and mildly reduce risk in a long stock portfolio, driven by volatility premium.</div>
+        <div class="example-title">The Covered Call</div>
+        <div class="example-desc">Holding 100 shares of SPY and selling an OTM call.</div>
+        <div class="example-lesson">Generating income from the volatility premium while staying long the market.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🔄</div>
-        <div class="example-title">Risk Reversal for Upside</div>
-        <div class="example-desc">A trader is very bullish on a stock and believes its implied volatility skew is favorable (puts are expensive relative to calls). They implement a risk reversal: selling an OTM put (collecting premium) and buying an OTM call (paying premium), aiming for significant upside if the stock rallies.</div>
-        <div class="example-lesson">Risk reversals can generate credit and offer substantial upside, especially when implied volatility skew is advantageous.</div>
+        <div class="example-icon">⚖️</div>
+        <div class="example-title">The Risk Reversal</div>
+        <div class="example-desc">Selling a 20-delta put and buying a 20-delta call.</div>
+        <div class="example-lesson">Creating a synthetic long position that benefits from high put premiums.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">❌</div>
-        <div class="example-title">Avoiding Ratio Spreads</div>
-        <div class="example-desc">A novice trader attempts a ratio spread (e.g., buying one call, selling two further OTM calls) to reduce cost. While it can profit from a moderate move up, an unexpected sharp rally beyond the short calls exposes them to potentially unlimited losses, making it risky without precise volatility forecasts.</div>
-        <div class="example-lesson">Ratio spreads, particularly those involving selling more options than bought, carry significant tail risk and should generally be avoided by most traders.</div>
+        <div class="example-icon">✂️</div>
+        <div class="example-title">The Ratio Spread</div>
+        <div class="example-desc">Buying one call and selling two further OTM calls.</div>
+        <div class="example-lesson">A complex trade that requires precise knowledge of both direction and volatility.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">Different criteria will recommend different structures, and none will express the investor's real utility.</p>
-        <p class="quote-context">Highlighting the subjectivity in strategy selection and the inadequacy of single metrics to capture individual preferences.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">It is more important to understand what happens if we are wrong.</p>
-        <p class="quote-context">Emphasizing risk management and downside analysis as crucial aspects of strategy evaluation.</p>
-      </div>
-      <div class="taleb-quote">
         <p class="quote-text">Buying a call spread instead of a call... the position won't have cost as much to initiate.</p>
-        <p class="quote-context">Pointing out the cost-efficiency advantage of call spreads over naked calls.</p>
+        <p class="quote-context">Highlighting the efficiency of spreads.</p>
       </div>
       <div class="taleb-quote">
         <p class="quote-text">Selling options only makes sense if a volatility premium exists.</p>
-        <p class="quote-context">Stating a fundamental condition for the profitability of option selling strategies.</p>
+        <p class="quote-context">Reminding traders that shorting puts is a volatility play, not just directional.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">Although there are few hard-and-fast rules in option trading, the version of the ratio spread that is long the one option and short the second is generally best avoided.</p>
-        <p class="quote-context">Providing a strong cautionary note against a specific, high-risk option strategy.</p>
+        <p class="quote-text">The most important consideration is probably whether the variance premium is low or high.</p>
+        <p class="quote-context">On choosing between buying or selling options for directional exposure.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">covered-calls</a>
+      <a class="concept-callout" href="../index.html#concepts">risk-reversal</a>
+      <a class="concept-callout" href="../index.html#concepts">call-spreads</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How do common performance metrics like Sharpe ratio or Kelly ratio fall short in selecting the 'best' directional option strategy for an individual trader?</p>
+        <p class="reflection-text">When you are bullish, do you default to buying calls or selling puts?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">Compare the risk-reward profiles of a Long Call, Long Call Spread, and Short Put. In what scenarios might each be preferred?</p>
+        <p class="reflection-text">How does the current volatility skew affect your choice of directional strategy?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">What are the two primary factors driving the profitability of covered calls, and why might this strategy appeal to retail traders?</p>
+        <p class="reflection-text">Are you comfortable with the capped upside of a call spread in exchange for lower cost?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Discuss the advantages and risks of a Risk Reversal strategy, particularly in relation to implied volatility skew. Why is there no single 'best' strategy for directional option trading?</p>
+        <p class="reflection-text">What is the 'volatility cost' of your current directional positions?</p>
       </div>
     </div>
 

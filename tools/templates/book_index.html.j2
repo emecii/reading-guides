@@ -9,6 +9,57 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/shared.css">
+<style>
+  /* Book Map - Chapter Grid */
+  .part-header { margin: 48px 0 24px; padding: 0 24px; }
+  .part-header:first-child { margin-top: 0; }
+  .part-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .part-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .part-desc { font-size: 15px; color: var(--muted); line-height: 1.6; max-width: 640px; }
+
+  .chapter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; padding: 0 24px; margin-bottom: 32px; }
+
+  .chapter-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .chapter-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+  .chapter-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .chapter-card-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); font-weight: 600; }
+  .chapter-priority { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .chapter-priority.must-read { background: rgba(200,170,110,0.15); color: var(--accent); }
+  .chapter-priority.optional { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+  .chapter-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+  .chapter-card-oneliner { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 16px; flex: 1; }
+
+  .chapter-card-ideas { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .chapter-card-ideas .idea-chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border); }
+
+  .chapter-card-link { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+  .chapter-card-link:hover { opacity: 0.8; }
+
+  /* Page reference callout in chapters */
+  .page-ref-callout {
+    background: rgba(200,170,110,0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+  .page-ref-callout strong { color: var(--text); }
+</style>
 </head>
 <body>
 
@@ -188,87 +239,50 @@ function updateProgressBar() {
 function renderBookMap() {
   const container = document.getElementById('bookMapContent');
   container.innerHTML = '';
-  const grid = document.createElement('div');
-  grid.className = 'book-grid';
-  books.forEach((book) => {
-    const mustCount = book.chapters.filter(c => c.priority === 'must-read').length;
-    const optCount = book.chapters.filter(c => c.priority === 'optional').length;
-    const card = document.createElement('div');
-    card.className = 'book-card';
-    card.innerHTML = `
-      <div class="book-card-num">${book.num}</div>
-      <div class="book-card-label">Part ${book.num}</div>
-      <div class="book-card-title">${book.title}</div>
-      <div class="book-card-desc">${book.desc}</div>
-      <div class="book-card-chapters">
-        ${book.chapters.map(c => `<span class="chapter-tag">Ch ${c.num}</span>`).join('')}
-      </div>
-      <div class="book-card-meta">
-        <span class="meta-must">&#10038; Must-read ${mustCount}</span>
-        <span class="meta-optional">&#9672; Optional ${optCount}</span>
-      </div>
-    `;
-    card.onclick = () => { grid.style.display = 'none'; renderChapterDetail(book, container, grid); };
-    grid.appendChild(card);
-  });
-  container.appendChild(grid);
-}
 
-function renderChapterDetail(book, container, grid) {
-  let detail = document.getElementById('chapterDetailView');
-  if (detail) detail.remove();
-  detail = document.createElement('div');
-  detail.id = 'chapterDetailView';
-  const backBtn = document.createElement('button');
-  backBtn.className = 'next-btn';
-  backBtn.style.marginBottom = '32px';
-  backBtn.textContent = '\u2190 Back to Overview';
-  backBtn.onclick = () => { detail.remove(); grid.style.display = 'grid'; };
-  detail.appendChild(backBtn);
-  const header = document.createElement('div');
-  header.style.marginBottom = '32px';
-  header.innerHTML = `
-    <div class="section-label">Part ${book.num}</div>
-    <h2 class="section-title" style="font-size:32px">${book.title}</h2>
-    <p class="section-desc">${book.desc}</p>
-  `;
-  detail.appendChild(header);
-  const chaptersContainer = document.createElement('div');
-  book.chapters.forEach(ch => {
-    if (chapterFilter !== 'all' && ch.priority !== chapterFilter) return;
-    const chDiv = document.createElement('div');
-    chDiv.className = 'chapter-detail';
-    const priorityLabel = ch.priority === 'must-read' ? 'Must-read' : 'Optional';
-    chDiv.innerHTML = `
-      <div class="chapter-detail-header">
-        <span class="chapter-num">Ch ${ch.num}</span>
-        <span class="chapter-priority ${ch.priority}">${priorityLabel}</span>
-        <div style="flex:1">
-          <span class="chapter-detail-title">${ch.title}</span>
-          <div class="chapter-oneliner">${ch.oneliner}</div>
-        </div>
-        <span class="chapter-toggle">+</span>
-      </div>
-      <div class="chapter-detail-body">
-        <div class="chapter-detail-content">
-          <p>${ch.summary}</p>
-          <div class="key-ideas">
-            <h4>Key Ideas</h4>
-            ${ch.ideas.map(i => `<span class="idea-chip">${i}</span>`).join('')}
-          </div>
-          <a href="chapters/ch${String(ch.num).padStart(2, '0')}.html" class="next-btn" style="display:inline-block;margin-top:20px;text-decoration:none;">Read Deep Dive →</a>
-        </div>
-      </div>
+  books.forEach((book) => {
+    // Part header
+    const partHeader = document.createElement('div');
+    partHeader.className = 'part-header';
+    partHeader.innerHTML = `
+      <div class="part-num">Part ${book.num}</div>
+      <div class="part-title">${book.title}</div>
+      <div class="part-desc">${book.desc}</div>
     `;
-    chDiv.querySelector('.chapter-detail-header').onclick = () => {
-      chDiv.classList.toggle('open');
-      const p = loadProgress();
-      if (!p.chaptersViewed.includes(ch.num)) { p.chaptersViewed.push(ch.num); saveProgress(p); }
-    };
-    chaptersContainer.appendChild(chDiv);
+    container.appendChild(partHeader);
+
+    // Chapter cards grid
+    const grid = document.createElement('div');
+    grid.className = 'chapter-grid';
+
+    book.chapters.forEach(ch => {
+      const card = document.createElement('div');
+      card.className = 'chapter-card';
+      const priorityLabel = ch.priority === 'must-read' ? '★ Must-read' : '◇ Optional';
+      const priorityClass = ch.priority === 'must-read' ? 'must-read' : 'optional';
+      card.innerHTML = `
+        <div class="chapter-card-top">
+          <span class="chapter-card-num">Ch ${ch.num}</span>
+          <span class="chapter-priority ${priorityClass}">${priorityLabel}</span>
+        </div>
+        <div class="chapter-card-title">${ch.title}</div>
+        <div class="chapter-card-oneliner">${ch.oneliner}</div>
+        <div class="chapter-card-ideas">
+          ${ch.ideas.map(i => `<span class="idea-chip">${i}</span>`).join('')}
+        </div>
+        <a href="chapters/ch${String(ch.num).padStart(2, '0')}.html" class="chapter-card-link">Deep Dive →</a>
+      `;
+      card.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') return;
+        card.classList.toggle('expanded');
+        const p = loadProgress();
+        if (!p.chaptersViewed.includes(ch.num)) { p.chaptersViewed.push(ch.num); saveProgress(p); }
+      });
+      grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
   });
-  detail.appendChild(chaptersContainer);
-  container.appendChild(detail);
 }
 
 // CONCEPTS

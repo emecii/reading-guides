@@ -30,7 +30,7 @@ def get_model():
         sys.exit(1)
 
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel("gemini-2.5-flash")
+    return genai.GenerativeModel("gemini-3-flash-preview")
 
 
 # ---------------------------------------------------------------------------
@@ -122,9 +122,9 @@ Each chapter object:
   "subtitle": "One-liner",
   "word_count": "~N words",
   "reading_time": "N min",
+  "page_range": "pp. 45–62",
   "epigraph": {"text": "Quote", "attribution": "Author"},
   "argument_flow": [{"heading": "Title", "body": "2-3 sentences"}],
-  "sections": [{"label": "A", "title": "Title", "paragraphs": ["p1","p2"]}],
   "examples": [{"icon": "emoji", "title": "T", "desc": "D", "lesson": "L"}],
   "quotes": [{"text": "Quote", "context": "Context"}],
   "concept_links": ["concept-id"],
@@ -278,6 +278,26 @@ def main():
 
     # --- Merge & save ---
     book_data = {**pass1, "chapters_detail": chapters}
+
+    # Merge page ranges and images from extraction data
+    raw_chapters = data.get("chapters", [])
+    raw_images = data.get("images", [])
+    
+    for ch in chapters:
+        ch_num = ch.get("num")
+        # Find matching raw chapter for page range
+        for rc in raw_chapters:
+            if rc.get("chapter_num") == ch_num:
+                if not ch.get("page_range"):
+                    ch["page_range"] = f"pp. {rc['start_page']}–{rc['end_page']}"
+                break
+        # Attach images for this chapter
+        ch_images = [img for img in raw_images if img.get("chapter_num") == ch_num]
+        if ch_images:
+            ch["images"] = ch_images
+    
+    img_total = sum(1 for ch in chapters if ch.get("images"))
+    print(f"   ✓ {img_total} chapters have images attached")
 
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(book_data, f, ensure_ascii=False, indent=2)

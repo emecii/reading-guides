@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Risk and Portfolio Management</div>
       <div class="chapter-number">Chapter <span>9</span></div>
       <h1 class="chapter-title">Trade Sizing</h1>
-      <p class="chapter-subtitle">Exploring the critical role of risk management and trade sizing using the Kelly criterion, with adjustments for non-normal returns and parameter uncertainty.</p>
+      <p class="chapter-subtitle">Using the Kelly Criterion and managing non-normal returns to survive and grow.</p>
       <div class="reading-meta">
-        <span>~340 words</span>
-        <span>2 min read</span>
+        <span>~4,300 words</span>
+        <span>22 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Risk and Portfolio Management</a>
       <span class="separator">&gt;</span>
       Chapter 9
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">Good risk management can change the return distribution of a strategy... but unless there is real edge somewhere the idea will eventually lose money.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">Risk management is the only part of the trading process that is completely under the control of the trader.</p>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Importance of Risk Management</div>
-          <div class="step-body">Risk management is crucial for preserving profitable strategies but cannot salvage poor ones. It's the only element fully controllable by a trader, making its effective application paramount.</div>
+          <div class="step-heading">The Goal of Risk Management</div>
+          <div class="step-body">Risk management cannot make a bad strategy profitable, but it ensures a good strategy survives long enough to win. It is the foundation of professional trading.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">The Kelly Criterion for Maximizing Growth</div>
-          <div class="step-body">The Kelly criterion is a fundamental trade-sizing method designed to maximize long-term growth, theoretically outperforming all other strategies. However, traders may opt for other goals like minimizing volatility.</div>
+          <div class="step-heading">The Kelly Criterion</div>
+          <div class="step-body">The Kelly Criterion provides the mathematically optimal size for a bet to maximize long-term wealth. However, it often leads to high volatility that most traders cannot stomach.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Extensions for Options Traders</div>
-          <div class="step-body">For options, the Kelly criterion needs extensions to account for non-normal trade returns (discrete or continuous) and parameter uncertainty, as outcomes often deviate from normal distributions.</div>
+          <div class="step-heading">Fractional Kelly</div>
+          <div class="step-body">Professional traders often use 'Half-Kelly' or smaller fractions to account for parameter uncertainty and to reduce the risk of catastrophic drawdowns.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Non-Normal Outcomes and Adjustments</div>
-          <div class="step-body">Discrete or continuous non-normal outcomes require sophisticated mathematical techniques to estimate optimal bet sizes. Adjustments for skewness are crucial; positive skewness increases optimal investment, negative decreases it.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">The Role and Pitfalls of Stops</div>
-          <div class="step-body">Using stop-losses can lower long-term returns by capping potential profits from recovering trades, and their effectiveness relies on the questionable assumption of positive autocorrelation in price movements.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Practical Kelly Application</div>
-          <div class="step-body">Applying fractional Kelly betting on a percentage-based subaccount is suggested as a robust approach, balancing growth maximization with volatility management, regardless of other criteria.</div>
+          <div class="step-heading">Non-Normal Outcomes</div>
+          <div class="step-body">Option returns are rarely normal. Sizing must account for negative skewness (small wins, huge losses) to avoid 'blowing up' during black swan events.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 170–198</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Risk Management and the Kelly Criterion</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Risk management is an indispensable aspect of trading; it cannot transform a fundamentally flawed strategy into a profitable one, but it is essential for preventing a good strategy from becoming a loser. It stands as the sole element entirely within a trader's control, underscoring the critical importance of its meticulous application.</p>
-          <p>The Kelly criterion is a seminal trade-sizing methodology aimed at maximizing the long-term growth rate of capital. Theoretically, it offers superior performance compared to any other sizing strategy. However, traders often deviate from full Kelly betting, prioritizing alternative objectives such as minimizing portfolio volatility, achieving specific financial goals within a defined timeframe, or simply due to personal risk aversion.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Adapting Kelly for Non-Normal Returns and Uncertainty</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>For options traders, the practical application of the Kelly criterion necessitates two crucial extensions: accounting for non-normal trade returns and addressing parameter uncertainty. Option outcomes frequently deviate from the ideal normal distributions assumed in simpler models, requiring more sophisticated mathematical techniques to estimate optimal bet sizes, especially when dealing with discrete sets of probabilities.</p>
-          <p>When dealing with continuous non-normal outcomes, calculations involve maximizing the growth rate of the bankroll based on the assumed return distribution. Adjustments for skewness are particularly vital: positive skewness in returns (potential for large gains) suggests an increase in the optimal investment fraction, while negative skewness (potential for large losses) mandates a decrease. Incomplete knowledge about returns and probabilities (parameter uncertainty) further complicates optimal sizing, requiring cautious adjustments.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">The Debate on Stop-Losses and Practical Sizing</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The use of stop-losses in trading is a contentious topic. While they prevent catastrophic losses on individual trades, stop-losses can paradoxically lower long-term returns by prematurely exiting positions that might have recovered and become profitable. Their effectiveness often relies on the assumption of positive autocorrelation in price movements, meaning a move that has already occurred is predictive of a future move in the same direction—an assumption that requires strong justification and is often incorrect.</p>
-          <p>Ultimately, trading according to a fractional Kelly criterion on a percentage-based subaccount is often suggested as the most practical and robust approach. This method seeks to balance the theoretical maximum growth with a more manageable level of volatility and drawdown risk, making it suitable across various trading criteria and personal preferences.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">📈</div>
-        <div class="example-title">Full Kelly vs. Fractional Kelly</div>
-        <div class="example-desc">A trader applies the full Kelly criterion to a strategy with a 60% win rate and 1:1 risk/reward. While theoretically maximizing growth, the resulting trade sizes lead to extreme volatility and large drawdowns. A more practical approach is using 'fractional Kelly' (e.g., 50% of the Kelly amount) to reduce volatility while still achieving strong growth.</div>
-        <div class="example-lesson">The full Kelly criterion can be too aggressive; fractional Kelly offers a better balance of growth and risk management for most traders.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">🎲</div>
-        <div class="example-title">Non-Normal Option Returns</div>
-        <div class="example-desc">A strategy involving selling out-of-the-money options typically yields many small wins and a few large losses (negative skewness). A trader using the Kelly criterion must adjust their bet size downwards to account for this negative skew, as ignoring it would lead to over-betting and potential ruin.</div>
-        <div class="example-lesson">Non-normal return distributions, especially skewness, must be factored into trade sizing to avoid miscalculating optimal bet sizes.</div>
+        <div class="example-icon">📐</div>
+        <div class="example-title">The Kelly Calculation</div>
+        <div class="example-desc">Betting 10% of a bankroll on a trade with a 60% win rate and 1:1 payout.</div>
+        <div class="example-lesson">Mathematically maximizing growth while avoiding the 'risk of ruin'.</div>
       </div>
       <div class="example-card">
         <div class="example-icon">🛑</div>
-        <div class="example-title">The Stop-Loss Dilemma</div>
-        <div class="example-desc">A trader sets a rigid stop-loss on every position. While this prevents large losses, they frequently get stopped out just before the trade reverses and becomes profitable. Over time, these 'small' losses accumulate and reduce overall returns, illustrating the cost of stops.</div>
-        <div class="example-lesson">Stop-losses can hinder long-term returns if they prematurely exit potentially winning trades, especially if based on arbitrary price levels.</div>
+        <div class="example-title">The Stop Loss Fallacy</div>
+        <div class="example-desc">Exiting a trade purely because the price hit a certain level.</div>
+        <div class="example-lesson">Stops can lower long-term returns if they aren't based on a change in the trade's fundamental edge.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🤔</div>
-        <div class="example-title">Parameter Uncertainty</div>
-        <div class="example-desc">A trader estimates their strategy's win rate and average payout. However, these parameters are not known with 100% certainty. To account for this 'parameter uncertainty,' they reduce their Kelly bet size, acknowledging that their estimates might be slightly off.</div>
-        <div class="example-lesson">Uncertainty about a strategy's true parameters necessitates a more conservative approach to trade sizing.</div>
+        <div class="example-icon">📉</div>
+        <div class="example-title">Fat Tails Sizing</div>
+        <div class="example-desc">Reducing position size in a short-strangle strategy to survive a 5-standard deviation move.</div>
+        <div class="example-lesson">Accounting for the reality that 'extreme' events happen more often than models suggest.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">Good risk management can change the return distribution of a strategy... but unless there is real edge somewhere the idea will eventually lose money.</p>
-        <p class="quote-context">Clarifying that risk management optimizes, but doesn't create, profitability; a fundamental edge is still required.</p>
+        <p class="quote-text">The Kelly criterion... will theoretically outperform any other sizing strategy.</p>
+        <p class="quote-context">On the power of the Kelly method.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">Risk management is the only part of the trading process that is completely under the control of the trader, there is no excuse for not doing it as well as possible.</p>
-        <p class="quote-context">Emphasizing the paramount importance and personal responsibility of effective risk control.</p>
+        <p class="quote-text">Negative skewness decreases the optimal investment fraction.</p>
+        <p class="quote-context">Explaining why option sellers must trade smaller than they think.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">The Kelly criterion... will theoretically outperform any other sizing strategy. No other sizing scheme will produce greater long-term growth.</p>
-        <p class="quote-context">Stating the theoretical superiority of the Kelly criterion for maximizing capital growth.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Negative skewness decreases the optimal investment fraction and positive skewness increases the optimal investment fraction.</p>
-        <p class="quote-context">Explaining how the shape of the return distribution (skewness) impacts Kelly bet sizing.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Using stops will lower returns in the long term so this reason at best needs more justification and is probably just incorrect.</p>
-        <p class="quote-context">Presenting a critical view on the long-term impact of stop-losses on overall returns.</p>
+        <p class="quote-text">Using stops will lower returns in the long term... and is probably just incorrect.</p>
+        <p class="quote-context">Sinclair's controversial take on mechanical stop losses.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">kelly-criterion</a>
+      <a class="concept-callout" href="../index.html#concepts">fractional-kelly</a>
+      <a class="concept-callout" href="../index.html#concepts">risk-management</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How does effective risk management transform a potentially profitable trading idea into a successful strategy, and why is it the only element entirely under a trader's control?</p>
+        <p class="reflection-text">What percentage of your bankroll are you currently risking on a single trade?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">What is the Kelly criterion, and why might traders choose not to adhere to its full recommendations despite its theoretical superiority?</p>
+        <p class="reflection-text">Do you use a mathematical formula for sizing, or is it based on 'gut feeling'?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">How do non-normal trade returns and parameter uncertainty necessitate adjustments to the Kelly criterion for options traders?</p>
+        <p class="reflection-text">How would your portfolio handle a 20% overnight move in the underlying?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Critically evaluate the use of stop-losses in trading. What are their potential benefits and drawbacks, and how might they impact long-term returns?</p>
+        <p class="reflection-text">Are your stop losses protecting your capital or just cutting off your winners?</p>
       </div>
     </div>
 

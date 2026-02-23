@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Strategy Development</div>
       <div class="chapter-number">Chapter <span>6</span></div>
       <h1 class="chapter-title">Volatility Positions</h1>
-      <p class="chapter-subtitle">Exploring various option strategies for volatility speculation, focusing on the perspective of a volatility seller and emphasizing risk management.</p>
+      <p class="chapter-subtitle">Comparing straddles, strangles, and complex spreads for optimal risk-adjusted returns.</p>
       <div class="reading-meta">
-        <span>~400 words</span>
-        <span>2 min read</span>
+        <span>~4,500 words</span>
+        <span>23 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Strategy Development</a>
       <span class="separator">&gt;</span>
       Chapter 6
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">But just because there are many ways to express an opinion doesn't mean they will all be equally good. The differences are not trivial. Some will be a lot worse than others.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">The safest position is no position. That will also make no money.</p>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Overview of Volatility Speculation</div>
-          <div class="step-body">Options offer diverse ways to speculate on market movements, particularly volatility. This chapter explores various positions from a volatility seller's perspective, highlighting differing outcomes.</div>
+          <div class="step-heading">The Illusion of 'Repair'</div>
+          <div class="step-body">Traders often try to 'fix' losing trades. Sinclair argues this is a fallacy; one should only ask if the current position is the best one for the current forecast.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Misconception of Position 'Repair'</div>
-          <div class="step-body">The idea of 'repairing' a losing trade is misleading. Traders should focus on aligning current positions with current forecasts, disregarding past performance or sunk costs.</div>
+          <div class="step-heading">Straddles vs. Strangles</div>
+          <div class="step-body">Straddles have less downside risk than strangles, despite strangles having a higher win rate. The 'fat tails' of strangles can lead to catastrophic losses.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Straddles and Strangles for Selling Volatility</div>
-          <div class="step-body">Straddles (same strike for put/call) and strangles (different strikes) are fundamental volatility-selling strategies. Their profitability hinges on the relationship between implied and realized volatility and underlying returns.</div>
+          <div class="step-heading">Conservative Spreads</div>
+          <div class="step-body">Butterflies and condors limit downside exposure but increase transaction costs. They are 'defined risk' alternatives to naked volatility selling.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Simulation Insights for Short Straddles/Strangles</div>
-          <div class="step-body">Simulations show short straddles have higher max profit but significant downside, while short strangles yield smaller, more frequent profits with even higher potential losses. Poor directional forecasts lead to substantial losses in both.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Advanced Strategies: Hedging and Spreads</div>
-          <div class="step-body">Delta-hedging minimizes directional risk but increases costs. Butterflies and condors are conservative spreads that limit downside. Using skew and selecting out-of-the-money strikes maximizes volatility premium.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Expiration Selection and Risk Management</div>
-          <div class="step-body">Short-dated options often have higher variance premiums, beneficial for sellers. Strategy choice depends on risk preference, with an emphasis on risk management over maximizing win percentages for optimal returns.</div>
+          <div class="step-heading">Skew and Strike Selection</div>
+          <div class="step-body">Optimal strike selection involves maximizing the capture of the variance premium, which is often found in OTM puts due to the volatility skew.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 106–135</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Volatility Positions and the Illusion of 'Repair'</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Options provide numerous avenues for expressing views on market movements, especially concerning volatility. However, not all strategies yield equally beneficial results, making it crucial to understand the distinct outcomes of various option positions. This chapter particularly delves into strategies from the perspective of a volatility seller, examining how different structures perform under varying market conditions.</p>
-          <p>The concept of 'repair' in trading, which suggests turning losing trades into winning ones, can be a misleading notion. Instead, traders are advised to continuously evaluate their current positions based on their most up-to-date forecasts, irrespective of prior performance or emotional attachment to past decisions. This objective approach helps avoid compounding errors and ensures that capital allocation is always aligned with current market expectations.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Straddles, Strangles, and Simulation Insights</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Straddles and strangles are foundational strategies for selling volatility. A short straddle involves selling both a put and a call option at the same strike price, while a short strangle uses different strike prices. The profitability of these strategies is heavily dependent on the interplay between implied volatility, realized volatility, and the returns of the underlying asset.</p>
-          <p>Simulation results offer critical insights into the profit distributions of these strategies. Short straddles, for instance, may show a higher maximum profit potential but also carry significant downside risk. Short strangles, while potentially yielding smaller, more frequent profits, often expose traders to even higher potential losses due to their wider range of risk. Crucially, poor directional forecasts can lead to substantial losses in both strategies, with strangles typically exhibiting greater downside exposure than straddles.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Advanced Strategies, Expiration, and Risk Management</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>More conservative strategies like butterflies and condors are designed to limit downside exposure, with butterflies generally showing higher profits despite increased transaction costs. Delta-hedged positions can minimize directional risk, but this comes at the cost of higher transaction costs and increased operational complexity. Utilizing implied volatility skew and strategically choosing out-of-the-money options can help maximize the capture of the volatility premium.</p>
-          <p>Expiration selection is another critical factor; short-dated options often exhibit higher variance premiums, making them attractive for sellers. Studies suggest that options closer to expiration tend to capture more profitability. Ultimately, strategy selection should align with individual risk preferences, and while strategies like strangles and condors may boast high win percentages, distinguishing skill from chance remains a challenge. Optimal returns emphasize robust risk management, especially given the highest volatility premium resides in short-dated options.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">⚖️</div>
-        <div class="example-title">Short Straddle Profit/Loss</div>
-        <div class="example-desc">A trader sells a straddle on a stock expecting low volatility. If the stock remains within a tight range, they profit from time decay and the volatility premium. However, if the stock makes a large, unexpected move, their losses can be substantial.</div>
-        <div class="example-lesson">Short straddles benefit from low realized volatility but carry significant unlimited risk if volatility spikes.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">⛓️</div>
-        <div class="example-title">Short Strangle Risk</div>
-        <div class="example-desc">A trader sells a strangle, believing the stock will stay between two wider strike prices. While this offers a larger profit range, an extreme move beyond either strike can lead to much larger losses than a straddle, as the options are further out-of-the-money.</div>
-        <div class="example-lesson">Short strangles offer a wider profit zone but expose traders to potentially greater losses on extreme moves.</div>
+        <div class="example-icon">🏹</div>
+        <div class="example-title">The Short Straddle</div>
+        <div class="example-desc">Selling both a call and a put at the same strike.</div>
+        <div class="example-lesson">Maximum profit is achieved if the stock doesn't move, but risk is unlimited.</div>
       </div>
       <div class="example-card">
         <div class="example-icon">🦋</div>
-        <div class="example-title">Butterfly Spread for Limited Risk</div>
-        <div class="example-desc">A trader uses a butterfly spread (buying one OTM call, selling two ATM calls, buying one OTM call further out) to cap both potential profits and losses. This strategy is conservative, benefiting from the stock staying near the middle strike, but with defined maximum risk.</div>
-        <div class="example-lesson">Complex option spreads like butterflies can be used to limit risk exposure while still profiting from specific volatility or directional forecasts.</div>
+        <div class="example-title">The Butterfly Spread</div>
+        <div class="example-desc">A combination of bull and bear spreads that limits loss.</div>
+        <div class="example-lesson">Sacrificing potential profit for a capped, manageable risk profile.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">⏳</div>
-        <div class="example-title">Short-Dated Option Premium</div>
-        <div class="example-desc">A trader consistently sells options with only a few days or weeks until expiration. They observe that these short-dated options frequently have a higher variance premium (implied volatility > realized volatility) on an annualized basis, allowing them to capture quicker time decay and premium.</div>
-        <div class="example-lesson">Short-dated options often offer the highest variance premium, making them attractive for volatility sellers who manage risk effectively.</div>
+        <div class="example-icon">📉</div>
+        <div class="example-title">The Volatility Crush</div>
+        <div class="example-desc">A sharp drop in IV after an event, making short positions profitable.</div>
+        <div class="example-lesson">Timing the entry is as important as the structure of the position.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">But just because there are many ways to express an opinion doesn't mean they will all be equally good. The differences are not trivial. Some will be a lot worse than others.</p>
-        <p class="quote-context">Introducing the idea that option strategies, despite their variety, have vastly different risk/reward profiles.</p>
+        <p class="quote-text">Forget about the original trade and ask yourself, 'Given what I now know, what position do I want?'.</p>
+        <p class="quote-context">Advice on managing losing positions.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">The loss is already in your account. That money is gone. Forget about the original trade and ask yourself, 'Given what I now know, what position do I want?'.</p>
-        <p class="quote-context">Advising traders to avoid the 'sunk cost fallacy' and make decisions based on current information, not past losses.</p>
+        <p class="quote-text">Risk management should aim to protect expected value rather than minimize risk.</p>
+        <p class="quote-context">Defining the professional approach to risk.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">If we can keep plugging along, the profits should eventually take care of themselves.</p>
-        <p class="quote-context">Suggesting that consistent application of a sound strategy, despite short-term fluctuations, will lead to long-term profitability.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">There is no magic in selling strangles, even if they are struck a long way out of the money. If you don't have an edge in volatility, you will lose eventually.</p>
-        <p class="quote-context">Warning against the misconception that volatility selling is a guaranteed profit, emphasizing the need for an underlying edge.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">Risk management should aim to protect expected value rather than minimize risk. The safest position is no position. That will also make no money.</p>
-        <p class="quote-context">Defining the true purpose of risk management as preserving potential gains, not just avoiding all risk.</p>
+        <p class="quote-text">A good rule when looking for a variance premium is to look for situations with the most risk.</p>
+        <p class="quote-context">Explaining why premiums exist where they do.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">straddles</a>
+      <a class="concept-callout" href="../index.html#concepts">strangles</a>
+      <a class="concept-callout" href="../index.html#concepts">risk-defined-strategies</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">Why is the concept of 'repairing' a losing trade considered misleading, and how should traders approach positions that are performing poorly?</p>
+        <p class="reflection-text">Are you holding a position simply because you are 'waiting for it to come back' to break even?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">Compare and contrast the risk and profitability profiles of short straddles and short strangles. In what market conditions might a trader prefer one over the other?</p>
+        <p class="reflection-text">Do you prefer the high win rate of strangles or the lower tail risk of straddles?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">How do more conservative strategies like butterflies and condors limit downside exposure, and what trade-offs do they involve?</p>
+        <p class="reflection-text">How do transaction costs change your preference for multi-leg spreads like butterflies?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">What factors should a volatility seller consider when selecting the expiration date for their options, and why are short-dated options often highlighted?</p>
+        <p class="reflection-text">What is your 'uncle point'—the level of loss where you must exit regardless of your forecast?</p>
       </div>
     </div>
 

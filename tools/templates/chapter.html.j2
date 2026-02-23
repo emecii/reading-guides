@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -72,31 +79,31 @@
     </div>
     {% endif %}
 
-    <!-- SECTION BREAKDOWN -->
-    {% if chapter.sections %}
+    <!-- PAGE REFERENCE -->
+    {% if chapter.page_range %}
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read {{ chapter.page_range }}</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
+    </div>
+    {% endif %}
+
+    <!-- CHAPTER IMAGES -->
+    {% if chapter.images %}
     <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+      <span class="section-overline">Figures & Diagrams</span>
+      <h2 class="section-heading">Visual Content from the Chapter</h2>
     </div>
 
-    {% for section in chapter.sections %}
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">{{ section.label }}</span>
-          <span class="section-title">{{ section.title }}</span>
-        </div>
-        <div class="toggle-icon"></div>
+    <div class="image-grid">
+      {% for img in chapter.images %}
+      <div class="chapter-image">
+        <img src="../images/{{ img.filename }}" alt="{{ img.caption }}" loading="lazy">
+        {% if img.caption %}
+        <div class="image-caption">{{ img.caption }}</div>
+        {% endif %}
       </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          {% for p in section.paragraphs %}
-          <p>{{ p }}</p>
-          {% endfor %}
-        </div>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
     {% endif %}
 
     <!-- EXAMPLES -->

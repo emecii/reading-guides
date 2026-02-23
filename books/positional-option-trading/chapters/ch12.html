@@ -12,6 +12,13 @@
   <style>
     .concept-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
     .quotes-list { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
+    .page-ref-callout { background: rgba(200,170,110,0.08); border-left: 3px solid var(--accent, #c8aa6e); border-radius: 0 8px 8px 0; padding: 20px 24px; margin: 32px 0; font-size: 15px; color: var(--muted, #8a8a8a); line-height: 1.6; }
+    .page-ref-callout strong { color: var(--text, #e8e0d0); }
+    .page-ref-callout .page-ref-icon { font-size: 20px; margin-right: 8px; }
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin: 32px 0; }
+    .chapter-image { background: rgba(255,255,255,0.03); border: 1px solid var(--border, #2a2a2a); border-radius: 12px; overflow: hidden; }
+    .chapter-image img { width: 100%; height: auto; display: block; }
+    .image-caption { padding: 12px 16px; font-size: 13px; color: var(--muted, #8a8a8a); line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -19,13 +26,13 @@
   <!-- CHAPTER HERO -->
   <section class="chapter-hero">
     <div class="chapter-hero-inner">
-      <div class="book-label">Positional Option Trading</div>
+      <div class="book-label">Appendices</div>
       <div class="chapter-number">Chapter <span>12</span></div>
       <h1 class="chapter-title">APPENDIX 1: Traders' Adjustments to the BSM Assumptions</h1>
-      <p class="chapter-subtitle">Detailing how traders adapt the Black-Scholes-Merton model to account for real-world deviations from its core assumptions, such as non-constant interest rates, dividends, taxes, and non-constant volatility.</p>
+      <p class="chapter-subtitle">Bridging the gap between theoretical models and messy market realities.</p>
       <div class="reading-meta">
-        <span>~320 words</span>
-        <span>2 min read</span>
+        <span>~3,400 words</span>
+        <span>17 min read</span>
       </div>
     </div>
   </section>
@@ -39,15 +46,15 @@
       <span class="separator">&gt;</span>
       <a href="../index.html">Book Map</a>
       <span class="separator">&gt;</span>
-      <a href="../index.html">Positional Option Trading</a>
+      <a href="../index.html">Appendices</a>
       <span class="separator">&gt;</span>
       Chapter 12
     </nav>
 
     <!-- EPIGRAPH -->
     <blockquote class="epigraph">
-      <p class="epigraph-text">BSM has three large advantages over more complex models. It is an industry-wide standard that forms the basis for trader communication. Most traders have based all of their learned intuition on the BSM model. It is simple and implemented in all trading programs.</p>
-      <footer class="epigraph-attribution">None</footer>
+      <p class="epigraph-text">BSM has three large advantages over more complex models... It is simple and implemented in all trading programs.</p>
+      <footer class="epigraph-attribution">Euan Sinclair</footer>
     </blockquote>
 
     <!-- ARGUMENT FLOW -->
@@ -60,98 +67,40 @@
       <div class="argument-step">
         <div class="step-number">1</div>
         <div class="step-content">
-          <div class="step-heading">Non-Constant Interest Rates</div>
-          <div class="step-body">The BSM model assumes a single, constant interest rate, but real rates vary. Large firms manage this; independent traders rarely hedge due to costs. Errors in interest rate inputs have minimal impact on option pricing and delta, and stochastic rates offer negligible accuracy improvements.</div>
+          <div class="step-heading">Interest Rate Realities</div>
+          <div class="step-body">BSM assumes a constant rate, but traders face bid-ask spreads on cash and varying yield curves. Most traders ignore 'rho' unless rates move significantly.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">2</div>
         <div class="step-content">
-          <div class="step-heading">Dividends and Hard-to-Borrow Stocks</div>
-          <div class="step-body">BSM assumes no dividends. Adjustments involve subtracting the present value of expected dividends from the stock price, a straightforward modification also applicable to issues like stocks becoming hard to borrow.</div>
+          <div class="step-heading">Dividend Adjustments</div>
+          <div class="step-body">The model is easily adjusted for dividends by subtracting the present value of expected payments from the stock price, keeping the core BSM framework intact.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">3</div>
         <div class="step-content">
-          <div class="step-heading">Absence of Taxes</div>
-          <div class="step-body">BSM ignores tax variations among investors, complicating accurate pricing. While empirical studies show small tax-related price differences, they're often insufficient for thorough analysis, making a universal tax-adjusted model impractical.</div>
+          <div class="step-heading">The Shorting Constraint</div>
+          <div class="step-body">When a stock is 'hard to borrow,' the BSM replication fails. Traders must adjust the 'cost of carry' to reflect the difficulty of hedging.</div>
         </div>
       </div>
       <div class="argument-step">
         <div class="step-number">4</div>
         <div class="step-content">
-          <div class="step-heading">Inability to Trade/Short Underlying</div>
-          <div class="step-body">BSM requires the ability to hedge the underlying. If shorting isn't possible (illiquidity), no-arbitrage conditions break down, leading to mispricing. 'Real options' approaches or correlated hedging instruments are used in such scenarios.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <div class="step-heading">Non-Constant Volatility</div>
-          <div class="step-body">BSM assumes constant volatility, but real-world volatility is non-constant, leading to implied volatility smiles/skews. Market makers use modified BSM models with strike-specific volatilities. While stochastic volatility models exist, BSM with adjustments remains practical due to its simplicity and industry acceptance.</div>
-        </div>
-      </div>
-      <div class="argument-step">
-        <div class="step-number">6</div>
-        <div class="step-content">
-          <div class="step-heading">Conclusion on BSM Adjustments</div>
-          <div class="step-body">BSM is based on incorrect assumptions, but most can be corrected with simple, sometimes ad-hoc, adjustments. Its advantages (standard, intuitive, simple) make it preferred over more complex models despite imperfections.</div>
+          <div class="step-heading">Stochastic Volatility</div>
+          <div class="step-body">While volatility is not constant, using complex stochastic models often adds more noise than precision. Simple adjustments to BSM remain the industry standard.</div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION BREAKDOWN -->
-    <div class="chapter-section-title">
-      <span class="section-overline">Section Breakdown</span>
-      <h2 class="section-heading">Deep Dive into Content</h2>
+    <!-- PAGE REFERENCE -->
+    <div class="page-ref-callout">
+      <span class="page-ref-icon">📖</span>
+      <strong>Read pp. 211–221</strong> in the book for the full chapter content. The analysis below covers the key arguments, examples, and takeaways.
     </div>
 
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">A</span>
-          <span class="section-title">Adjusting for Interest Rates and Dividends</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The Black-Scholes-Merton (BSM) model's foundational assumption of a single, constant risk-free interest rate deviates from market reality, where rates vary across bid-ask spreads and yield curves. While large financial institutions manage interest rate risks, independent traders typically forgo hedging due to prohibitive transaction costs. Empirically, errors in interest rate inputs have a minimal impact on option pricing and delta, and even incorporating stochastic interest rates offers negligible improvements in pricing accuracy.</p>
-          <p>Another core BSM assumption is the absence of dividends. To rectify this, options are priced by subtracting the present value of expected dividends from the underlying stock price. This adjustment is relatively straightforward and can also be applied to situations where stocks become difficult to borrow, reflecting the cost of carrying a short position.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">B</span>
-          <span class="section-title">Addressing Taxes and Underlying Tradability</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>The BSM model's oversight of varying tax implications among investors complicates its accuracy, as different tax rates can lead to distinct option valuations. While some empirical studies indicate minor price discrepancies attributable to tax effects, these are often insufficient for comprehensive analysis, making a universally tax-adjusted pricing model impractical.</p>
-          <p>The BSM framework fundamentally relies on the ability to trade and short the underlying asset for effective hedging. In scenarios where the underlying is illiquid or cannot be shorted, the no-arbitrage conditions underpinning BSM break down, leading to potential mispricing. In such cases, traders may resort to a 'real options' approach or utilize imperfectly correlated traded assets for approximate valuations.</p>
-        </div>
-      </div>
-    </div>
-    <div class="section-block">
-      <div class="section-block-header" onclick="this.parentElement.classList.toggle('open')">
-        <div class="section-label">
-          <span class="section-number">C</span>
-          <span class="section-title">Handling Non-Constant Volatility and BSM's Enduring Relevance</span>
-        </div>
-        <div class="toggle-icon"></div>
-      </div>
-      <div class="section-block-body">
-        <div class="section-block-body-inner">
-          <p>Perhaps the most significant deviation from BSM's assumptions is the reality of non-constant volatility. This leads to phenomena like the 'volatility smile' or 'surface,' where implied volatility varies across different strikes and maturities. Market makers typically address this by using a modified BSM model that incorporates a different volatility for each strike, which they update periodically. While more complex stochastic volatility models exist, they often lead to more variable day-to-day P&L.</p>
-          <p>Despite its many clearly incorrect assumptions, the BSM model remains an industry standard due to its simplicity, widespread implementation, and the intuitive framework it provides for trader communication. Most of its fundamental assumptions can be corrected through simple, albeit sometimes ad-hoc, adjustments, making it a highly practical and enduring tool for options trading.</p>
-        </div>
-      </div>
-    </div>
+    <!-- CHAPTER IMAGES -->
 
     <!-- EXAMPLES -->
     <div class="chapter-section-title">
@@ -161,28 +110,22 @@
 
     <div class="example-grid">
       <div class="example-card">
-        <div class="example-icon">💸</div>
-        <div class="example-title">Interest Rate Impact</div>
-        <div class="example-desc">A trader uses the BSM model assuming a 5% risk-free rate. If the actual borrowing rate is 6% and lending is 4%, the single rate assumption is flawed. However, the impact on delta and option pricing for short-dated options is often negligible compared to volatility changes.</div>
-        <div class="example-lesson">While BSM's interest rate assumption is imperfect, its practical impact on short-term option pricing is often minimal.</div>
+        <div class="example-icon">💵</div>
+        <div class="example-title">Dividend Subtraction</div>
+        <div class="example-desc">Reducing a $100 stock price to $98 in the model to account for a $2 upcoming dividend.</div>
+        <div class="example-lesson">Simple arithmetic adjustments can fix many BSM 'errors'.</div>
       </div>
       <div class="example-card">
-        <div class="example-icon">🍎</div>
-        <div class="example-title">Dividend Adjustment</div>
-        <div class="example-desc">A company announces a dividend payment before an option's expiration. To use the BSM model, the trader manually subtracts the present value of this expected dividend from the stock price, effectively reducing the stock's value in the model to reflect the cash payout.</div>
-        <div class="example-lesson">Dividends require a straightforward adjustment to the underlying price in the BSM model for accurate pricing.</div>
-      </div>
-      <div class="example-card">
-        <div class="example-icon">📈</div>
-        <div class="example-title">Volatility Smile</div>
-        <div class="example-desc">A trader observes that out-of-the-money put options on a stock have a higher implied volatility than at-the-money options, forming a 'volatility smile'. This contradicts BSM's constant volatility assumption. Market makers adjust by using different implied volatilities for each strike.</div>
-        <div class="example-lesson">The volatility smile/skew demonstrates non-constant volatility, requiring BSM adjustments for realistic pricing.</div>
+        <div class="example-icon">📑</div>
+        <div class="example-title">Tax Variations</div>
+        <div class="example-desc">Different tax rates for corporate vs. individual traders changing the 'fair value' of an option.</div>
+        <div class="example-lesson">No model can perfectly account for the personal tax situation of every participant.</div>
       </div>
       <div class="example-card">
         <div class="example-icon">🚫</div>
-        <div class="example-title">Illiquid Underlying</div>
-        <div class="example-desc">A trader wants to price an option on a private company's shares, which cannot be easily traded or shorted. The BSM model's hedging mechanism breaks down. Instead, they might use a 'real options' approach or find a publicly traded, highly correlated asset for valuation.</div>
-        <div class="example-lesson">The inability to hedge the underlying asset renders traditional BSM pricing ineffective, necessitating alternative valuation methods.</div>
+        <div class="example-title">Untradeable Underlyings</div>
+        <div class="example-desc">Pricing an option on a private index or illiquid asset.</div>
+        <div class="example-lesson">Traders use 'real options' theory and correlated assets to estimate value.</div>
       </div>
     </div>
 
@@ -194,28 +137,30 @@
 
     <div class="quotes-list">
       <div class="taleb-quote">
-        <p class="quote-text">BSM has three large advantages over more complex models. It is an industry-wide standard that forms the basis for trader communication. Most traders have based all of their learned intuition on the BSM model. It is simple and implemented in all trading programs.</p>
-        <p class="quote-context">Outlining the key reasons for BSM's continued dominance despite its theoretical flaws.</p>
-      </div>
-      <div class="taleb-quote">
         <p class="quote-text">Given these advantages, there is no compelling reason to use a more 'correct' model over the BSM with the various adjustments.</p>
-        <p class="quote-context">Arguing for the practical superiority of an adjusted BSM model over theoretically more accurate but complex alternatives.</p>
+        <p class="quote-context">Advocating for simplicity in modeling.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">Market-makers also know about this effect. They typically use a modified BSM model that has a different volatility for each strike, which they periodically update.</p>
-        <p class="quote-context">Describing how professionals practically address the issue of non-constant volatility (volatility smile/skew).</p>
+        <p class="quote-text">Market-makers... use a modified BSM model that has a different volatility for each strike.</p>
+        <p class="quote-context">Explaining how the 'volatility smile' is handled in practice.</p>
       </div>
       <div class="taleb-quote">
-        <p class="quote-text">Even if a stochastic volatility model gives a higher terminal profit, it will always lead to a more variable day-to-day PL.</p>
-        <p class="quote-context">Explaining a trade-off: complex models might offer better terminal profit but come with higher P&L volatility.</p>
-      </div>
-      <div class="taleb-quote">
-        <p class="quote-text">In conclusion, BSM is based on many clearly incorrect assumptions, but most of these can be corrected for with simple adjustments (some more ad-hoc than others).</p>
-        <p class="quote-context">A concise summary of the chapter's main argument regarding BSM's practical utility through adjustments.</p>
+        <p class="quote-text">BSM is based on many clearly incorrect assumptions, but most of these can be corrected for with simple adjustments.</p>
+        <p class="quote-context">Summarizing the utility of the BSM framework.</p>
       </div>
     </div>
 
     <!-- CONCEPT LINKS -->
+    <div class="chapter-section-title">
+      <span class="section-overline">Chapter Concepts</span>
+      <h2 class="section-heading">Key Terms</h2>
+    </div>
+
+    <div class="concept-chips">
+      <a class="concept-callout" href="../index.html#concepts">rho</a>
+      <a class="concept-callout" href="../index.html#concepts">cost-of-carry</a>
+      <a class="concept-callout" href="../index.html#concepts">stochastic-volatility</a>
+    </div>
 
     <!-- REFLECTIONS -->
     <div class="chapter-section-title">
@@ -226,19 +171,19 @@
     <div class="reflection-grid">
       <div class="reflection-prompt">
         <div class="reflection-number">01</div>
-        <p class="reflection-text">How do traders practically adjust the BSM model to account for the real-world reality of non-constant interest rates, and why are these adjustments often considered sufficient?</p>
+        <p class="reflection-text">How do you currently adjust your options pricing for upcoming dividends?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">02</div>
-        <p class="reflection-text">What is the straightforward method for incorporating dividends into the BSM model, and how does this adjustment extend to situations like hard-to-borrow stocks?</p>
+        <p class="reflection-text">Are you ignoring 'rho' (interest rate risk) at your own peril in a rising rate environment?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">03</div>
-        <p class="reflection-text">Why does the BSM model's assumption of 'absence of taxes' pose a challenge for accurate option pricing, and what are the limitations of addressing this issue?</p>
+        <p class="reflection-text">How do you handle 'hard to borrow' stocks in your short-option strategies?</p>
       </div>
       <div class="reflection-prompt">
         <div class="reflection-number">04</div>
-        <p class="reflection-text">Discuss the implications for option pricing and hedging when the underlying asset cannot be easily traded or shorted. How do traders use 'real options' or correlated instruments in such scenarios?</p>
+        <p class="reflection-text">Why is a 'simple but wrong' model often better than a 'complex but precise' one?</p>
       </div>
     </div>
 
